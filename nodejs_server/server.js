@@ -39,21 +39,27 @@ io.sockets.on('connection', function (socket) {
     });
     socket.on('attack', function(data){
        var user = users.indexOf(data.enemy);
-       var enemy = clients.indexOf(socket);
-       clients[user].emit('attack', {'x': data.x, 'y': data.y});
+       if(user != -1){
+           var enemy = clients.indexOf(socket);
+           clients[user].emit('attack', {'x': data.x, 'y': data.y});
+       }
     });
     socket.on('hit', function(data){
        var user = users.indexOf(data.enemy);
-       var enemy = clients.indexOf(socket);
-        if(data.plane == undefined)
-            clients[user].emit('hit', {'x': data.x, 'y': data.y});
-        else
-            clients[user].emit('hit', {'x': data.x, 'y': data.y, 'plane': data.plane});
+       if(user != -1){
+           var enemy = clients.indexOf(socket);
+            if(data.plane == undefined)
+                clients[user].emit('hit', {'x': data.x, 'y': data.y});
+            else
+                clients[user].emit('hit', {'x': data.x, 'y': data.y, 'plane': data.plane});
+        }
     });
     socket.on('missed', function(data){
        var user = users.indexOf(data.enemy);
-       var enemy = clients.indexOf(socket);
-       clients[user].emit('missed', {'x': data.x, 'y': data.y});
+       if(user != -1){
+           var enemy = clients.indexOf(socket);
+           clients[user].emit('missed', {'x': data.x, 'y': data.y});
+       }
     });
     socket.on('disconnect', function (data){
         var index = clients.indexOf(socket)
