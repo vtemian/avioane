@@ -16,6 +16,9 @@ $(document).ready(function(){
         //$('#stats').append('<div id="loading">Just w8!</div>');
         $(this).remove();
     });
+    socket.on('on', function(data){
+        $('#online').html(data.online);
+    });
     socket.on('battle', function (data) {
         enemy = data.enemy;
         free = data.free;

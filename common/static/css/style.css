@@ -273,7 +273,9 @@ body{
 	-moz-border-radius: 10px;
 	-moz-box-shadow: 2px 2px 0px 0px #333;
 	-webkit-box-shadow: 2px 2px 0px 0px #333;
-	min-width:200px;
+	min-width:130px;
 	padding:10px;
-	float:left;
+	position: absolute;
+    left: 650px;
+    top: 43px;
 }

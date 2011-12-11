@@ -8,7 +8,7 @@
 {% endblock %}
 {% block header %}
     <script type="text/javascript">
-        var socket = io.connect('avioane.outclan.com', {port:5551});
+        var socket = io.connect('10.0.1.15', {port:5551});
         var username = '{{ user.username }}';
         socket.on('identified', function (data) {
             socket.emit('handshaking', { user: '{{ user.username }}' });
@@ -20,6 +20,9 @@
         <div id="top">
             <img class="imag_avion" src="{{ STATIC_URL }}images/avionn.png" width="100px" height="80px" />
             <img class="imag_titlu" src="{{ STATIC_URL }}images/titlu.png"/>
+            <div id="que">
+                <span id="online"></span> online players
+            </div>
             <div id="mini_profile">
                 <div style="float: left; padding-top: 20px">
                     <div style="text-align: center; display: block;">Welcome</div>
@@ -56,6 +59,7 @@
              </tbody>
              </table>
          </div>
+
         <center><div id="game">
             <div id="maps">
                 <div class="map-container" id="container1"><div id="map1"></div></div>

@@ -9,6 +9,9 @@ io.sockets.on('connection', function (socket) {
     socket.on('handshaking', function (data) {
         users.push(data.user);
         clients.push(socket);
+        for(var i=0; i<clients.length; i++){
+            clients[i].emit('on', {'online': clients.length});
+        }
     });
 
     socket.on('game', function(data){
@@ -56,6 +59,9 @@ io.sockets.on('connection', function (socket) {
         var index = clients.indexOf(socket)
         clients.splice(index, 1)
         users.splice(index, 1)
+        for(var i=0; i<clients.length; i++){
+            clients[i].emit('on', {'online': clients.length});
+        }
     });
 
 });
