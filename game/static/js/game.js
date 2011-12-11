@@ -19,6 +19,7 @@ $(document).ready(function(){
     socket.on('battle', function (data) {
         enemy = data.enemy;
         free = data.free;
+        $('#rank').remove();
         gen_map($('#map1'), '');
         $('#container1').css('display', 'block');
         gen_plane($('#plane1'));

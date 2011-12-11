@@ -234,3 +234,46 @@ body{
 
 	display:none;
 }
+.rank_profile{
+	float:left;
+	margin-left:15px;
+	margin-top:10px;
+}
+
+.number{
+	border:2px solid black;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-moz-box-shadow: 2px 2px 0px 0px #333;
+	-webkit-box-shadow: 2px 2px 0px 0px #333;
+	width:30px;
+	height:20px;
+	float:left;
+	padding:5px;
+	margin-right:10px;
+	font-size:20px;
+}
+
+#rank{
+	border:2px solid black;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-moz-box-shadow: 2px 2px 0px 0px #333;
+	-webkit-box-shadow: 2px 2px 0px 0px #333;
+	min-width:200px;
+	padding:10px;
+	float:left;
+    margin-left: 50px;
+    margin-top:50px;
+}
+
+#que{
+	border:2px solid black;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-moz-box-shadow: 2px 2px 0px 0px #333;
+	-webkit-box-shadow: 2px 2px 0px 0px #333;
+	min-width:200px;
+	padding:10px;
+	float:left;
+}

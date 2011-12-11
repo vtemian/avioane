@@ -38,6 +38,24 @@
             <div id="turn"></div>
             <div id="join-battle">Join battle!</div>
         </div>
+        <div id="rank">
+             <table class="rank_profile">
+                <thead>
+                    <td></td>
+                    <td>user</td>
+                    <td>points</td>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                <tr>
+                    <td><img src="{{ user.gravatar_url }}?s=50"></td>
+                    <td>{{ user.user.username }}</td>
+                    <td>{{ user.money }}</td>
+                </tr>
+                {% endfor %}
+             </tbody>
+             </table>
+         </div>
         <center><div id="game">
             <div id="maps">
                 <div class="map-container" id="container1"><div id="map1"></div></div>
