@@ -1,0 +1,133 @@
+/* CSS Document */
+
+body{
+	background-image:url(../images/mate.png);
+	background-repeat:repeat;
+	height:100%;
+}
+
+#wrap{
+	border-right:2px solid black;
+	border-left:2px solid black;
+	border-bottom:2px solid black;
+	margin:0 auto;
+	width:1000px;
+	min-height: 760px;
+	-moz-box-shadow: 3px 3px 0px 0px #333;
+	-webkit-box-shadow: 3px 3px 0px 0px #333;	
+	-moz-border-bottom-left-radius: 15px;
+	-moz-border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	}
+	
+#top{
+	border-top:2px solid black;
+	border-bottom:2px solid black;
+	width:inherit;
+	height:100px;
+}
+
+.imag_avion{
+	padding-left:10px;
+	padding-bottom:10px;
+	padding-top:10px;
+	float:left;
+}
+
+.imag_titlu{
+	float:left;	
+	padding-top:17px;
+	padding-bottom:10px;
+	margin-left:-10px;
+}
+
+#menu_login{
+	float:right;
+	margin-top:20px;	
+	margin-right:20px;	
+	padding-bottom:20px;	
+	min-height:300px;
+	width:400px;	
+	border:2px solid black;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-moz-box-shadow: 2px 2px 0px 0px #333;
+	-webkit-box-shadow: 2px 2px 0px 0px #333;
+}
+
+#login{
+	margin:0px auto;
+	padding-top:20px;
+	height:50px;
+	width:200px;
+}
+
+#login_form{
+	padding:20px;
+	margin:0px auto;
+}
+
+#login_form_table{	
+}
+
+.user_login_input{
+	border: 1px solid black;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;	
+	-moz-box-shadow: 0px 0px 0px 0px #666;
+	-webkit-box-shadow: 0px 0px 0px 0px #666;
+	box-shadow: 0px 0px 0px 0px #666;	
+	font-size: 18px;
+	padding: 2px 2px;
+	outline: 0;
+	-webkit-appearance: none;
+}
+
+.user_login_input:focus{
+	border-color: black;
+}
+
+#signin{
+	background-image:url(../images/signin.png);
+	width:120px;
+	height:40px;
+	cursor:pointer;
+}
+
+#signin:hover{
+	background-image:url(../images/signin2.png);
+}
+
+#signup{
+	background-image:url(../images/signup.png);
+	width:160px;
+	height:40px;
+	cursor:pointer;
+}
+
+#signup:hover{
+	background-image:url(../images/signup2.png);
+}
+.fb_login{
+	background-image:url(../images/fb-connect-large.png);
+	background-repeat:no-repeat;
+	width:302px;
+	height:50px;
+	margin:0 auto;
+}
+
+#menu_reg{
+	float:right;
+	margin-top:20px;
+	margin-right:20px;
+	padding-bottom:20px;	
+	min-height:300px;
+	width:400px;	
+	border:2px solid black;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-moz-box-shadow: 2px 2px 0px 0px #333;
+	-webkit-box-shadow: 2px 2px 0px 0px #333;
+}

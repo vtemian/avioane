@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+{% block extrahead %}
+    <script src="{{ STATIC_URL }}jquery-collision-1.0.1.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.simplemodal.1.4.1.min.js"></script>
+    <script src="{{ STATIC_URL }}jquery-ui-draggable-collision-1.0.1.js"></script>
+    <script src="{{ STATIC_URL }}js/game.js"></script>
+
+{% endblock %}
+{% block header %}
+    <script type="text/javascript">
+        var socket = io.connect('10.0.1.15', {port:5555});
+        var username = '{{ user.username }}';
+        socket.on('identified', function (data) {
+            socket.emit('handshaking', { user: '{{ user.username }}' });
+        });
+    </script>
+    <div id="notifications_bar"></div>
+    <div id="wrap">
+
+        <div id="top">
+            <img class="imag_avion" src="{{ STATIC_URL }}images/avionn.png" width="100px" height="80px" />
+            <img class="imag_titlu" src="{{ STATIC_URL }}images/titlu.png"/>
+            <div id="mini_profile">
+                <div style="float: left; padding-top: 20px">
+                    <div style="text-align: center; display: block;">Welcome</div>
+                    <div style="text-align: center; display: block;">{{ user.username }}!</div>
+                    <div style="text-align: center; padding-top: 10px;"><a href="/logout">Logout</a></div>
+                </div>
+                <img style="float: right;" src="{{ userprofile.gravatar_url }}?s=100"><br>
+
+            </div>
+        </div>
+
+{% endblock %}
+{% block content %}
+    <div id="content">
+        <div id="stats">
+            <div id="turn"></div>
+            <div id="join-battle">Join battle!</div>
+        </div>
+        <center><div id="game">
+            <div id="maps">
+                <div class="map-container" id="container1"><div id="map1"></div></div>
+                <div class="map-container" id="container2"><div id="map2"></div></div>
+            </div>
+            <div id="planes">
+                <div class="container-plane"><div id="plane1" class="plane"></div></div>
+                <div class="container-plane"><div id="plane2" class="plane"></div></div>
+                <div class="container-plane"><div id="plane3" class="plane"></div></div>
+            </div>
+        </div>
+        </center>
+    </div>
+    <div id="win-loss" style="display: none;">
+        YOU WON!
+    </div>
+
+{% endblock %}

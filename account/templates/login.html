@@ -1,0 +1,84 @@
+{% extends 'index.html' %}
+{% block extrahead %}
+    <script src="{{ STATIC_URL }}js/django-validate.js"></script>
+    <script src="{{ STATIC_URL }}js/frontpage.js"></script>
+    <script src="{{ STATIC_URL }}js/login.js"></script>
+    <script src="{{ STATIC_URL }}js/register.js"></script>
+{% endblock %}
+{% block header %}
+    <div id="wrap">
+
+        <div id="top">
+            <img class="imag_avion" src="{{ STATIC_URL }}images/avionn.png" width="100px" height="80px" />
+            <img class="imag_titlu" src="{{ STATIC_URL }}images/titlu.png"/>
+            <span id="sign-switch">Register!</span>
+        </div>
+        <div id="frontimg">
+            <img src="{{ STATIC_URL }}images/front_page_table.png">
+        </div>
+{% endblock %}
+{% block content %}
+    <div id="menu_login">
+
+        <div id="login">
+            <img src="{{ STATIC_URL }}images/text.png" />
+        </div>
+
+        <div id="login_form">
+            <form action="{% url account.views.login %}" method="POST" id="login-form">{% csrf_token %}
+                <table class="login_form_table">
+                    <tr>
+                        <td><img src="{{ STATIC_URL }}images/username.png"/> </td>
+                        <td><input type="text" id="username" name="username" class="user_login_input" /></td>
+                    </tr>
+                    <tr>
+                        <td><img src="{{ STATIC_URL }}images/password.png"/> </td>
+                        <td><input type="password" id="password" name="password" class="user_login_input" /></td>
+                    </tr>
+                </table>
+
+                <center><a href="#"><img src="{{ STATIC_URL }}images/reset_pass.png"/></a></center><br/>
+                <center><div id="signin"></div></center>
+                
+            </form>
+        </div>
+
+
+    
+        <br/> <div class="fb_login"></div>
+
+    </div>
+
+
+        <div id="menu_reg" class="menu_reg_display">
+            <div id="login">
+                <img src="{{ STATIC_URL }}images/register.png" />
+            </div>
+            <div id="login_form">
+         <form action="{% url account.views.register %}" id="sign_up_form" method="POST">
+            {% csrf_token %}
+            <div id="general" class="error"></div>
+             <table class="login_form_table">
+                 <tr>
+                     <td><img src="{{ STATIC_URL }}images/username.png"/> </td>
+                     <td><input type="text" id="username" name="username" class="user_login_input" /></td>
+                 </tr>
+                 <tr>
+                     <td><img src="{{ STATIC_URL }}images/password.png"/> </td>
+                     <td><input type="password" id="password" name="password" class="user_login_input" /></td>
+                 </tr>
+                 <tr>
+                     <td><img src="{{ STATIC_URL }}images/email.png"/> </td>
+                     <td><input type="email" id="email" name="email" class="user_login_input" /></td>
+                 </tr>
+             </table>
+             <center><div id="signup"></div></center>
+        </form>
+                </div>
+        </div>
+</div>
+
+{% endblock %}
+
+
+
