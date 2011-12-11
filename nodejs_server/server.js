@@ -59,6 +59,10 @@ io.sockets.on('connection', function (socket) {
         var index = clients.indexOf(socket)
         clients.splice(index, 1)
         users.splice(index, 1)
+        var index = game.indexOf(socket);
+        if(index != -1){
+            game.splice(index, 1);
+        }
         for(var i=0; i<clients.length; i++){
             clients[i].emit('on', {'online': clients.length});
         }
