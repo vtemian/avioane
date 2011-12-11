@@ -1,4 +1,4 @@
-var io = require('socket.io').listen(5555);
+var io = require('socket.io').listen(5551);
 var users = new Array();
 var clients = new Array();
 var game = new Array();
