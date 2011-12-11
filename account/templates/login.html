@@ -26,6 +26,7 @@
 
         <div id="login_form">
             <form action="{% url account.views.login %}" method="POST" id="login-form">{% csrf_token %}
+                <div id="general"></div>
                 <table class="login_form_table">
                     <tr>
                         <td><img src="{{ STATIC_URL }}images/username.png"/> </td>
