@@ -23,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="game.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="game.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game/templates/game.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="18" selection-start="370" selection-end="370" vertical-scroll-proportion="-5.2173915">
+            <state line="14" column="11" selection-start="646" selection-end="646" vertical-scroll-proportion="0.42769858">
               <folding />
             </state>
           </provider>
@@ -86,10 +86,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/static/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="222" column="16" selection-start="4168" selection-end="4168" vertical-scroll-proportion="0.45679012">
+            <state line="220" column="17" selection-start="4130" selection-end="4130" vertical-scroll-proportion="-6.857143">
               <folding />
             </state>
           </provider>
@@ -136,9 +136,9 @@
         <option value="$PROJECT_DIR$/battle/views.py" />
         <option value="$PROJECT_DIR$/account/templates/login.html" />
         <option value="$PROJECT_DIR$/nodejs_server/server.js" />
-        <option value="$PROJECT_DIR$/game/templates/game.html" />
         <option value="$PROJECT_DIR$/game/static/js/game.js" />
         <option value="$PROJECT_DIR$/common/static/css/style.css" />
+        <option value="$PROJECT_DIR$/game/templates/game.html" />
       </list>
     </option>
   </component>
@@ -628,13 +628,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/templates/game.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="18" selection-start="370" selection-end="370" vertical-scroll-proportion="-5.2173915">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game/static/js/game.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="77" column="9" selection-start="3128" selection-end="3128" vertical-scroll-proportion="-41.25">
@@ -644,7 +637,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/common/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="222" column="16" selection-start="4168" selection-end="4168" vertical-scroll-proportion="0.45679012">
+        <state line="220" column="17" selection-start="4130" selection-end="4130" vertical-scroll-proportion="-6.857143">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/templates/game.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="11" selection-start="646" selection-end="646" vertical-scroll-proportion="0.42769858">
           <folding />
         </state>
       </provider>
