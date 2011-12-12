@@ -30,12 +30,16 @@ io.sockets.on('connection', function (socket) {
         console.log('a');
        var user = users.indexOf(data.enemy);
        var enemy = clients.indexOf(socket);
-       clients[user].emit('loss', {'enemy': users[enemy]});
+       if(user != -1){
+        clients[user].emit('loss', {'enemy': users[enemy]});
+       }
     });
     socket.on('ready', function(data){
        var user = users.indexOf(data.enemy);
        var enemy = clients.indexOf(socket);
-       clients[user].emit('ready', {'enemy': users[enemy]});
+       if(user != -1){
+        clients[user].emit('ready', {'enemy': users[enemy]});
+       }
     });
     socket.on('attack', function(data){
        var user = users.indexOf(data.enemy);
