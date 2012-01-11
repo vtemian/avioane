@@ -114,7 +114,7 @@ INSTALLED_APPS = (
     'battle',
     'game',
     'common',
-
+    'facebook',
 )
 
 LOGIN_REDIRECT_URL = '/'
