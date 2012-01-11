@@ -5,7 +5,7 @@ from account.views import user_menu
 
 def start(request):
     context = user_menu(request)
-    users = UserProfile.objects.all().order_by('-money')[:10]
+    users = UserProfile.objects.all().order_by('lvl','-money', 'user__username')[:10]
     context['users'] = users
     print users
     return render_to_response('game.html',

@@ -19,7 +19,7 @@
 
         <div id="top">
             <img class="imag_avion" src="{{ STATIC_URL }}images/avionn.png" width="100px" height="80px" />
-            <img class="imag_titlu" src="{{ STATIC_URL }}images/titlu.png"/>
+            <span class="title">Planes</span><span class="title" id="war-title">WAR</span>
             <div id="que">
                 <span id="online"></span> online players
             </div>
@@ -46,6 +46,7 @@
                 <thead>
                     <td></td>
                     <td>user</td>
+                    <td>level</td>
                     <td>points</td>
                 </thead>
                 <tbody>
@@ -53,6 +54,7 @@
                 <tr>
                     <td><img src="{{ user.gravatar_url }}?s=50"></td>
                     <td>{{ user.user.username }}</td>
+                    <td>{{ user.lvl }}</td>
                     <td>{{ user.money }}</td>
                 </tr>
                 {% endfor %}

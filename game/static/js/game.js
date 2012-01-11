@@ -147,7 +147,7 @@ $(document).ready(function(){
                     },
                     onClose: function (dialog) {
                         dialog.data.slideUp('slow', function () {
-                            dialog.container.hide('s/home/wok/projects/avioanelow', function () {
+                            dialog.container.hide('slow', function () {
                                 dialog.overlay.slideUp('slow', function () {
                                     $.modal.close();
                                 });
