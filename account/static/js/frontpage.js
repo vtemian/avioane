@@ -11,4 +11,7 @@ $(document).ready(function(){
         }
 
     });
+    $('.fb_login').click(function(){
+       window.location='/facebook/login';
+    });
 });
