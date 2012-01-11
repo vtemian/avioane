@@ -13,7 +13,6 @@ $(document).ready(function(){
     $('#join-battle').live('click' ,function(){
         socket.emit('game', {'user': username});
         $('#stats').append('<div id="loading">Just w8!</div>');
-        //$('#stats').append('<div id="loading">Just w8!</div>');
         $(this).remove();
     });
     socket.on('on', function(data){
@@ -148,7 +147,7 @@ $(document).ready(function(){
                     },
                     onClose: function (dialog) {
                         dialog.data.slideUp('slow', function () {
-                            dialog.container.hide('slow', function () {
+                            dialog.container.hide('s/home/wok/projects/avioanelow', function () {
                                 dialog.overlay.slideUp('slow', function () {
                                     $.modal.close();
                                 });

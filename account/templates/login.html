@@ -10,7 +10,7 @@
 
         <div id="top">
             <img class="imag_avion" src="{{ STATIC_URL }}images/avionn.png" width="100px" height="80px" />
-            <img class="imag_titlu" src="{{ STATIC_URL }}images/titlu.png"/>
+            <span class="title">Planes</span><span class="title" id="war-title">WAR</span>
             <span id="sign-switch">Register!</span>
         </div>
         <div id="frontimg">
@@ -20,62 +20,59 @@
 {% block content %}
     <div id="menu_login">
 
-        <div id="login">
-            <img src="{{ STATIC_URL }}images/text.png" />
+        <div class="login">
+            Login
         </div>
 
-        <div id="login_form">
-            <form action="{% url account.views.login %}" method="POST" id="login-form">{% csrf_token %}
-                <div id="general"></div>
-                <table class="login_form_table">
-                    <tr>
-                        <td><img src="{{ STATIC_URL }}images/username.png"/> </td>
-                        <td><input type="text" id="username" name="username" class="user_login_input" /></td>
-                    </tr>
-                    <tr>
-                        <td><img src="{{ STATIC_URL }}images/password.png"/> </td>
-                        <td><input type="password" id="password" name="password" class="user_login_input" /></td>
-                    </tr>
-                </table>
+        <ul class="login_form">
+            <form action="{% url account.views.login %}" method="POST" id="login-form">
+                    <li>{% csrf_token %}</li>
+                    <li><div id="general" class="error"></div></li>
+                    <li>
+                        <label for="username" class="label">username:</label>
+                        <input type="text" id="username" name="username" class="user_login_input"/>
+                    </li>
+                    <li>
+                        <label for="password" class="label">password:</label>
+                        <input type="password" id="password" name="password" class="user_login_input" />
+                    </li>
+                    <li><a id="reset-a">Reset password</a></li>
+                    <li><input type="submit" value="login" class="submit" /></li>
 
-                <center><a href="#"><img src="{{ STATIC_URL }}images/reset_pass.png"/></a></center><br/>
-                <center><div id="signin"></div></center>
-                
             </form>
-        </div>
+        </ul>
 
-
-    
-        <br/> <div class="fb_login"></div>
+        <div class="fb_login"></div>
 
     </div>
 
 
         <div id="menu_reg" class="menu_reg_display">
-            <div id="login">
-                <img src="{{ STATIC_URL }}images/register.png" />
+            <div class="login" align="center">
+                Register
             </div>
-            <div id="login_form">
-         <form action="{% url account.views.register %}" id="sign_up_form" method="POST">
-            {% csrf_token %}
-            <div id="general" class="error"></div>
-             <table class="login_form_table">
-                 <tr>
-                     <td><img src="{{ STATIC_URL }}images/username.png"/> </td>
-                     <td><input type="text" id="username" name="username" class="user_login_input" /></td>
-                 </tr>
-                 <tr>
-                     <td><img src="{{ STATIC_URL }}images/password.png"/> </td>
-                     <td><input type="password" id="password" name="password" class="user_login_input" /></td>
-                 </tr>
-                 <tr>
-                     <td><img src="{{ STATIC_URL }}images/email.png"/> </td>
-                     <td><input type="email" id="email" name="email" class="user_login_input" /></td>
-                 </tr>
-             </table>
-             <center><div id="signup"></div></center>
-        </form>
-                </div>
+
+            <ul class="login_form">
+                <form action="{% url account.views.register %}" id="sign_up_form" method="POST">
+                        <li>{% csrf_token %}</li>
+                        <li><div id="general" class="error"></div></li>
+                        <li>
+                            <label for="username" class="label">username:</label>
+                            <input type="text" id="username" name="username" class="user_login_input"/>
+                        </li>
+                        <li>
+                            <label for="password" class="label">password:</label>
+                            <input type="password" id="password" name="password" class="user_login_input" />
+                        </li>
+                        <li>
+                            <label for="email" class="label">email:</label>
+                            <input type="email" id="email" name="email" class="user_login_input" />
+                        </li>
+                        <li><input type="submit" value="register" class="submit" /></li>
+
+                </form>
+            </ul>
+
         </div>
 </div>
 

@@ -20,7 +20,7 @@ body{
 	border-bottom-left-radius: 15px;
 	border-bottom-right-radius: 15px;
 	}
-	
+
 #top{
 	border-top:2px solid black;
 	border-bottom:2px solid black;
@@ -55,21 +55,59 @@ body{
 	-moz-box-shadow: 2px 2px 0px 0px #333;
 	-webkit-box-shadow: 2px 2px 0px 0px #333;
 }
+.title{
+    font-size: 75px;
+    color: #647cae;
+    float: left;
+    margin-top: 20px;
+}
+#war-title{
+    color: #c1272d;
+    font-size: 80px;
+    padding-left: 15px;
+}
 
-#login{
+
+/* *************Login**************  */
+.login{
 	margin:0px auto;
 	padding-top:20px;
 	height:50px;
-	width:200px;
+    color: #c1272d;
+    font-size: 60px;
+    text-align: center;
 }
 
-#login_form{
-	padding:20px;
+.login_form{
+	list-style:none;
 	margin:0px auto;
+	margin-top:20px;
+	padding-bottom:20px;
+
+}
 }
 
-#login_form_table{	
+.login_form li{
+	margin-top:10px;
 }
+
+.login_form .label{
+	color: #49659f;
+    font-weight: bold;
+    float: left;
+    font-size: 20px;
+    padding-top: 10px;
+}
+
+.login_form a{
+    color:#49659f;
+    font-weight:bold;
+    cursor: pointer;
+    float: left;
+    padding-left: 100px;
+    padding-top: 10px;
+}
+
 
 .user_login_input{
 	border: 1px solid black;
@@ -80,19 +118,43 @@ body{
 	-webkit-box-shadow: 0px 0px 0px 0px #666;
 	box-shadow: 0px 0px 0px 0px #666;	
 	font-size: 18px;
-	padding: 2px 2px;
 	outline: 0;
+    padding: 2px 2px;
 	-webkit-appearance: none;
+    float: right;
+    margin-right: 20px;
 }
 
 .user_login_input:focus{
 	border-color: black;
 }
 
+.submit{
+    width: 100%;
+    padding: 7px;
+    border: 1px solid #49659f;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin-top: 10px;
+    margin-left: -15px;
+    cursor: pointer;
+    color: #49659f;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'SketchBlockBold' , 'Arial';
+    background-color: #fff;
+}
+
+.submit:hover{
+    border: 3px solid #49659f;
+    font-size: 18px;
+}
+
 #signin{
 	background-image:url(../images/signin.png);
 	width:120px;
-	height:40px;
+	height:40px;font-size: 20px;
 	cursor:pointer;
 }
 
