@@ -84,9 +84,12 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
-AUTHENTICATION_BACKENDS = ('facebook.backend.FacebookBackend',
-                           'django.contrib.auth.backends.ModelBackend',
-                           'account.backends.auth.GoogleBackend')
+AUTHENTICATION_BACKENDS = ('facebook.backend.FacebookBackend', 'django.contrib.auth.backends.ModelBackend', 'account.backends.auth.GoogleBackend')
+#FB LOGIN
+AUTH_PROFILE_MODULE = 'facebook.FacebookProfile'
+FACEBOOK_APP_ID = '284577158255267'
+FACEBOOK_APP_SECRET = 'cea53a8a08c9c36d982f8f6599110bec'
+FACEBOOK_SCOPE = 'email,publish_stream'
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
