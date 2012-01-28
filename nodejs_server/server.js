@@ -2,6 +2,7 @@ var io = require('socket.io').listen(5551);
 var users = new Array();
 var clients = new Array();
 var game = new Array();
+var onlineBattles = new Array();
 
 io.sockets.on('connection', function (socket) {
     socket.emit('identified', { message: 'handshaking' });
@@ -26,8 +27,20 @@ io.sockets.on('connection', function (socket) {
                 game.push(clients[user]);
        }
     });
+
+    socket.on('createBattle', function(data){
+        var user = data.user;
+        var enemy = data.enemy;
+        var battle = data.battleID;
+
+        var users = new Array();
+        users.push(enemy);
+        users.push(user);
+
+        onlineBattles[battle] = users;
+    });
+
     socket.on('loss', function(data){
-        console.log('a');
        var user = users.indexOf(data.enemy);
        var enemy = clients.indexOf(socket);
        if(user != -1){
@@ -66,10 +79,17 @@ io.sockets.on('connection', function (socket) {
        }
     });
     socket.on('disconnect', function (data){
-        var index = clients.indexOf(socket)
-        clients.splice(index, 1)
-        users.splice(index, 1)
-        var index = game.indexOf(socket);
+        var index = clients.indexOf(socket);
+
+        //droping the user from the curent game!
+        var user = users[index];
+        var onlineUser = gameDroping(user);
+        if(onlineUser)
+            clients[users.indexOf(onlineUser)].emit('disconnectGame', {message: 'decedat'});
+
+        clients.splice(index, 1);
+        users.splice(index, 1);
+        index = game.indexOf(socket);
         if(index != -1){
             game.splice(index, 1);
         }
@@ -77,5 +97,16 @@ io.sockets.on('connection', function (socket) {
             clients[i].emit('on', {'online': clients.length});
         }
     });
-
+    function gameDroping(dropedUser){
+        for(var index in onlineBattles){
+            var userIndex = onlineBattles[index].indexOf(dropedUser);
+            if(userIndex != -1){
+                if(userIndex)
+                    return onlineBattles[index][0];
+                else
+                    return onlineBattles[index][1];
+            }
+        }
+        return false;
+    }
 });

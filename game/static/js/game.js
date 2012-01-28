@@ -4,11 +4,25 @@ $(document).ready(function(){
             plane1: new Array(),
             plane2: new Array(),
             plane3: new Array()
-    }
+    };
+    var battle = '';
     var meReady = enemyReady = attackReady = false;
     var free;
     var win = 0;
-    $('#container1').css('display', 'none');
+    var planePositions = {
+        1: new Array("00100", "11111", "00100", "01110"),
+        2: new Array("00100", "11111", "00100", "01110"),
+        3: new Array("00100", "11111", "00100", "01110"),
+        4: new Array("00100", "11111", "00100", "01110")
+    };
+    gen_plane($('#plane1'), planePositions['1']);
+    $('#plane1').hover(function(){
+        console.log('hoverIN!');
+    }, function(){
+        console.log('hoverOUT!');
+    });
+    $('#container1').css('display', 'n33333333333333333333333333333sx44ddddddddddddddddddddddddddddddddd' +
+        'ddddddddqone');
     $('#container2').css('display', 'none');
     $('#join-battle').live('click' ,function(){
         socket.emit('game', {'user': username});
@@ -24,11 +38,15 @@ $(document).ready(function(){
         $('#rank').remove();
         gen_map($('#map1'), '');
         $('#container1').css('display', 'block');
-        gen_plane($('#plane1'));
-        gen_plane($('#plane2'));
-        gen_plane($('#plane3'));
-
-
+        //gen_plane($('#plane1'));
+        gen_plane($('#plane2'), new Array("00100", "11111", "00100", "01110"));
+        gen_plane($('#plane3'), new Array("00100", "11111", "00100", "01110"));
+        //we are ready for battle!
+        //Create a battle in backend!
+        $.post('/battle/create/', {'enemy': enemy}, function(battleID){
+                battle = battleID;                  //get battle's id
+        });
+        socket.emit('createBattle', {'user': username, 'enemy': enemy, 'battleID': battle});
         $(".plane").draggable({
             revert: "invalid",
             grid: [42, 42] ,
@@ -37,7 +55,6 @@ $(document).ready(function(){
             stop: function(event, ui) {
                 var left = ui.offset.left;
                 var top = ui.offset.top;
-                console.log($("#map1").offset().left, $("#map1").offset().top);
                 var i = parseInt((top-$("#map1").offset().top)/42);
                 var j = parseInt((left-$("#map1").offset().left)/42);
 
@@ -75,11 +92,23 @@ $(document).ready(function(){
                         $('#turn').html("It's "+enemy+" turn!");
                     }
                 }
+                //send planes positions to backend
+                send_plane(planes['plane1'], 'plane1');
+                send_plane(planes['plane2'], 'plane2');
+                send_plane(planes['plane3'], 'plane3');
             }
         }else{
             alert('You must place the planes!');
         }
     });
+    //TODO: see if planes were creted!
+    function send_plane(plane, type){
+        $.each(plane, function(index, value){
+            $.post('/plane/create_positioning/'+type+'/', {'battleID': battle, 'x': value.top, 'y': value.left}, function(data){
+                console.log(data);
+            });
+        });
+    }
     socket.on('ready', function(data){
         enemyReady = true;
         $('#stats').append('<div id="enemy">'+data.enemy+' is ready!</div>');
@@ -98,95 +127,84 @@ $(document).ready(function(){
     socket.on('attack', function(data){
         var x = data.x;
         var y = data.y;
-        if(check_hit(x, y, planes['plane2']) == 'head'){        //check head hit
-            $.each(planes['plane2'], function(index, value){
-                $('#cell-' + value.top + '-' + value.left + '-').addClass('hitHead');
-            });
-            socket.emit('hit', {'x': x, 'y': y, 'enemy': enemy, 'plane': planes['plane2']});
-            win++;
-        }else if(check_hit(x, y, planes['plane1']) == 'head'){
-            $.each(planes['plane1'], function(index, value){
-                $('#cell-' + value.top + '-' + value.left + '-').addClass('hitHead');
-            });
-            socket.emit('hit', {'x': x, 'y': y, 'enemy': enemy, 'plane': planes['plane1']});
-            win++;
-        }else if(check_hit(x, y, planes['plane3']) == 'head'){
-            $.each(planes['plane3'], function(index, value){
-                $('#cell-' + value.top + '-' + value.left + '-').addClass('hitHead');
-            });
-            socket.emit('hit', {'x': x, 'y': y, 'enemy': enemy, 'plane': planes['plane3']});
-            win++;
-        }else if(check_hit(x, y, planes['plane1']) || check_hit(x, y, planes['plane2']) || check_hit(x, y, planes['plane3'])){ //normal hit
-            $("#cell-" + x + "-" + y + "-").addClass('hitMe');
-            socket.emit('hit', {'x': x, 'y': y, 'enemy': enemy});
-        }else{
-            $("#cell-" + x + "-" + y + "-").addClass('missedMe'); //missed
-            socket.emit('missed', {'x': x, 'y': y, 'enemy': enemy});
-        }
+        //attack sent to backend
+        $.post('/battle/attack/', {'x': x, 'y':y, 'battleID':battle}, function(data){
+            console.log(data)
+            if(data == 'miss'){
+                miss_attack(x, y);
+            }else{
+                if(data == 'hit'){
+                    hit_attack(x, y);
+                }else{
+                    if(data == 'finished'){
+                        $('#win-loss').html('YOU LOST!');
+                        socket.emit('loss', {'enemy': enemy});
+                        $.post('/battle/', {'state': 'loss', 'enemy': enemy}, function(data){
+                            finish_battle();
+                        });
+                    }else{
+                        head_attack(data, x, y);
+                    }
+                }
+            }
+        });
         free = true;
         $('#turn').html("It's your turn!");
-        if(win == 3){
-            $('#win-loss').html('YOU LOST!');
-            socket.emit('loss', {'enemy': enemy});
-            $.post('/battle/', {'state': 'loss', 'enemy': enemy}, function(data){
 
-                $('#content').remove();
-                $('#win-loss').modal({
-                    onOpen: function (dialog) {
-                        var sm = this;
-
-                        dialog.overlay.slideDown('slow', function () {
-                            dialog.data.hide();
-                            dialog.container.slideDown('slow', function () {
-                                dialog.data.slideDown('slow');
-                            });
-                        });
-                        dialog.container.animate({height: 100, width: 300}, 500, function () {
-                            sm.setPosition();
-                        });
-                    },
-                    onClose: function (dialog) {
-                        dialog.data.slideUp('slow', function () {
-                            dialog.container.hide('slow', function () {
-                                dialog.overlay.slideUp('slow', function () {
-                                    $.modal.close();
-                                });
-                            });
-                        });
-                        window.location = '/';
-                    }
-                });
-            });
-        }
     });
-    socket.on('loss', function(data){
-                $('#content').remove();
-                $('#win-loss').modal({
-                    onOpen: function (dialog) {
-                        var sm = this;
+    //miss
+    function miss_attack(x, y){
+        $("#cell-" + x + "-" + y + "-").addClass('missedMe');
+        socket.emit('missed', {'x': x, 'y': y, 'enemy': enemy});
+    }
+    //normal hit(not head)
+    function hit_attack(x, y){
+        $("#cell-" + x + "-" + y + "-").addClass('hitMe');
+        socket.emit('hit', {'x': x, 'y': y, 'enemy': enemy});
+    }
+    //head attack
+    function head_attack(data, x, y){
+        $.each(planes[data], function(index, value){
+                $('#cell-' + value.top + '-' + value.left + '-').addClass('hitHead');
+        });
+        socket.emit('hit', {'x': x, 'y': y, 'enemy': enemy, 'plane': planes[data]});
+    }
+    //finish the battle
+    function finish_battle(){
+        $('#content').remove();
+        $('#win-loss').modal({
+            onOpen: function (dialog) {
+                var sm = this;
 
-                        dialog.overlay.slideDown('slow', function () {
-                            dialog.data.hide();
-                            dialog.container.slideDown('slow', function () {
-                                dialog.data.slideDown('slow');
-                            });
-                        });
-                        dialog.container.animate({height: 100, width: 300}, 500, function () {
-                            sm.setPosition();
-                        });
-                    },
-                    onClose: function (dialog) {
-                        dialog.data.slideUp('slow', function () {
-                            dialog.container.hide('slow', function () {
-                                dialog.overlay.slideUp('slow', function () {
-                                    $.modal.close();
-                                });
-                            });
-                        });
-                        window.location = '/';
-                    }
+                dialog.overlay.slideDown('slow', function () {
+                    dialog.data.hide();
+                    dialog.container.slideDown('slow', function () {
+                        dialog.data.slideDown('slow');
+                    });
                 });
-            
+                dialog.container.animate({height: 100, width: 300}, 500, function () {
+                    sm.setPosition();
+                });
+            },
+            onClose: function (dialog) {
+                dialog.data.slideUp('slow', function () {
+                    dialog.container.hide('slow', function () {
+                        dialog.overlay.slideUp('slow', function () {
+                            $.modal.close();
+                        });
+                    });
+                });
+                window.location = '/';
+            }
+        });
+    }
+    socket.on('loss', function(data){
+        finish_battle();
+    });
+    socket.on('disconnectGame', function(data){
+        $.post('/battle/disconnect/', {'enemy': enemy, 'battleID': battle}, function(data){
+            finish_battle();
+        });
     });
     socket.on('hit', function(data){
         var x = data.x;
@@ -223,20 +241,6 @@ $(document).ready(function(){
         }
     })
 });
-function check_hit(x, y, plane){
-    for(var i=0; i<10; i++){
-        if(plane[i].left == y && plane[i].top == x){
-            if(i == 0){
-                $("#cell-" + plane[i].top + "-" + plane[i].left).addClass('hitHead');
-                return 'head';
-            }else{
-                $("#cell-" + plane[i].top + "-" + plane[i].left).addClass('hitMe');
-                return true;
-            }
-        }
-    }
-    return false;
-}
 function random_place(){
     
 }
@@ -245,8 +249,7 @@ function lock_planes(){
     $('#plane2').draggable({ disabled: true });
     $('#plane3').draggable({ disabled: true });
 }
-function gen_plane($container){
-    var plane = new Array("00100", "11111", "00100", "01110");
+function gen_plane($container, plane){
 
     for(var i=0; i<=3; i++){
         var $line = '<div id="row-'+i+'" class="line">';

@@ -53,6 +53,9 @@ body{
     background-color: #4dbce9;
     cursor:pointer;
 }
+.rotate{
+    background-image: url("../images/rotate.png");
+}
 .plane{
     float: left;
     display: block;
