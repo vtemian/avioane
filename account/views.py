@@ -5,6 +5,8 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.utils import simplejson
 from account.form import UserRegister, UserLogin, ResetPassword
 from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render_to_response, redirect, render
+from django.template.context import RequestContext
 
 from account.models import UserProfile, PasswordReset
 
@@ -61,3 +63,12 @@ def user_menu(request):
     user = UserProfile.objects.get(user=request.user)
     render_context['userprofile'] = user
     return render_context
+
+def profile(request, profile_id):
+    context = user_menu(request)
+    user= UserProfile.objects.get(pk=profile_id)
+    context['user'] = user
+    print user
+    return render_to_response('profile.html',
+        context,
+        context_instance=RequestContext(request))

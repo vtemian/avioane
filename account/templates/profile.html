@@ -1,0 +1,75 @@
+{% extends 'index.html' %}
+{% block extrahead %}
+    <script src="{{ STATIC_URL }}jquery-collision-1.0.1.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.simplemodal.1.4.1.min.js"></script>
+    <script src="{{ STATIC_URL }}jquery-ui-draggable-collision-1.0.1.js"></script>
+    <script src="{{ STATIC_URL }}js/game.js"></script>
+
+{% endblock %}
+{% block header %}
+    <script type="text/javascript">
+        var socket = io.connect('192.168.0.167', {port:5551});
+        var username = '{{ user.username }}';
+        socket.on('identified', function (data) {
+            socket.emit('handshaking', { user: '{{ user.username }}' });
+        });
+    </script>
+    <div id="notifications_bar"></div>
+    <div id="wrap">
+
+    <div id="top">
+        <img class="imag_avion" src="{{ STATIC_URL }}images/avionn.png" width="100px" height="80px" />
+        <span class="title">Planes</span><span class="title" id="war-title">WAR</span>
+        <div id="que">
+            <span id="online"></span> online players
+        </div>
+        <div id="mini_profile">
+            <div style="float: left; padding-top: 20px">
+                <div style="text-align: center; display: block;">Welcome</div>
+                <div style="text-align: center; display: block;">{{ user.username }}!</div>
+                <div style="text-align: center; padding-top: 10px;"><a href="/logout">Logout</a></div>
+            </div>
+            <img style="float: right;" src="{{ userprofile.gravatar_url }}?s=100"><br>
+
+        </div>
+    </div>
+
+{% endblock %}
+{% block content %}
+    <div id="content">
+        <div id="stats">
+            <div id="turn"></div>
+            <div id="join-battle">Join battle!</div>
+        </div>
+        <div id="rank">
+            <table class="rank_profile">
+                <thead>
+                <td></td>
+                <td>user</td>
+                <td>level</td>
+                <td>coins</td>
+                <td>experience</td>
+                <td>rank</td>
+                <td>alliance</td>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td><img src="{{ user.gravatar_url }}?s=50"></td>
+                        <td>{{ user.user.username }}</td>
+                        <td>{{ user.lvl }}</td>
+                        <td>{{ user.money }}</td>
+                        <td>{{ user.exp }}</td>
+                        <td>{{ user.rank }}</td>
+                        <td>{{ user.clan }}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

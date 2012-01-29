@@ -21,8 +21,7 @@ $(document).ready(function(){
     }, function(){
         console.log('hoverOUT!');
     });
-    $('#container1').css('display', 'n33333333333333333333333333333sx44ddddddddddddddddddddddddddddddddd' +
-        'ddddddddqone');
+    $('#container1').css('display', 'none' );
     $('#container2').css('display', 'none');
     $('#join-battle').live('click' ,function(){
         socket.emit('game', {'user': username});

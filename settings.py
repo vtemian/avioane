@@ -84,7 +84,7 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
-AUTHENTICATION_BACKENDS = ('facebook.backend.FacebookBackend', 'django.contrib.auth.backends.ModelBackend', 'account.backends.auth.GoogleBackend')
+AUTHENTICATION_BACKENDS = ('facebook.backend.FacebookBackend', 'django.contrib.auth.backends.ModelBackend')
 #FB LOGIN
 AUTH_PROFILE_MODULE = 'facebook.FacebookProfile'
 FACEBOOK_APP_ID = '284577158255267'
@@ -116,6 +116,9 @@ INSTALLED_APPS = (
     'common',
     'facebook',
     'plane',
+    'alliance',
+    'notification',
+    'medals',
 )
 
 LOGIN_REDIRECT_URL = '/'
