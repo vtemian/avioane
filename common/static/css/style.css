@@ -1,284 +1,628 @@
-@font-face {
-    font-family: 'SketchBlockBold';
-    src: url('../sketch_block-webfont.eot');
-    src: url('../sketch_block-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../sketch_block-webfont.woff') format('woff'),
-         url('../sketch_block-webfont.ttf') format('truetype'),
-         url('../sketch_block-webfont.svg#SketchBlockBold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-body{
-    font-family: 'SketchBlockBold', 'Arial';
-    width: 100%;
-    height: 100%;
-}
-#user-profile{
-    float: right;
-}
-.hitPoint{
-    opacity:0;
-    border: 1px solid #83988e;
-    float: left;
-    display: block;
-    background-color: #FFF;
-    width: 40px;
-    height: 40px;
-}
-.hitPoint-plane{
-    opacity:0;
-    border: 1px solid #ffff00;
-    float: left;
-    display: block;
-    background-color: #e55853;
-    width: 40px;
-    height: 40px;
-}
-.attack:hover{
-    opacity:1;
-    border: 3px solid #e55853;
-    background-image: url("../images/target.png");
-
-    width: 34px;
-    height: 34px;
-}
-
-.planeComp{
-    border: 1px solid #999;
-    float: left;
-    display: block;
-    width: 40px;
-    height: 40px;
-    background-color: #4dbce9;
-    cursor:pointer;
-}
-.rotate{
-    background-image: url("../images/rotate.png");
-}
-.plane{
-    float: left;
-    display: block;
-    width: 210px;
-}
-.line{
-    float: left;
-    width: 100%;
-}
-#map1{
-    margin-left: 39px;
-    margin-top: 39px;
-    float: left;
-    width: 420px;
-    height: 420px;
-}
-#map2{
-    margin-left: 39px;
-    margin-top: 39px;
-    float: left;
-    width: 420px;
-    height: 420px;
-}
-#planes{
-    margin-top: 10px;
-    clear: both;
-}
-#maps{
-    height: 420px;
-    width: 980px;
-}
-.map-container{
-    background-image: url("../images/tabla.png");
-    height: 460px;
-    width: 460px;
-    float: left;
-    margin-left: 25px;
-}
-.container-plane{
-    padding-left: 15px;
-    padding-right: 15px;
-}
-/*plane fight*/
-.collision{
-    opacity: 1;
-    background: #000;
-    z-index: 1000;
-    position: relative;
-}
-.hitMe{
-    background-image: url(../images/hit2.png);
-    background-repeat: no-repeat;
-    opacity: 1;
-    z-index: 1000;
-    position: relative;
-}
-.hitHead{
-    background-repeat: no-repeat;
-    background-image: url(../images/hit2.png);
-    opacity: 1;
-    z-index: 1000;
-    position: relative;
-}
-.missedMe{
-    background-image: url(../images/bullet.png);
-    opacity: 1;
-    z-index: 1000;
-    position: relative;
-}
-.hitAttack{
-    background-repeat: no-repeat;
-    opacity: 1;
-    background-image: url(../images/hit2.png);
-    position: relative;
-}
-.missedAttack{
-    background-image: url(../images/bullet.png);
-    opacity: 1;
-    position: relative;
-}
-/*front page*/
-#sign-switch{
-    font-family: 'SketchBlockBold' , 'Arial';
-    cursor: pointer;
-    color: #647cae;
-    float: right;
-    margin-right: 10x;
-    padding-right: 55px;
-    font-weight: bold;
-    font-size: 35px;
-    padding-top: 35px;
-}
-.menu_login_display{
-    display: none;
-}
-.menu_reg_display{
-    display: none;
-}
-#general{
-    color: #e55853;
-    padding-top: 10px;
-    padding-left: 75px;
-}
-#loading{
-    font-family: 'SketchBlockBold', 'Arial';
-    cursor:pointer;
-    font-size:20px;
-}
-.simplemodal-overlay{
-    background:#e4e4e4;
-}
+/*
+ * HTML5 Boilerplate
+ *
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ *
+ * Detailed information about this CSS: h5bp.com/css
+ *
+ * ==|== normalize ==========================================================
+ */
 
 
-.simplemodal-container{
-    width:600px;
-    height:300px;
-    padding:10px;
-    background:#c1272d;
-    border-radius:10px;
-    -moz-border-radius:10px;
-    -webkit-border-radius:10px;
-    }
+/* =============================================================================
+   HTML5 display definitions
+   ========================================================================== */
 
-.simplemodal-wrap{
-    background:#fff;
-     border-radius:5px;
-    -moz-border-radius:5px;
-    -webkit-border-radius:5px;
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
+audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
+audio:not([controls]) { display: none; }
+[hidden] { display: none; }
 
-}
-#simplemodal-container a.modalCloseImg {
-    background: url(../images/x.png) no-repeat;
-    width: 25px;
-    height: 29px;
-    display: inline;
-    z-index: 3200;
-    position: absolute;
-    top: -15px;
-    right: -18px;
-    cursor: pointer;
+
+/* =============================================================================
+   Base
+   ========================================================================== */
+
+/*
+ * 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
+ * 2. Prevent iOS text size adjust on device orientation change, without disabling user zoom: h5bp.com/g
+ */
+
+html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+html, button, input, select, textarea { font-family:Tahoma, Geneva, sans-serif; color:#9c9797;}
+
+body { margin: 0; font-size: 1em; line-height: 1.4; background:#ccc url(../img/bg.png) repeat;}
+
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection declarations have to be separate
+ * Also: hot pink! (or customize the background color to match your design)
+ */
+
+::-moz-selection { background: #d58c8c; color: #fff; text-shadow: none; }
+::selection { background: #d58c8c; color: #fff; text-shadow: none; }
+
+
+/* =============================================================================
+   Links
+   ========================================================================== */
+
+a { color: #00e; }
+a:visited { color: #551a8b; }
+a:hover { color: #06e; }
+a:focus { outline: thin dotted; }
+
+/* Improve readability when focused and hovered in all browsers: h5bp.com/h */
+a:hover, a:active { outline: 0; }
+
+
+/* =============================================================================
+   Typography
+   ========================================================================== */
+
+abbr[title] { border-bottom: 1px dotted; }
+
+b, strong { font-weight: bold; }
+
+blockquote { margin: 1em 40px; }
+
+dfn { font-style: italic; }
+
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+/* Redeclare monospace font family: h5bp.com/j */
+pre, code, kbd, samp { font-family: monospace, serif; _font-family: 'courier new', monospace; font-size: 1em; }
+
+/* Improve readability of pre-formatted text in all browsers */
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
+
+q { quotes: none; }
+q:before, q:after { content: ""; content: none; }
+
+small { font-size: 85%; }
+
+/* Position subscript and superscript content without affecting line-height: h5bp.com/k */
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+
+/* =============================================================================
+   Lists
+   ========================================================================== */
+
+ul, ol { margin: 1em 0; padding: 0 0 0 40px; }
+dd { margin: 0 0 0 40px; }
+nav ul, nav ol { list-style: none; list-style-image: none; margin: 0; padding: 0; }
+
+
+/* =============================================================================
+   Embedded content
+   ========================================================================== */
+
+/*
+ * 1. Improve image quality when scaled in IE7: h5bp.com/d
+ * 2. Remove the gap between images and borders on image containers: h5bp.com/i/440
+ */
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+/*
+ * Correct overflow not hidden in IE9
+ */
+
+svg:not(:root) { overflow: hidden; }
+
+
+/* =============================================================================
+   Figures
+   ========================================================================== */
+
+figure { margin: 0; }
+
+
+/* =============================================================================
+   Forms
+   ========================================================================== */
+
+form { margin: 0; }
+fieldset { border: 0; margin: 0; padding: 0; }
+
+/* Indicate that 'label' will shift focus to the associated form element */
+label { cursor: pointer; }
+
+/*
+ * 1. Correct color not inheriting in IE6/7/8/9
+ * 2. Correct alignment displayed oddly in IE6/7
+ */
+
+legend { border: 0; *margin-left: -7px; padding: 0; white-space: normal; }
+
+/*
+ * 1. Correct font-size not inheriting in all browsers
+ * 2. Remove margins in FF3/4 S5 Chrome
+ * 3. Define consistent vertical alignment display in all browsers
+ */
+
+button, input, select, textarea { font-size: 100%; margin: 0; vertical-align: baseline; *vertical-align: middle; }
+
+/*
+ * 1. Define line-height as normal to match FF3/4 (set using !important in the UA stylesheet)
+ */
+
+button, input { line-height: normal; }
+
+/*
+ * 1. Display hand cursor for clickable form elements
+ * 2. Allow styling of clickable form elements in iOS
+ * 3. Correct inner spacing displayed oddly in IE7 (doesn't effect IE6)
+ */
+
+button, input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; *overflow: visible; }
+
+/*
+ * Re-set default cursor for disabled elements
+ */
+
+button[disabled], input[disabled] { cursor: default; }
+
+/*
+ * Consistent box sizing and appearance
+ */
+
+input[type="checkbox"], input[type="radio"] { box-sizing: border-box; padding: 0; *width: 13px; *height: 13px; }
+input[type="search"] { -webkit-appearance: textfield; -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
+input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
+
+/*
+ * Remove inner padding and border in FF3/4: h5bp.com/l
+ */
+
+button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
+
+/*
+ * 1. Remove default vertical scrollbar in IE6/7/8/9
+ * 2. Allow only vertical resizing
+ */
+
+textarea { overflow: auto; vertical-align: top; resize: vertical; }
+
+/* Colors for form validity */
+input:valid, textarea:valid {  }
+input:invalid, textarea:invalid { background-color: #f0dddd; }
+
+
+/* =============================================================================
+   Tables
+   ========================================================================== */
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+
+/* =============================================================================
+   Chrome Frame Prompt
+   ========================================================================== */
+
+.chromeframe { margin: 0.2em 0; background: #ccc; color: black; padding: 0.2em 0; }
+
+
+/* ==|== primary styles =====================================================
+   Author: Arghirescu Alexandru @ codebox.ro
+   ========================================================================== */
+   
+   /* =============================================================================
+   Globalaaaaaaaaaalllllllllllllllllllllllll
+   ========================================================================== */
+   
+.separator{width:940px;border-top:1px solid #d6d5d5;border-bottom:1px solid #fff;margin:0px;padding:0px;clear:both;}
+
+h3{text-align:center; font-weight:bold;padding:0px margin:0px;}
+
+/* =============================================================================
+   Index Page
+   ========================================================================== */
+
+header {	width:920px;
+			height:100px; 
+			margin:0px auto; 
+				margin-top:25px; 
+				margin-bottom:25px; 
+			padding:0px 10px 0px 10px; 
+			clear:both;
+			}
+
+#logo {		width:173px; 
+			height:51px; 
+			float:left;
+			}
+
+
+	#game_menu ul{ 	float:left;
+					margin:16px 0px 20px 50px;}
+
+	#game_menu li{	float:left;
+					color:#bebcbc;
+					margin:0px 15px 0px 10px; 
+					padding:0px 0px 2px 0px; 
+					font-size:14px; 
+						font-weight:bold; 
+						text-shadow:-1px 1px #fff; 
+					}
+					
+	#game_menu li:hover{
+					color:#d0d0d0;
+					cursor:pointer;
+					}
+					
+	#user_menu {float:right; 
+				border:1px}				
+								
+	#user_menu ul{	float:right; 
+					margin:16px 0px 20px 50px;}
+	
+	#user_menu li{	float:right;
+					margin:0px 15px 0px 0px; 
+					padding:0px 0px 2px 0px; 
+					font-size:14px; 
+						font-weight:bold; 
+						text-shadow:-1px 1px #fff; 
+					border-bottom:1px solid #fff;
+					}
+						
+					
+					
+	#user_menu li:hover{
+					color:#ada8a8;
+					cursor:pointer;
+					}
+					
+	
+	/*USER MENU --------- Logat ----------------*/
+	
+	#user_menu_logged {	float:right;
+						height:29px;
+						margin:8px 0px 0px 0px;
+						background:url(../img/user/menu/bg.png) repeat-x; 
+						border:1px solid #bebcbc;
+						border-radius:4px;	 
+						-moz-border-radius:4px;
+						}				
+								
+	#user_menu_logged ul{float:left;} 
+					
+				
+	
+	#user_menu_logged li{float:left;
+					margin:5px 0px 0px 0px;  
+					padding:0px 6px 0px 6px;
+					font-size:14px; 
+						font-weight:bold; 
+						text-shadow:-1px 1px #fff; 
+					border-right:1px solid #bebcbc;
+					border-left:1px solid #fff;
+					}
+					
+	#user_menu_logged li:first-child{border-left:0px;}	
+	#user_menu_logged li:last-child{border-right:0px;}				
+											
+	#user_menu_logged li:hover{
+					color:#ada8a8;
+					cursor:pointer;
+					}
+					
+				/*USER MENU --------- Avatar ----------------*/	
+				
+				#user_avatar{ 
+				float:left; 
+				width:21px; 
+				height:21px; 
+				border-radius:4px;	 
+				-moz-border-radius:4px;
+				border:1px solid #bebcbc;
+				margin:-2px 10px 0px 4px; }	
+					
+				/*USER MENU --------- Username ----------------*/	
+					
+				#user_name{font-size:14px;margin:0px;padding:0px; display:inline;}	
+	
+					
+					
+	#sub_holder{width:100%;
+				height:133px;
+				background:url(../img/sub_bg.png) repeat-x;	
+					
+				}
+				
+	#sub_header{
+				width:920px;
+				height:115px;
+				margin:0px auto; 
+				padding:5px 0px 5px 0px; 
+				clear:both;}
+				
+		#sub_header p{
+				font-size:14px;
+				color:#333;
+				text-shadow:-1px 1px #fff;
+				width:500px;
+				margin-top:30px;
+				float:left;
+				
+				}
+				
+	#sub_header_avion{
+				float:left;
+				margin:10px 30px 0px 30px;
+				}
+				
+	#sub_header_online_count{
+				float:left;
+				margin:25px 10px 10px 15px;
+				}
+				
+	#insula{width:940px;
+			height:644px;
+			margin:0px auto;
+			margin-top:30px;
+			background:url(../img/insula.png) no-repeat;
+	}
+	
+	footer{
+			width:940px;
+			margin:0px auto;
+			margin-top:10px;
+			padding-top:10px;
+			clear:both;
+		}
+		
+		footer p{
+			margin:7px 10px 0px 0px;
+			padding:0px;
+			float:right;
+			color:#9c9797;
+			font-size:14px;
+			font-weight:bold;
+			text-shadow:1px 1px #fff;
+			}
+			
+	
+/* =============================================================================
+   Lobby Page
+   ========================================================================== */
+   
+   
+   /* ========User=========================================*/
+   
+   #notification{
+	   	width:936px; 
+   		height:17px;
+		float:left;
+		padding:7px 5px 10px 5px;
+		margin:0px auto;
+		margin-top:15px;
+		background:url(../img/user/notification.png) repeat-x;
+		
+		border-radius:4px;	 
+		-moz-border-radius:4px;
+		text-align:center;
+		font-size:14px;
+		font-weight:bold;
+		color:#fff;
+		text-shadow:-1px 1px #a5c899;
+   		}
+		
+	#user_stats{
+		width:900px;
+		height:100px;
+		margin:0px;
+		margin-top:12px;
+		padding:0px;
+		list-style:none;
+	}
+	
+		.stats_header{font-size:12px; color:#fff; text-decoration:underline;font-weight:bold;padding:0px;margin:0px;margin-top:30px;text-align:center;}
+		.stats_text{font-size:20px; color:#fff; font-weight:bold;padding:0px;margin:0px;margin-top:0px;text-align:center;}
+		.stats_points{font-size:12px; color:#fff;;font-weight:bold;padding:0px;margin:0px;margin-top:16px;text-align:center;}
+	
+	#user_stats li{
+		padding:0px;
+		margin-right:20px;
+		float:left;
+	}
+
+	
+	#user_division{
+		width:86px;
+		height:100px;
+		padding:0px;
+		margin:0px;
+		background:url(../img/user/stats/divizion.png) no-repeat;
+		border:1px solid #d6d5d5;
+	}
+	
+	#user_level{
+		float:left;
+		width:86px;
+		height:100px;
+		padding:0px;
+		margin:0px;
+		background:url(../img/user/stats/level.png) no-repeat;
+	}
+	
+		#user_level_bar{
+		width:200px;
+		height:30px;
+		float:left;
+		margin-top:35px;
+		margin-left:-1px;
+		padding-right:20px;
+		background:#333 url(../img/user/stats/bar_bg.png) repeat;
+		}
+		
+			#user_level_bar_progress{
+			width:100%;
+			height:5px;
+			margin-top:12px;
+			background:#4891a9;
+			}
+			
+			#user_level_points{
+			float:left;
+			width:48px;
+			height:48px;
+			margin-top:25px;
+			margin-left:-17px;
+			background:url(../img/user/stats/level_points.png);
+			}
+   
+   	#user_clan{
+		float:left;
+		width:86px;
+		height:100px;
+		padding:0px;
+		margin:0px;
+		background:url(../img/user/stats/clan.png) no-repeat;
+	}
+	
+	#user_clan_bar{
+		width:200px;
+		height:50px;
+		float:left;
+		margin-top:25px;
+		margin-left:-1px;
+		background:#333 url(../img/user/stats/bar_bg.png) repeat;
+		}
+		
+	#lobby{
+		width:920px;
+		padding:20px;
+		margin:0px auto;
+		margin-top:20px;
+	}
+	
+	#online_players_list{
+		padding:0px 0px 0px 24px;
+		margin:0px auto;
+		clear:both;
+	}
+	
+		.online_player_battle a{color:#fff; text-decoration:none; cursor:pointer; background:#484848; padding:4px; border-radius:4px;	 
+		-moz-border-radius:4px;}
+		.online_player_battle a:hover{color:#fff; text-decoration:none; cursor:pointer; background:#595959; padding:4px; border-radius:4px;	 
+		-moz-border-radius:4px;}
+		
+		.online_player_name a{color:#fff; text-decoration:none; cursor:pointer;}
+		.online_player_name a:hover{color:#fff; text-decoration:underline; cursor:pointer;}
+	
+	#online_players_list li{
+		float:left;
+		width:194px;
+		height:248px;
+		background:url(../img/user/lobby/online_player_bg.png) no-repeat;
+		list-style:none;
+		padding:0px;
+		margin:15px 30px 15px 0px;
+	}
+	
+	#online_players_list li:first-child{
+		margin-left:0px;
+	}
+   
+   	.online_player_name{font-size:14px; font-weight:bold; padding:0px; margin:29px 0px 10px 24px; text-align:center;color:#fff; width:143px; display:block;}
+   	.online_player_plane{width:123px; height:123px; margin:0px auto; margin-top:17px;}
+	.online_player_battle{font-size:14px; font-weight:bold; padding:0px; margin:18px 0px 10px 24px; text-align:center;color:#fff; width:143px; display:block;}
+	
+	/* =============================================================================
+   Lobby Page
+   ========================================================================== */
+	
+	#versus{width:940px;
+			height:644px;
+			margin:0px auto;
+			margin-top:30px;
+			background:url(../img/insula.png) no-repeat;
+			opacity:0.4;
+			filter:alpha(opacity=40); 
+			border:1px solid red;
+	}
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==|== media queries ======================================================
+   EXAMPLE Media Query for Responsive Design.
+   This example overrides the primary ('mobile first') styles
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+  /* Style adjustments for viewports that meet the condition */
 }
 
-#frontimg{
-	border:2px solid black;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-moz-box-shadow: 2px 2px 0px 0px #333;
-	-webkit-box-shadow: 2px 2px 0px 0px #333;
-	width:500px;
-	margin-top:20px;
-	margin-left:20px;
-	padding:10px;
-	float:left;
-}
 
-#mini_profile{
-    float: right;
-    width: 200px;
-}
-#win-loss{
-    font-size: 55px;
-    text-align: center;
-}
-#stats{
-    margin: 0px auto;
-    width: 290px;
-    cursor: pointer;
-    font-size: 20px;
-}
-#notifications_bar{
-	height:40px;
-	width:100%;
-	padding-top:7px;
-	background-color:#FFF;
 
-	text-align:center;
-	font-weight:bold;
-	color:#292929;
+/* ==|== non-semantic helper classes ========================================
+   Please define your styles before this section.
+   ========================================================================== */
 
-	display:none;
-}
-.rank_profile{
-	float:left;
-	margin-left:15px;
-	margin-top:10px;
-}
+/* For image replacement */
+.ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; *line-height: 0; }
+.ir br { display: none; }
 
-.number{
-	border:2px solid black;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-moz-box-shadow: 2px 2px 0px 0px #333;
-	-webkit-box-shadow: 2px 2px 0px 0px #333;
-	width:30px;
-	height:20px;
-	float:left;
-	padding:5px;
-	margin-right:10px;
-	font-size:20px;
-}
+/* Hide from both screenreaders and browsers: h5bp.com/u */
+.hidden { display: none !important; visibility: hidden; }
 
-#rank{
-	border:2px solid black;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-moz-box-shadow: 2px 2px 0px 0px #333;
-	-webkit-box-shadow: 2px 2px 0px 0px #333;
-	min-width:200px;
-	padding:10px;
-	float:left;
-    margin-left: 50px;
-    margin-top:50px;
-}
+/* Hide only visually, but have it available for screenreaders: h5bp.com/v */
+.visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
 
-#que{
-	border:2px solid black;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-moz-box-shadow: 2px 2px 0px 0px #333;
-	-webkit-box-shadow: 2px 2px 0px 0px #333;
-	min-width:130px;
-	padding:10px;
-	position: absolute;
-    left: 650px;
-    top: 43px;
+/* Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: h5bp.com/p */
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
+
+/* Hide visually and from screenreaders, but maintain layout */
+.invisible { visibility: hidden; }
+
+/* Contain floats: h5bp.com/q */
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { *zoom: 1; }
+
+
+
+/* ==|== print styles =======================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+  * { background: transparent !important; color: black !important; box-shadow:none !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } /* Black prints faster: h5bp.com/s */
+  a, a:visited { text-decoration: underline; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }  /* Don't show links for images, or javascript/internal links */
+  pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+  thead { display: table-header-group; } /* h5bp.com/t */
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page { margin: 0.5cm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
 }
