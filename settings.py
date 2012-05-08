@@ -99,9 +99,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'avioane.urls'
 
-TEMPLATE_DIRS = ('/home/wok/projects/avioane/templates',)
+TEMPLATE_DIRS = ('/root/avioane/templates',)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
