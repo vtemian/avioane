@@ -257,10 +257,18 @@ header {	width:920px;
 						text-shadow:-1px 1px #fff; 
 					}
 					
-	#game_menu li:hover{
+	#game_menu li a{
+					color:#bebcbc;
+					font-weight:bold; 
+					cursor:pointer;
+					}				
+					
+	#game_menu li a:hover{
 					color:#d0d0d0;
 					cursor:pointer;
 					}
+					
+					
 					
 	#user_menu {float:right; 
 				border:1px}				
@@ -346,7 +354,8 @@ header {	width:920px;
 				height:115px;
 				margin:0px auto; 
 				padding:5px 0px 5px 0px; 
-				clear:both;}
+				clear:both;
+				}
 				
 		#sub_header p{
 				font-size:14px;
@@ -365,8 +374,43 @@ header {	width:920px;
 				
 	#sub_header_online_count{
 				float:left;
-				margin:25px 10px 10px 15px;
+				margin-top:27px;
 				}
+				
+		#sub_header_online_count ul{
+					list-style:none;
+					padding:0px;
+					margin:0px;
+					}
+					
+		#sub_header_online_count li{
+					float:left;
+					width:81px;
+					height:81px;
+					background:url(../img/count_bg.png) no-repeat;
+					margin-right:5px;
+					text-align:center;
+					}
+		
+		#sub_header_online_count  h3{		
+					font-size:58px;
+					font-weight:bold;
+					color:#fff;		
+					padding:0px;
+					margin:0px;	
+		}
+		
+		#sub_header_online_count_text{
+				float:left;
+				margin-top:47px;
+				background:url(../img/count_text.png) no-repeat;
+				width:11px;
+				height:41px;
+				}
+				
+				
+				
+				
 				
 	#insula{width:940px;
 			height:644px;
@@ -402,13 +446,12 @@ header {	width:920px;
    /* ========User=========================================*/
    
    #notification{
-	   	width:936px; 
+	   	width:918px; 
    		height:17px;
 		float:left;
-		padding:7px 5px 10px 5px;
+		padding:5px 5px 10px 5px;
 		margin:0px auto;
 		margin-top:15px;
-		background:url(../img/user/notification.png) repeat-x;
 		
 		border-radius:4px;	 
 		-moz-border-radius:4px;
@@ -416,16 +459,23 @@ header {	width:920px;
 		font-size:14px;
 		font-weight:bold;
 		color:#fff;
-		text-shadow:-1px 1px #a5c899;
+
+        display: none;
+		
    		}
 		
+		.succes{background:url(../img/user/notification.png) repeat-x;text-shadow:-1px 1px #c6c6c6;}
+		.alert{background:url(../img/user/notification2.png) repeat-x;text-shadow:-1px 1px #7f7f7f;}
+		.info{background:url(../img/user/notification3.png) repeat-x;text-shadow:-1px 1px #c6c6c6;}
+		
 	#user_stats{
-		width:900px;
+		width:880px;
 		height:100px;
-		margin:0px;
+		margin:0px auto;
 		margin-top:12px;
 		padding:0px;
 		list-style:none;
+		
 	}
 	
 		.stats_header{font-size:12px; color:#fff; text-decoration:underline;font-weight:bold;padding:0px;margin:0px;margin-top:30px;text-align:center;}
@@ -437,6 +487,8 @@ header {	width:920px;
 		margin-right:20px;
 		float:left;
 	}
+	
+	#user_stats li:last-child{margin-right:0px;}
 
 	
 	#user_division{
@@ -501,6 +553,29 @@ header {	width:920px;
 		background:#333 url(../img/user/stats/bar_bg.png) repeat;
 		}
 		
+	#user_clan_bar_end{
+	   	background:url(../img/user/stats/user_clan_bar_end.png);
+		width:14px;
+		height:50px;
+		float:left;	
+		margin-top:25px;
+	}
+		
+	#user_battle{
+		width:86px;
+		height:100px;
+		padding:0px;
+		margin:0px;
+		background:url(../img/user/stats/battle.png) no-repeat;
+		border:1px solid #d6d5d5;
+	}
+	
+	 #user_battle h3{font-size:15px; margin-top:37px; color:#333; text-shadow:-1px 1px #fff;text-decoration:none;}
+	 #user_battle h3:hover{color:#646464;}
+	
+	
+	/* ========Lobby=========================================*/	
+		
 	#lobby{
 		width:920px;
 		padding:20px;
@@ -541,20 +616,244 @@ header {	width:920px;
 	.online_player_battle{font-size:14px; font-weight:bold; padding:0px; margin:18px 0px 10px 24px; text-align:center;color:#fff; width:143px; display:block;}
 	
 	/* =============================================================================
-   Lobby Page
+   Versus Page
    ========================================================================== */
 	
 	#versus{width:940px;
 			height:644px;
 			margin:0px auto;
 			margin-top:30px;
-			background:url(../img/insula.png) no-repeat;
-			opacity:0.4;
-			filter:alpha(opacity=40); 
-			border:1px solid red;
+			background:url(../img/battle/versus/insula_vs.png);
 	}
 	
+	#versus_players {
+		padding:0px;
+		width:940px;
+		margin:0px auto;
+		margin-top:50px;
+		list-style:none;
+	}
 	
+	#versus_players li{
+			float:left;
+			}
+			
+	#versus_p1{width:386px; height:284px; background:url(../img/battle/versus/p1.png) no-repeat;position:relative;}	
+		#versus_p1_name{font-size:14px; font-weight:bold; position:absolute; top:29px; right:24px ; text-align:center;color:#fff; width:143px;}
+		#versus_p1_plane{width:123px; height:123px; position:absolute; top:64px; right:35px;}
+		#versus_p1_stats{width:223px; height:123px; position:absolute; top:72px; left:35px; text-shadow:-1px 1px #000;}
+			#versus_p1_stats ul{list-style:none; font-size:14px; color:#fff; font-weight:bold;}	
+			#versus_p1_stats li{clear:both;}
+			
+	#vs{float:left;width:76px; height:39px; background:none; background:url(../img/battle/versus/vs.png) no-repeat; margin:110px 46px 0px 46px;}
+	
+	#versus_p2{width:386px; height:284px; background:url(../img/battle/versus/p2.png) no-repeat;position:relative;}
+		#versus_p2_name{font-size:14px; font-weight:bold; position:absolute; top:29px; left:24px ; text-align:center;color:#fff; width:143px;}	
+		#versus_p2_plane{width:123px; height:123px; position:absolute; top:64px; left:35px;}
+		#versus_p2_stats{width:223px; height:123px; position:absolute; top:72px; left:155px; text-shadow:-1px 1px #000;}
+			#versus_p2_stats ul{list-style:none; font-size:14px; color:#fff; font-weight:bold;}	
+			#versus_p2_stats li{clear:both;}
+			
+	
+	/* =============================================================================
+   Hangar
+   ========================================================================== */
+   
+   #hangar{
+	   width:940px;
+	   height:640px;
+	   margin:0px auto;
+	   margin-top:-10px;
+   	}
+	
+	#hangar_sidebar{
+		position:relative;
+		width:148px;
+		height:640px;
+		background:#d6d5d5;
+		float:left;
+	}
+	
+		#plane_stats{
+			position:absolute;
+			z-index:1;
+			width:162px;
+			height:349px;
+			background:url(../img/hangar/plane_stats.png);
+			top:50px;
+			left:10px;
+		}
+		
+		#buy_gas{
+			position:absolute;
+			z-index:1;
+			width:43px;
+			height:116px;
+			background:url(../img/hangar/buy_gas.png) no-repeat;
+			top:100px;
+			right:-43px;
+		}
+		
+		#buy_gas:hover{
+			opacity:0.7;
+			cursor:pointer;
+		}
+	
+	#hangar_content{
+		width:792px;
+		height:640px;
+		background:#d6d5d5;
+		float:left;
+		position:relative;
+	}
+	
+		#hangar_bg1{
+			width:42px;
+			height:609px;
+			background:url(../img/hangar/bg1.png) no-repeat;
+			float:left;
+			}
+			
+		#hangar_bg2{
+			width:689px;
+			height:614px;
+			margin-top:-6px;
+			background:url(../img/hangar/bg2.png) no-repeat;
+			float:left;
+			}
+			
+		#avion{
+			position:absolute;
+			right:70px;
+			top:80px;
+		}
+			
+   					
+	/* =============================================================================
+   Battle
+   ========================================================================== */
+	
+	#start_battle_button{
+		width:285px;
+		height:30px;
+		border:1px solid red;
+		margin:0px auto;
+		padding:10px 0px 0px 0px;
+		text-align:center;
+		border-radius:4px;
+		-moz-border-radius:4px;
+		border:1px solid #ccc;
+		background:#f0f0f0;
+		font-size:16px;
+		font-weight:bold;
+		text-shadow:-1px 1px #fff;
+        display: none;
+	}
+	
+	#start_battle_button:hover{
+		background:#f8f8f8;
+		}
+		
+	#start_battle_a{text-decoration:none;color:#9c9797;}
+	#start_battle_a:hover{text-decoration:none; #color:#b8b4b4;}		
+	
+	#battle{
+	   width:940px;
+	   height:640px;
+	   margin:0px auto;
+	   position:relative;
+   	}
+	
+	
+		#map{
+			width:600px;
+			height:600px;
+			background:url(../img/battle/map/textura.png) no-repeat;
+			border:10px solid #ccc;
+			border-radius:7px;
+			-moz-border-radius:7px;
+			float:left;
+			margin:10px 0px 3px 5px;
+			}
+			
+		#mini_map{
+			width:275px;
+			height:275px;
+			border:10px solid #ccc;
+			border-radius:7px;
+			-moz-border-radius:7px;
+			float:left;
+			margin:10px 0px 3px 15px;
+			}
+			
+		#planes_health{
+			float:left;
+			width:275px;
+			height:275px;
+			border:10px solid #ccc;
+			border-radius:7px;
+			-moz-border-radius:7px;
+			margin:27px 0px 3px 15px;
+			}
+			
+			#planes_health ul{
+			list-style:none;
+			width:275px;
+			padding:0px;
+			margin-top:0px;
+			margin-bottom:0px;
+			}
+			
+			#planes_health li{
+			background:url(../img/battle/map/mini_avioane/bg.png) repeat-x;
+			height:63px;
+			width:275px;
+			border-top:1px solid #fff;
+			border-bottom:1px solid #ccc;
+			}
+			
+			#planes_health li:hover{background:url(../img/battle/map/mini_avioane/bg_hover.png) repeat-x;}
+			
+				.mini_plane{
+				width:53px;
+				height:45px;
+				background:url(../img/battle/map/mini_maps/airborne.png) no-repeat;
+				float:left;
+				margin:9px;
+				}
+				
+				.plane_health_bar{
+				width:188px;
+				height:7px;
+				background:#ccc;
+				float:left;
+				padding:2px;
+				margin:26px 0px 0px 0px;
+				}
+				
+				.plane_health{
+				width:100%;
+				height:5px;
+				background:#7e9368;
+				margin:1px 0px 0px 0px;
+				}
+				
+				#console{
+					float:left;
+					width:268px;
+					height:72px;
+					background:#000;
+					margin:0px;
+					padding:6px 0px 0px 5px;
+					background:url(../img/battle/map/mini_maps/radar_bg.png) repeat;
+					
+					font-size:12px;
+					font-weight:bold;
+					color:#fff;
+					text-shadow:-1px 1px #000;
+					
+					}
+				
 
 
 

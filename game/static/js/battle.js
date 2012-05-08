@@ -9,14 +9,15 @@
     function Battle(opts) {
       this.squareHeight = opts.squareHeight;
       this.gameHolder = opts.gameHolder;
-      this.canvasWidth = this.squareHeight * 10 * 2 + this.squareHeight * 2;
-      this.canvasHeight = this.squareHeight * 10 + 5 * this.squareHeight;
+      this.avion = opts.avion;
+      this.canvasWidth = this.squareHeight * 10 * 2 - 200;
+      this.canvasHeight = this.squareHeight * 10;
       this.map = null;
       this.collissions = null;
       this.frontend = null;
     }
 
-    Battle.prototype.createMap = function(top, left, width, height) {
+    Battle.prototype.createMap = function(top, left, width, height, squareHeight) {
       var context, mapCanvas;
       mapCanvas = document.createElement('canvas');
       mapCanvas.width = width;
@@ -29,9 +30,10 @@
           'top': top,
           'left': left
         },
-        'squareHeight': this.squareHeight
+        'squareHeight': squareHeight,
+        'canvas': mapCanvas
       });
-      return mapCanvas;
+      return this.map;
     };
 
     Battle.prototype.createCollissions = function(frontend) {
@@ -70,22 +72,50 @@
         plane = new Plane({
           'context': context,
           'position': {
-            'top': this.squareHeight * 11,
-            'left': this.squareHeight * 5 * order
+            'top': this.squareHeight * 11 - 40,
+            'left': 10
           },
           'squareHeight': this.squareHeight,
           'droppingArea': this.map,
-          'order': order
+          'order': order,
+          'avion': this.avion
         });
         _results.push(this.frontend.addPlane(plane));
       }
       return _results;
     };
 
-    Battle.prototype.checkReady = function() {
-      console.log(this.checkPlanes());
+    Battle.prototype.checkReady = function(battleId) {
+      var context, coordinate, index, map, myIndex, plane, type, _i, _j, _len, _len1, _ref, _ref1;
       if (this.checkPlanes()) {
-        return this.createMap(0, this.canvasWidth, 2 * this.canvasWidth, this.canvasHeight);
+        console.log("asddddddddd");
+        $('canvas').remove();
+        map = this.createMap(0, this.squareHeight * 11 - 25, this.canvasWidth, this.canvasHeight, 27);
+        context = map.canvas.getContext('2d');
+        $('#mini_map').addClass('textura');
+        map = this.createMap(0, 0, this.canvasWidth, this.canvasHeight, this.squareHeight);
+        _ref = this.frontend.planes;
+        for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
+          plane = _ref[index];
+          context.fillStyle = plane.fillStyle;
+          type = "plane" + (index + 1);
+          _ref1 = plane.matrixPosition;
+          for (myIndex = _j = 0, _len1 = _ref1.length; _j < _len1; myIndex = ++_j) {
+            coordinate = _ref1[myIndex];
+            $.post('/plane/create_positioning/' + type + '/', {
+              'battleID': battleId,
+              'x': coordinate.x,
+              'y': coordinate.y,
+              'head': myIndex
+            }, function(data) {
+              return console.log(type);
+            });
+            context.beginPath();
+            context.rect(coordinate.x * 27 + this.squareHeight * 11 - 25, coordinate.y * 27, 27, 27);
+            context.fill();
+          }
+        }
+        return map;
       } else {
         return false;
       }
@@ -96,6 +126,7 @@
       _ref = this.frontend.planes;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         plane = _ref[_i];
+        plane.setMatrixPosition();
         if (plane.isNotReady) {
           return false;
         }
@@ -104,7 +135,7 @@
     };
 
     Battle.prototype.init = function() {
-      this.createMap(0, 0, this.canvasWidth, this.canvasHeight);
+      this.createMap(0, 0, this.canvasWidth, this.canvasHeight, this.squareHeight);
       this.frontend = new Frontend(this.map);
       this.createPlanes(3);
       return this.createCollissions(this.frontend);

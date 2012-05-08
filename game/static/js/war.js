@@ -10,12 +10,117 @@
       this.user = opts.user;
       this.battleId = opts.battleId;
       this.userSocket = opts.userSocket;
-      this.mapCanvas = opts.mapCanvas;
-      this.sendData("test", "testing");
+      this.myTurn = opts.myTurn;
+      this.map = opts.map;
+      this.context = this.map.canvas.getContext('2d');
+      opts = {
+        "user": this.user,
+        "battleId": this.battleId + ''
+      };
+      this.sendData("ready", opts);
     }
+
+    War.prototype.checkMouseDown = function(e) {
+      var coordinates, left, maxLeft, maxTop, position, squareHeight, top, x, y;
+      if (!this.myTurn) {
+        return alert("Not your turn");
+      } else {
+        squareHeight = this.map.squareHeight;
+        position = this.map.position;
+        maxTop = position.top + squareHeight * 10;
+        maxLeft = position.left + squareHeight * 10;
+        top = e.offsetY;
+        left = e.offsetX;
+        if (top < maxTop && top > position.top && left < maxLeft && left > position.left) {
+          y = parseInt((top - position.top) / squareHeight);
+          x = parseInt((left - position.left) / squareHeight);
+          coordinates = {
+            "x": x,
+            "y": y
+          };
+          this.sendData("attack", {
+            "coordinates": coordinates,
+            "battleId": this.battleId,
+            "user": this.user
+          });
+          return this.myTurn = false;
+        }
+      }
+    };
 
     War.prototype.sendData = function(event, message) {
       return this.userSocket.emit(event, message);
+    };
+
+    War.prototype.draw_attack = function(opts) {
+      this.context.fillStyle = opts.fillStyle;
+      this.context.beginPath();
+      this.context.rect(opts.x, opts.y, opts.height, opts.height);
+      this.context.fill();
+      return this.context.stroke();
+    };
+
+    War.prototype.miss_attack = function(x, y, left, top) {
+      var coordinates;
+      this.draw_attack({
+        x: x * 27 + top,
+        y: y * 27 + left,
+        height: 27,
+        fillStyle: "#FFF"
+      });
+      coordinates = {
+        x: x,
+        y: y
+      };
+      this.sendData("miss-attack", {
+        user: this.user,
+        battleId: this.battleId,
+        x: x,
+        y: y,
+        coordinates: coordinates
+      });
+      return console.log("mised");
+    };
+
+    War.prototype.hit_attack = function(x, y, left, top) {
+      var coordinates;
+      this.draw_attack({
+        x: x * 27 + top,
+        y: y * 27 + left,
+        height: 27,
+        fillStyle: "blue"
+      });
+      coordinates = {
+        x: x,
+        y: y
+      };
+      return this.sendData("hit-attack", {
+        user: this.user,
+        battleId: this.battleId,
+        x: x,
+        y: y,
+        coordinates: coordinates
+      });
+    };
+
+    War.prototype.head_attack = function(x, y, left, top) {
+      var coordinates;
+      this.draw_attack({
+        x: x * 27 + top,
+        y: y * 27 + left,
+        height: 27,
+        fillStyle: "yellow"
+      });
+      coordinates = {
+        x: x,
+        y: y
+      };
+      this.sendData("head-attack", {
+        user: this.user,
+        battleId: this.battleId,
+        coordinates: coordinates
+      });
+      return console.log("head");
     };
 
     return War;

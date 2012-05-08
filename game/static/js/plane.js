@@ -13,6 +13,7 @@
       this.startPosition = this.position;
       this.droppingArea = opts.droppingArea;
       this.order = opts.order;
+      this.avion = opts.avion;
       this.matrixPosition = [];
       this.draggable = false;
       this.droppeable = true;
@@ -180,6 +181,7 @@
     Plane.prototype.setPosition = function(newPosition) {
       this.clearRect();
       this.position = newPosition;
+      console.log("asd");
       return this.draw();
     };
 
@@ -257,6 +259,7 @@
           y: y + component.y
         });
       }
+      console.log(this.matrixPosition);
       return this.isNotReady = check;
     };
 

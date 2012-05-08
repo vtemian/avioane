@@ -10,10 +10,11 @@
       this.context = opts.context;
       this.position = opts.position;
       this.squareHeight = opts.squareHeight;
+      this.canvas = opts.canvas;
       this.format = 9;
-      this.fillStyle = "#000";
+      this.fillStyle = "rgba(255, 255, 255, 0)";
       this.strokeStyle = "red";
-      this.strokeWidth = 2;
+      this.strokeWidth = 0;
       this.width = (this.format + 1) * this.squareHeight;
       this.height = (this.format + 1) * this.squareHeight;
       this.draw();
@@ -34,8 +35,7 @@
             y = column * this.squareHeight + this.position.top;
             this.context.beginPath();
             this.context.rect(x, y, this.squareHeight, this.squareHeight);
-            this.context.fill();
-            _results1.push(this.context.stroke());
+            _results1.push(this.context.fill());
           }
           return _results1;
         }).call(this));

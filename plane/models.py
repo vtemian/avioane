@@ -5,6 +5,7 @@ from battle.models import Battle
 class Coordinates(models.Model):
     x = models.IntegerField(default=0)
     y = models.IntegerField(default=0)
+    head = models.BooleanField(default=False)
 
 class Plane(models.Model):
     position = models.ManyToManyRel(Coordinates, through="Positioning")

@@ -7,22 +7,22 @@ from battle.models import Battle
 from plane.models import Plane, Coordinates, Positioning
 from plane.views import check_hit
 
-@csrf_exempt
-def create(request):
-    if request.method == 'POST':
-        user = UserProfile.objects.get(user=request.user)
-        enemy = UserProfile.objects.get(user=User.objects.get(username=request.POST.get('enemy')))
-        
+def create(firstUser, secondUser):
+
+    try:
+        battle = Battle.objects.get(enemy=firstUser, user=secondUser.user, finished=False)
+    except Battle.DoesNotExist:
         try:
-            battle = Battle.objects.get(enemy=enemy, user=request.user, finished=False)
+            battle = Battle.objects.get(enemy=secondUser, user=firstUser.user, finished=False)
         except Battle.DoesNotExist:
-            try:
-                battle = Battle.objects.get(enemy=user, user=enemy.user, finished=False)
-            except Battle.DoesNotExist:
-                battle = Battle.objects.create(enemy=enemy, user=request.user)
-                
-        return HttpResponse(battle.id)
-    return HttpResponse('Not here!')
+            battle = Battle.objects.create(enemy=firstUser, user=secondUser.user)
+
+    for x in range(1, 4):
+        type = 'plane' + str(x)
+        plane, created = Plane.objects.get_or_create(owner=firstUser, battle=battle, type=type)
+        plane, created = Plane.objects.get_or_create(owner=secondUser, battle=battle, type=type)
+
+    return battle
 
 @csrf_exempt
 def attack(request):
@@ -92,7 +92,7 @@ def result(request):
         state = request.POST.get('state')
         
         enemy = UserProfile.objects.get(user=User.objects.get(username=request.POST.get('enemy')))
-        battle = Battle.objects.get(user=request.user, enemy=enemy)
+        battle = Battle.objects.get(pk=request.POST.get('battleId'))
 
         #finished the battle
         battle.finished = True
@@ -121,6 +121,19 @@ def increase_level(user):
 
 def increase_money(win, loss):
     win.money += 100 + loss.lvl*2
+    win.won += 1
     loss.money -= 50 - win.lvl
+    loss.lost += 1
     win.save()
     loss.save()
+
+@csrf_exempt
+def get_details(request):
+    try:
+        battle = Battle.objects.get(pk=request.GET.get('battleId'))
+        user1 = battle.enemy
+        user2 = UserProfile.objects.get(user=battle.user)
+
+        return HttpResponse(simplejson.dumps({'user1': {'lvl': user1.lvl, 'username': user1.user.username, 'avion': user1.avion, 'won':user1.won, 'lost':user1.lost}, 'user2': {'lvl': user2.lvl, 'username': user2.user.username, 'avion': user2.avion, 'won':user2.won, 'lost':user2.lost}}))
+    except Exception:
+        return HttpResponse(simplejson.dumps({'message': 'error'}))

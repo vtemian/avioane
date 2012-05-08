@@ -4,12 +4,13 @@ class Map
         @context = opts.context
         @position = opts.position
         @squareHeight = opts.squareHeight
-
+        @canvas = opts.canvas
         @format = 9
 
-        @fillStyle = "#000"
+        @fillStyle = "rgba(255, 255, 255, 0)"
+#        @fillStyle = "#000"
         @strokeStyle = "red"
-        @strokeWidth = 2
+        @strokeWidth = 0
 
         @width = (@format+1) * @squareHeight
         @height = (@format+1) * @squareHeight
@@ -29,6 +30,5 @@ class Map
                 @context.beginPath()
                 @context.rect x, y, @squareHeight, @squareHeight
                 @context.fill()
-                @context.stroke()
 
 window.Map = Map

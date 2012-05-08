@@ -7,7 +7,7 @@ class Plane
         @startPosition = @position
         @droppingArea = opts.droppingArea
         @order = opts.order
-
+        @avion = opts.avion
         @matrixPosition = []
 
         @draggable = false
@@ -66,6 +66,7 @@ class Plane
             {'y': 3, 'x':0},
           ]
         ]
+#        @draw()
         @orientation = 0
         @fillStyle = "#71b44b"
         @collesionFillStyle = '#FFF'
@@ -76,6 +77,7 @@ class Plane
 
         @drawRenderedPlane()
 
+
     #generate the plane
     drawRenderedPlane: ->
 
@@ -84,15 +86,21 @@ class Plane
         m_context.clearRect 0, 0, @squareHeight * 5, @squareHeight * 5
 
         for component in @format[@orientation]
-            x = component.x * @squareHeight
-            y = component.y * @squareHeight
-            m_context.fillRect x, y, @squareHeight, @squareHeight
-
+                  x = component.x * @squareHeight
+                  y = component.y * @squareHeight
+                  m_context.fillRect x, y, @squareHeight, @squareHeight
 
         @draw()
 
     #with our plane canvas, we don't need to delete the hole canvas, just redraw it
     draw: ->
+#      context = @context
+#      position = @position
+#      img = new Image();
+#      img.onload = ->
+#        context.drawImage(img, position.top, position.left, 150, 150)
+#      img.src =  "/static/img/user/lobby/avioane/" + @avion + ".png"
+
         @context.drawImage(@m_canvas, @position.top, @position.left)
 
     #setting up the position
@@ -101,6 +109,7 @@ class Plane
         @clearRect()
         #set new position
         @position = newPosition
+        console.log "asd"
         #redraw it
         @draw()
 
@@ -175,6 +184,8 @@ class Plane
             @matrixPosition.push
                 x: x + component.x
                 y: y + component.y
+
+        console.log @matrixPosition
 
         @isNotReady = check
 

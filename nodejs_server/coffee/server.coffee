@@ -4,12 +4,15 @@ io = require('socket.io').listen(5555)
 class Clients
   constructor: ->
     @clients = {}
+    @users = {}
     @length = 0
 
   add: (client) ->
-    console.log 'New player', client.username, client.socket.id
-    @clients[client.socket.id] = client
-    @length++
+      if @clients[client.socket.id] == undefined
+        console.log 'New player', client.username, client.socket.id
+        @clients[client.socket.id] = client
+        @users[client.id] = client
+        @length++
 
   remove: (socket) ->
     delete @clients[socket.id]
@@ -32,6 +35,9 @@ class User
     @username = opts.username
     @socket = opts.socket
     @id = opts.id
+    @avion = opts.avion
+
+    @ready = false
 
 class Battle
   constructor: (@firstUser, @secondUser, @battleId) ->
@@ -40,17 +46,40 @@ class Battle
     @emit "start-battle",
       firstUser: @firstUser.username
       secondUser: @secondUser.username
+      battleId: @battleId
 
   emit: (event, message) ->
     @firstUser.socket.emit event, message
     @secondUser.socket.emit event, message
+
+  attacking_moves: (user, coordinates, event) ->
+    user = lobby.getById user
+    if user == @firstUser
+      @secondUser.socket.emit event,
+        coordinates: coordinates
+    else
+      @firstUser.socket.emit event,
+        coordinates: coordinates
+
+  ready: (user) ->
+    user = lobby.getById user
+    user.ready = true
+    @emit "ready",
+      user.username
+
+  finish: (user) ->
+    user = lobby.getById user
+    if user == @firstUser
+      @secondUser.socket.emit "win"
+    else
+      @firstUser.socket.emit "win"
 
 class Battles
   constructor: () ->
     @battles = {}
 
   add: (battle) ->
-    @battles[battle.id] = battle
+    @battles[battle.battleId] = battle
     console.log "new battle in town!", battle
 
   remove: (battle) ->
@@ -60,29 +89,109 @@ class Battles
     return @battles[id]
 
 lobby = new Clients()
+online = new Clients()
+
 battles = new Battles()
 
+online_peoples = 0
+
 io.sockets.on 'connection', (socket) ->
+  online_peoples += 1
+  socket.emit "online-peoples", online_peoples
+  socket.broadcast.emit "online-peoples", online_peoples
+
+
+  socket.on 'handshake', (data) ->
+    newUser = new User
+      username: data.username
+      id: data.id
+      socket: socket
+      avion: data.avion
+
+    for idClient, client of online.clients
+      socket.emit "list", {
+        'username':client.username,
+        'id': client.id,
+        'avion': client.avion
+      }
+    online.add newUser
+
+    online.broadcast 'list', {
+      'username': newUser.username,
+      'id': newUser.id,
+      'avion': newUser.avion
+    }
+
+
 
   socket.on 'lobby-registration', (data) ->
     newUser = new User
       username: data.username
       socket: socket
-      id: (Number) data.id
+      id: data.id
 
     lobby.add newUser
     lobby.broadcast 'online', lobby.length
 
+    socket.emit "registration-complete"
 
   socket.on 'new-battle', (data) ->
+
     firstUser = lobby.getById data.firstUser
     secondUser = lobby.getById data.secondUser
     battle = new Battle firstUser, secondUser, data.battleId
     battles.add battle
     battle.start()
 
+  socket.on "ready", (data) ->
+    battle = battles.get(data.battleId)
+    #ready a player
+    battle.ready(data.user)
+
+  socket.on "attack", (data) ->
+    battle = battles.get(data.battleId)
+    battle.attacking_moves data.user, data.coordinates, "check-hit"
+
+  socket.on "miss-attack", (data) ->
+    battle = battles.get(data.battleId)
+    battle.attacking_moves data.user, data.coordinates, "miss"
+
+  socket.on "hit-attack", (data) ->
+    battle = battles.get(data.battleId)
+    battle.attacking_moves data.user, data.coordinates, "hit"
+
+  socket.on "head-attack", (data) ->
+    battle = battles.get(data.battleId)
+    battle.attacking_moves data.user, data.coordinates, "head"
+
+  socket.on "finish", (data) ->
+    battle = battles.get(data.battleId)
+    battle.finish data.user
+    battles.remove battle
+
   socket.on 'test', (data) ->
     console.log data
 
   socket.on 'disconnect', ->
+    online_peoples -= 1
+    socket.broadcast.emit "online-peoples", online_peoples
+
+    client = lobby.get socket
+
+    if client != undefined
+      for battleid,battle of battles.battles
+        if battle.firstUser.username == client.username
+          battle.secondUser.socket.emit "disconnectGame"
+        else
+            if battle.secondUser.username == client.username
+              battle.firstUser.socket.emit "disconnectGame"
+      console.log client
+
     lobby.remove socket
+
+    client = online.get socket
+
+    if client != undefined
+      online.remove socket
+      online.broadcast "remove-online", client.id
+

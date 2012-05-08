@@ -119,6 +119,8 @@ INSTALLED_APPS = (
     'alliance',
     'notification',
     'medals',
+    'lobby',
+    'nodejs_server',
 )
 
 LOGIN_REDIRECT_URL = '/'

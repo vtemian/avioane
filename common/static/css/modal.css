@@ -1,0 +1,129 @@
+.simplemodal-overlay{
+    background:#e4e4e4;
+}
+
+.simplemodal-container{
+    width:400px;
+    height:150px;
+    padding:0px;
+    background:#d6d9d8;
+    border-radius:7px;
+    -moz-border-radius:7px;
+    border:1px solid #ccc;
+    position:relative;
+}
+
+#login{
+    width:500px;
+    height:200px;
+    padding:42px;
+    background:#ccc;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    margin:0px auto;
+    margin-top:7px;
+    border:1px solid #ccc;
+}
+
+    #login ul{list-style: none;padding:0px;margin-top:-20px }
+    #login li{margin:10px 0px 10px 0px;padding:0px;}
+
+    #pilot {
+        background:url(../img/pilot.png) no-repeat;
+        width:281px; height:284px; position:absolute; top:7px;right:7px;
+    }
+
+#register{
+    width:500px;
+    height:250px;
+    padding:44px;
+    background:#ccc;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    margin:0px auto;
+    margin-top:7px;
+    border:1px solid #ccc;
+}
+
+#register ul{list-style: none;padding:0px;margin-top:-20px }
+#register li{margin:10px 0px 10px 0px;padding:0px;}
+
+#avionas {
+    background:url(../img/register.png) no-repeat;
+    width:281px; height:284px; position:absolute; top:7px;right:7px;
+    top: 110px;
+}
+
+input, textarea {
+    padding: 9px;
+    border: solid 1px #E5E5E5;
+    outline: 0;
+    width: 200px;
+    background: #FFFFFF url('bg_form.png') left top repeat-x;
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    font-size:12px;
+    font-weight:bold;
+    color: #999;
+    text-shadow:-1px 1px #fff;
+}
+
+input:hover, textarea:hover,
+input:focus, textarea:focus {
+    border-color: #C9C9C9;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
+}
+
+.label {
+    margin-left:0px;
+    color:#999;
+    text-shadow:-1px 1px #fff;
+    font-size:12px;
+    font-weight:bold;
+
+}
+
+.submit  {
+    width:100px;
+    text-align: center;
+    background: #FFFFFF url('bg_form.png') left top repeat-x;
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    border: 0;
+    font-size: 12px;
+    font-weight:bold;
+    color: #999;
+    text-shadow:-1px 1px #fff;
+    margin-top:20px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+
+.simplemodal-wrap{
+    background:#fff;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+
+}
+#simplemodal-container a.modalCloseImg {
+    background: url(../img/x.png) no-repeat;
+    width: 25px;
+    height: 29px;
+    display: inline;
+    z-index: 3200;
+    position: absolute;
+    top: -15px;
+    right: -18px;
+    cursor: pointer;
+}

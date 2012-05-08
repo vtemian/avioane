@@ -1,79 +1,94 @@
 {% extends 'index.html' %}
 {% block extrahead %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/socket.io-client/dist/socket.io.min.js"></script>
     <script src="{{ STATIC_URL }}js/django-validate.js"></script>
     <script src="{{ STATIC_URL }}js/frontpage.js"></script>
     <script src="{{ STATIC_URL }}js/login.js"></script>
     <script src="{{ STATIC_URL }}js/register.js"></script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/frontpage.css">
 {% endblock %}
 {% block header %}
-    <div id="wrap">
+    <div id="logo"><a href="#"><img src="{{ STATIC_URL }}img/logo.png" alt="Avioane" /></a></div>
 
-        <div id="top">
-            <img class="imag_avion" src="{{ STATIC_URL }}images/avionn.png" width="100px" height="80px" />
-            <span class="title">Planes</span><span class="title" id="war-title">WAR</span>
-            <span id="sign-switch">Register!</span>
-        </div>
-        <div id="frontimg">
-            <img src="{{ STATIC_URL }}images/front_page_table.png">
-        </div>
+    <nav id="user_menu">
+        <ul>
+            <li id="register-trigger">Register</li>
+            <li id="login-trigger">Login</li>
+        </ul>
+    </nav>
+
+
 {% endblock %}
 {% block content %}
-    <div id="menu_login">
+    <div id="sub_holder">
 
-        <div class="login">
-            Login
+        <div id="sub_header">
+
+            <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                incid  idunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                nostrud exercitation ullamco laboris nisi ut ali</p>
+
+            <div id="sub_header_avion"><img src="{{ STATIC_URL }}img/avion.png" alt="Avion"/></div>
+            <div id="sub_header_online_count">
+                <ul id="online-peoples">
+                    <div class="clearfix"></div>
+                </ul>
+
+            </div>
+            <div id="sub_header_online_count_text"></div>
         </div>
-
-        <ul class="login_form">
+        <div id="login">
+            <div id="pilot"></div>
+                <ul>
             <form action="{% url account.views.login %}" method="POST" id="login-form">
-                    <li>{% csrf_token %}</li>
-                    <li><div id="general" class="error"></div></li>
-                    <li>
-                        <label for="username" class="label">username:</label>
-                        <input type="text" id="username" name="username" class="user_login_input"/>
-                    </li>
-                    <li>
-                        <label for="password" class="label">password:</label>
-                        <input type="password" id="password" name="password" class="user_login_input" />
-                    </li>
-                    <li><a id="reset-a">Reset password</a></li>
-                    <li><input type="submit" value="login" class="submit" /></li>
+                <li>{% csrf_token %}</li>
+                <li><div id="general" class="error"></div></li>
+                <li>
+                    <label for="username" class="label">username:</label>
+
+                </li>
+                <li>
+                    <input type="text" id="username" name="username" class="user_login_input"/>
+                </li>
+                <li>
+                    <label for="password" class="label">password:</label>
+
+                </li>
+                    <input type="password" id="password" name="password" class="user_login_input" />
+                </li>
+                <li><input type="submit" value="login" class="submit" /></li>
+            </form>
+                </ul>
+        </div>
+        <div id="register"><div id="avionas"></div>
+                <ul>
+            <form action="{% url account.views.register %}" id="sign_up_form" method="POST">
+                <li>{% csrf_token %}</li>
+                <li><div id="general" class="error"></div></li>
+                <li>
+                    <label for="username" class="label">username:</label>
+                </li> <li>
+                    <input type="text" id="username" name="username" class="user_login_input"/>
+                </li>
+                <li>
+                    <label for="password" class="label">password:</label>
+                </li> <li>
+                    <input type="password" id="password" name="password" class="user_login_input" />
+                </li>
+                <li>
+                    <label for="email" class="label">email:</label>
+                </li> <li>
+                    <input type="email" id="email" name="email" class="user_login_input" />
+                </li>
+                <li><input type="submit" value="register" class="submit" /></li>
 
             </form>
-        </ul>
-
-        <div class="fb_login"></div>
-
+                </ul>
+        </div>
+    
     </div>
 
-
-        <div id="menu_reg" class="menu_reg_display">
-            <div class="login" align="center">
-                Register
-            </div>
-
-            <ul class="login_form">
-                <form action="{% url account.views.register %}" id="sign_up_form" method="POST">
-                        <li>{% csrf_token %}</li>
-                        <li><div id="general" class="error"></div></li>
-                        <li>
-                            <label for="username" class="label">username:</label>
-                            <input type="text" id="username" name="username" class="user_login_input"/>
-                        </li>
-                        <li>
-                            <label for="password" class="label">password:</label>
-                            <input type="password" id="password" name="password" class="user_login_input" />
-                        </li>
-                        <li>
-                            <label for="email" class="label">email:</label>
-                            <input type="email" id="email" name="email" class="user_login_input" />
-                        </li>
-                        <li><input type="submit" value="register" class="submit" /></li>
-
-                </form>
-            </ul>
-
-        </div>
+    <aside id="insula"><!--Island--></aside>
 </div>
 
 {% endblock %}

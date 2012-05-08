@@ -20,6 +20,13 @@ class UserProfile(models.Model):
     facebook_id = models.BigIntegerField(null=True)
     access_token = models.CharField(max_length=150)
 
+    division = models.CharField(default="D", max_length=10)
+
+    avion = models.CharField(default="airbone", max_length=10)
+
+    won = models.IntegerField(null=True, default=0)
+    lost = models.IntegerField(null=True, default=0)
+
     def get_facebook_profile(self):
         fb_profile = urllib.urlopen('https://graph.facebook.com/me?access_token=%s' % self.access_token)
         return json.load(fb_profile)
