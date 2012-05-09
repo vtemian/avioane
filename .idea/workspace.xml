@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="636fe8ee-b4d1-4356-9f02-5be2a85c2b76" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" afterPath="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodejs_server/server.js" afterPath="$PROJECT_DIR$/nodejs_server/server.js" />
     </list>
     <ignored path="avioane.iws" />
@@ -68,19 +67,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="server.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nodejs_server/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="7" selection-start="515" selection-end="515" vertical-scroll-proportion="0.0">
+            <state line="219" column="68" selection-start="5502" selection-end="5502" vertical-scroll-proportion="0.39520958">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.coffee" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="server.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nodejs_server/coffee/server.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="154" column="39" selection-start="3480" selection-end="3480" vertical-scroll-proportion="0.31736526">
+            <state line="168" column="25" selection-start="3950" selection-end="3950" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -409,13 +408,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nodejs_server/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="7" selection-start="515" selection-end="515" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="11" selection-start="489" selection-end="512" vertical-scroll-proportion="-7.8">
@@ -466,7 +458,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nodejs_server/coffee/server.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="154" column="39" selection-start="3480" selection-end="3480" vertical-scroll-proportion="0.31736526">
+        <state line="168" column="25" selection-start="3950" selection-end="3950" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodejs_server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="219" column="68" selection-start="5502" selection-end="5502" vertical-scroll-proportion="0.39520958">
           <folding />
         </state>
       </provider>

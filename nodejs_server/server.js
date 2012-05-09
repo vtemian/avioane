@@ -242,6 +242,7 @@
     });
     socket.on("send-invitation", function(data) {
       var fromUser, toUser;
+      console.log(data);
       fromUser = lobby.getById(parseInt(data.fromUser));
       toUser = lobby.getById(parseInt(data.toUser));
       return toUser.socket.emit("receive-invitation", {
