@@ -29,8 +29,8 @@ def connect_to_nodejs(host = "localhost", port = 5555):
 def send_message(event, message):
     ws = connect_to_nodejs(host="outclan.com")
     print(message)
-    ws.send('2::')
-    ws.send('5:1::{"name":"test", "args":[{"user":"server"}]}')
+#    ws.send('2::')
+#    ws.send('5:1::{"name":"test", "args":[{"user":"server"}]}')
 
     string_to_send = '5:1::{"name":"' + event + '", "args":[{' + message + '}]}'
     print(string_to_send)
