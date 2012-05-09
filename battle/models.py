@@ -18,3 +18,8 @@ class Battle(models.Model):
 class BattleMoves(models.Model):
     battle = models.ForeignKey(Battle)
     move = models.ForeignKey(Move)
+
+
+class BattleInvitation(models.Model):
+    fromUser = models.ForeignKey(User)
+    toUser = models.ForeignKey(UserProfile)

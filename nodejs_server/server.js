@@ -205,6 +205,7 @@
       var battle, firstUser, secondUser;
       console.log('new battle');
       console.log(data);
+      console.log;
       firstUser = lobby.getById(data.firstUser);
       secondUser = lobby.getById(data.secondUser);
       battle = new Battle(firstUser, secondUser, data.battleId);
@@ -241,6 +242,9 @@
       battle = battles.get(data.battleId);
       battle.finish(data.user);
       return battles.remove(battle);
+    });
+    socket.on("send-invitation", function(data) {
+      return console.log(data);
     });
     socket.on('test', function(data) {
       return console.log(data);

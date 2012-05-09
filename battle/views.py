@@ -3,12 +3,12 @@ from django.http import HttpResponse
 from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
 from account.models import UserProfile
-from battle.models import Battle
+from battle.models import Battle, BattleInvitation
 from plane.models import Plane, Coordinates, Positioning
 from plane.views import check_hit
+from nodejs_server.views import send_message
 
 def create(firstUser, secondUser):
-
     try:
         battle = Battle.objects.get(enemy=firstUser, user=secondUser.user, finished=False)
     except Battle.DoesNotExist:
@@ -50,6 +50,31 @@ def attack(request):
                     return HttpResponse(result)
         return HttpResponse('miss')
     
+    return HttpResponse('Not here!')
+
+@csrf_exempt
+def send_invitation(request):
+    if request.method == 'POST':
+        toSimpleUser = User.objects.get(pk=request.POST.get('toUserId'))
+        toUser = UserProfile.objects.get(user=toSimpleUser)
+        fromUser = request.user
+        #check for battle
+        try:
+            Battle.objects.get(user=toSimpleUser, finished=False)
+            return HttpResponse('success')
+        except Battle.DoesNotExist:
+            try:
+                Battle.objects.get(enemy=toUser, finished=False)
+                return HttpResponse('success')
+            except Battle.DoesNotExist:
+                #get or create an invitation
+                invitation = BattleInvitation.objects.get_or_create(fromUser=fromUser, toUser=toUser)
+
+                message = '"fromUser":" "%s", "toUser": "%s"' % (fromUser.id, toUser.user.id)
+                #send to nodejs to realtime send the invitation
+                send_message("send-invitation", message)
+                return HttpResponse('success')
+
     return HttpResponse('Not here!')
 
 def check_finished(battle, owner, type):

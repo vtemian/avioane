@@ -138,6 +138,7 @@ io.sockets.on 'connection', (socket) ->
   socket.on 'new-battle', (data) ->
     console.log 'new battle'
     console.log data
+    console.log 
     firstUser = lobby.getById data.firstUser
     secondUser = lobby.getById data.secondUser
     battle = new Battle firstUser, secondUser, data.battleId
@@ -169,6 +170,9 @@ io.sockets.on 'connection', (socket) ->
     battle = battles.get(data.battleId)
     battle.finish data.user
     battles.remove battle
+
+  socket.on "send-invitation", (data) ->
+    console.log data
 
   socket.on 'test', (data) ->
     console.log data
