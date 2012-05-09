@@ -137,6 +137,7 @@ io.sockets.on 'connection', (socket) ->
 
   socket.on 'new-battle', (data) ->
     console.log 'new battle'
+    console.log data
     firstUser = lobby.getById data.firstUser
     secondUser = lobby.getById data.secondUser
     battle = new Battle firstUser, secondUser, data.battleId

@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d8ba3a95-63c2-49f7-ad5b-d4d49fb8a4f9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" afterPath="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodejs_server/server.js" afterPath="$PROJECT_DIR$/nodejs_server/server.js" />
     </list>
     <ignored path="avioane.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,10 +26,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nodejs_server/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="12" selection-start="979" selection-end="979" vertical-scroll-proportion="0.63898915">
+            <state line="30" column="12" selection-start="979" selection-end="979" vertical-scroll-proportion="-14.16">
               <folding />
             </state>
           </provider>
@@ -78,10 +80,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.coffee" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="server.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nodejs_server/coffee/server.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="138" column="27" selection-start="2974" selection-end="2974" vertical-scroll-proportion="0.0">
+            <state line="139" column="20" selection-start="2996" selection-end="2996" vertical-scroll-proportion="0.051813472">
               <folding />
             </state>
           </provider>
@@ -142,8 +144,8 @@
         <option value="$PROJECT_DIR$/settings.py" />
         <option value="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" />
         <option value="$PROJECT_DIR$/account/static/js/frontpage.js" />
-        <option value="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" />
         <option value="$PROJECT_DIR$/nodejs_server/views.py" />
+        <option value="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" />
       </list>
     </option>
   </component>
@@ -812,13 +814,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nodejs_server/coffee/server.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="27" selection-start="2974" selection-end="2974" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lobby/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="25" selection-start="906" selection-end="906" vertical-scroll-proportion="-7.04">
@@ -828,7 +823,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nodejs_server/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="12" selection-start="979" selection-end="979" vertical-scroll-proportion="0.63898915">
+        <state line="30" column="12" selection-start="979" selection-end="979" vertical-scroll-proportion="-14.16">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodejs_server/coffee/server.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="139" column="20" selection-start="2996" selection-end="2996" vertical-scroll-proportion="0.051813472">
           <folding />
         </state>
       </provider>
