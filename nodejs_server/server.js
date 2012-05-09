@@ -242,7 +242,7 @@
     });
     socket.on("send-invitation", function(data) {
       var fromUser, toUser;
-      console.log(data.fromUser, lobby);
+      console.log(data.fromUser, lobby, "fuck");
       fromUser = lobby.getById(parseInt(data.fromUser));
       toUser = lobby.getById(parseInt(data.toUser));
       return toUser.socket.emit("receive-invitation", {
