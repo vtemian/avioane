@@ -203,9 +203,6 @@
     });
     socket.on('new-battle', function(data) {
       var battle, firstUser, secondUser;
-      console.log('new battle');
-      console.log(data);
-      console.log;
       firstUser = lobby.getById(data.firstUser);
       secondUser = lobby.getById(data.secondUser);
       battle = new Battle(firstUser, secondUser, data.battleId);
@@ -244,7 +241,13 @@
       return battles.remove(battle);
     });
     socket.on("send-invitation", function(data) {
-      return console.log(data);
+      var fromUser, toUser;
+      fromUser = lobby.getById(data.fromUser);
+      toUser = lobby.getById(data.toUser);
+      return toUser.socket.emit("receive-invitation", {
+        username: fromUser.username,
+        id: fromUser.id
+      });
     });
     socket.on('test', function(data) {
       return console.log(data);

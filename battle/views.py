@@ -56,25 +56,31 @@ def attack(request):
 def send_invitation(request):
     if request.method == 'POST':
         toSimpleUser = User.objects.get(pk=request.POST.get('toUserId'))
-        toUser = UserProfile.objects.get(user=toSimpleUser)
         fromUser = request.user
-        #check for battle
-        try:
-            Battle.objects.get(user=toSimpleUser, finished=False)
-            return HttpResponse('success')
-        except Battle.DoesNotExist:
+
+        if fromUser != toSimpleUser:
+
+            toUser = UserProfile.objects.get(user=toSimpleUser)
+
+            #check for battle
             try:
-                Battle.objects.get(enemy=toUser, finished=False)
-                return HttpResponse('success')
+                Battle.objects.get(user=toSimpleUser, finished=False)
+                return HttpResponse('battle')
             except Battle.DoesNotExist:
-                #get or create an invitation
-                invitation = BattleInvitation.objects.get_or_create(fromUser=fromUser, toUser=toUser)
-
-                message = '"fromUser":" "%s", "toUser": "%s"' % (fromUser.id, toUser.user.id)
-                #send to nodejs to realtime send the invitation
-                send_message("send-invitation", message)
-                return HttpResponse('success')
-
+                try:
+                    Battle.objects.get(enemy=toUser, finished=False)
+                    return HttpResponse('battle')
+                except Battle.DoesNotExist:
+                    #get or create an invitation
+                    invitation = BattleInvitation.objects.get_or_create(fromUser=fromUser, toUser=toUser)
+                    print invitation
+                    message = '"fromUser": "%s", "toUser": "%s"' % (fromUser.id, toUser.user.id)
+                    print message
+                    #send to nodejs to realtime send the invitation
+                    send_message("send-invitation", message)
+                    return HttpResponse('success')
+        else:
+            return HttpResponse('duble')
     return HttpResponse('Not here!')
 
 def check_finished(battle, owner, type):

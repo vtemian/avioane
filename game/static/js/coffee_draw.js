@@ -38,7 +38,7 @@
       var htmlToApend;
       if (this.dudes.hasOwnProperty(user.id) === false) {
         this.dudes[user.id] = user;
-        htmlToApend = '<li data-id="' + user.id + '"><h2 class="online_player_name"><h2 class="online_player_name"><a class="online_player_link">' + user.username + '</a></h2><div class="online_player_plane"><img src="/static/img/user/lobby/avioane/' + user.avion + '.png" alt="' + user.avion + '" /></div><h3 class="online_player_battle"><a href="#">battle</a></h3></li>';
+        htmlToApend = '<li data-id="' + user.id + '"><h2 class="online_player_name"><h2 class="online_player_name"><a class="online_player_link">' + user.username + '</a></h2><div class="online_player_plane"><img src="/static/img/user/lobby/avioane/' + user.avion + '.png" alt="' + user.avion + '" /></div><h3 class="online_player_battle"><a data-id="' + user.id + '">battle</a></h3></li>';
         return $('#online_players_list').append(htmlToApend).hide().fadeIn(500);
       }
     };
@@ -73,7 +73,7 @@
       online += 1;
       return $("#online").html(data);
     });
-    return $("#user_battle").click(function() {
+    $("#user_battle").click(function() {
       var battle;
       battle = new Battle({
         'squareHeight': 60,
@@ -228,6 +228,9 @@
           });
         });
       });
+      socket.on("receive-invitation", function(data) {
+        return console.log(data);
+      });
       return $("#start_battle_button").click(function() {
         var checked;
         checked = battle.checkReady(battleId);
@@ -244,6 +247,15 @@
             return war.checkMouseDown(e);
           };
         }
+      });
+    });
+    return $("li:[data-id]").live("click", function(e) {
+      var id;
+      id = $(this).data("id");
+      return $.post("/battle/send-invitation/", {
+        toUserId: id
+      }, function(data) {
+        return console.log(data);
       });
     });
   });

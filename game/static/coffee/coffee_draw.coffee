@@ -16,7 +16,7 @@ class Users
   add: (user) ->
     if @dudes.hasOwnProperty(user.id) == false
       @dudes[user.id] = user
-      htmlToApend = '<li data-id="'+user.id+'"><h2 class="online_player_name"><h2 class="online_player_name"><a class="online_player_link">'+user.username+'</a></h2><div class="online_player_plane"><img src="/static/img/user/lobby/avioane/'+user.avion+'.png" alt="'+user.avion+'" /></div><h3 class="online_player_battle"><a href="#">battle</a></h3></li>'
+      htmlToApend = '<li data-id="'+user.id+'"><h2 class="online_player_name"><h2 class="online_player_name"><a class="online_player_link">'+user.username+'</a></h2><div class="online_player_plane"><img src="/static/img/user/lobby/avioane/'+user.avion+'.png" alt="'+user.avion+'" /></div><h3 class="online_player_battle"><a data-id="'+user.id+'">battle</a></h3></li>'
       $('#online_players_list').append(htmlToApend).hide().fadeIn(500);
 
   remove: (id) ->
@@ -181,6 +181,9 @@ $(document).ready ->
         $('#notification').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
       )
 
+    socket.on "receive-invitation", (data) ->
+      console.log data
+
     $("#start_battle_button").click ->
 
       checked = battle.checkReady(battleId)
@@ -196,3 +199,8 @@ $(document).ready ->
         war.map.canvas.onmousedown = (e) ->
           war.checkMouseDown e
 
+  $("li:[data-id]").live "click", (e) ->
+    id = $(this).data("id")
+    $.post("/battle/send-invitation/", {toUserId: id}, (data) ->
+      console.log data
+    )
