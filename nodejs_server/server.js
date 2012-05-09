@@ -203,8 +203,8 @@
     });
     socket.on('new-battle', function(data) {
       var battle, firstUser, secondUser;
-      firstUser = lobby.getById(data.firstUser);
-      secondUser = lobby.getById(data.secondUser);
+      firstUser = online.getById(data.firstUser);
+      secondUser = online.getById(data.secondUser);
       battle = new Battle(firstUser, secondUser, data.battleId);
       battles.add(battle);
       return battle.start();

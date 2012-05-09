@@ -82,6 +82,19 @@ def send_invitation(request):
         else:
             return HttpResponse('duble')
     return HttpResponse('Not here!')
+@csrf_exempt
+def accept_invitation(request):
+    if request.method == 'POST':
+        firstUser = UserProfile.objects.get(user=request.user)
+        invitation = BattleInvitation.objects.get(toUser=firstUser)
+        secondUser = BattleInvitation.fromUser
+        battle = create(firstUser, secondUser)
+        invitation.delete()
+        message = '"firstUser": "%s", "secondUser":"%s", "battleId":"%s"' % (firstUser.user.id, secondUser.user.id, battle.id)
+        send_message("new-battle", message)
+
+
+    return HttpResponse('Not here!')
 
 def check_finished(battle, owner, type):
     types = ['plane1', 'plane2', 'plane3']

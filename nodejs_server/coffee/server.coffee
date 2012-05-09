@@ -136,8 +136,8 @@ io.sockets.on 'connection', (socket) ->
     socket.emit "registration-complete"
 
   socket.on 'new-battle', (data) ->
-    firstUser = lobby.getById data.firstUser
-    secondUser = lobby.getById data.secondUser
+    firstUser = online.getById data.firstUser
+    secondUser = online.getById data.secondUser
     battle = new Battle firstUser, secondUser, data.battleId
     battles.add battle
     battle.start()

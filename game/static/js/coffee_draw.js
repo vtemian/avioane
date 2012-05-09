@@ -217,7 +217,7 @@
         });
         return console.log("head");
       });
-      socket.on("disconnectGame", function(data) {
+      return socket.on("disconnectGame", function(data) {
         return $.post('/battle/disconnect/', {
           'enemy': enemy,
           'battleID': battleId
@@ -228,9 +228,16 @@
           });
         });
       });
-      socket.on("receive-invitation", function(data) {
-        return console.log(data);
-      });
+    });
+    socket.on("receive-invitation", function(data) {
+      var html;
+      $('#notification').attr('class', 'succes');
+      html = "<div id='invitation-notification' data-id='" + data.id + "'>" + data.username + " invited you to play! <button id='accept-invitation'>Accept</button><button id='decline-invitation'>Decline</button></div>";
+      return $('#notification').html(html).dequeue().stop().slideDown(200);
+    });
+    $("#accept-invitation").live("click", function() {
+      var id;
+      id = $(this).parent().data('id');
       return $("#start_battle_button").click(function() {
         var checked;
         checked = battle.checkReady(battleId);

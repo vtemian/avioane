@@ -181,8 +181,14 @@ $(document).ready ->
         $('#notification').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
       )
 
-    socket.on "receive-invitation", (data) ->
-      console.log data
+  socket.on "receive-invitation", (data) ->
+    $('#notification').attr('class', 'succes')
+    html = "<div id='invitation-notification' data-id='" + data.id + "'>" + data.username + " invited you to play! <button id='accept-invitation'>Accept</button><button id='decline-invitation'>Decline</button></div>"
+    $('#notification').html(html).dequeue().stop().slideDown(200)
+
+  $("#accept-invitation").live "click", ->
+    id = $(this).parent().data('id')
+
 
     $("#start_battle_button").click ->
 
