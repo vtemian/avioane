@@ -192,8 +192,9 @@ $(document).ready ->
   $("#accept-invitation").live "click", ->
     id = $(this).parent().data('id')
     $.get('battle/accept-invitation/', ->
-      console.log "ole"
+
     )
+    $(this).parent().parent().slideUp(200);
 
     $("#start_battle_button").click ->
 
