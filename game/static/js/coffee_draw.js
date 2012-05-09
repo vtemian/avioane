@@ -238,6 +238,9 @@
     $("#accept-invitation").live("click", function() {
       var id;
       id = $(this).parent().data('id');
+      $.get('battle/accept-invitation/', function() {
+        return console.log("ole");
+      });
       return $("#start_battle_button").click(function() {
         var checked;
         checked = battle.checkReady(battleId);

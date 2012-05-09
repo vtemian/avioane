@@ -11,11 +11,11 @@ from nodejs_server.views import send_message
 def create(firstUser, secondUser):
     try:
         battle = Battle.objects.get(enemy=firstUser, user=secondUser.user, finished=False)
-    except Battle.DoesNotExist:
+    except Exception:
         try:
             battle = Battle.objects.get(enemy=secondUser, user=firstUser.user, finished=False)
-        except Battle.DoesNotExist:
-            battle = Battle.objects.create(enemy=firstUser, user=secondUser.user)
+        except Exception:
+                battle = Battle.objects.create(enemy=firstUser, user=secondUser.user)
 
     for x in range(1, 4):
         type = 'plane' + str(x)
@@ -84,15 +84,18 @@ def send_invitation(request):
     return HttpResponse('Not here!')
 @csrf_exempt
 def accept_invitation(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         firstUser = UserProfile.objects.get(user=request.user)
         invitation = BattleInvitation.objects.get(toUser=firstUser)
-        secondUser = BattleInvitation.fromUser
-        battle = create(firstUser, secondUser)
-        invitation.delete()
+
+        secondUser = UserProfile.objects.get(user=invitation.fromUser)
+
+        battle = create(firstUser=firstUser, secondUser=secondUser)
+
         message = '"firstUser": "%s", "secondUser":"%s", "battleId":"%s"' % (firstUser.user.id, secondUser.user.id, battle.id)
         send_message("new-battle", message)
 
+        invitation.delete()
 
     return HttpResponse('Not here!')
 
