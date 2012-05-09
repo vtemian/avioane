@@ -169,7 +169,7 @@ io.sockets.on 'connection', (socket) ->
     battles.remove battle
 
   socket.on "send-invitation", (data) ->
-    console.log data
+    console.log data.fromUser
     fromUser = lobby.getById parseInt(data.fromUser)
     toUser = lobby.getById parseInt(data.toUser)
 
