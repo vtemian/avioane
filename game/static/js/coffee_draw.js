@@ -2,7 +2,7 @@
 (function() {
   var User, Users, battleId, dude, enemy, myTurn, socket, war;
 
-  socket = io.connect("http://192.168.1.167:5555");
+  socket = io.connect("http://outclan.com:5555");
 
   battleId = 0;
 
@@ -70,7 +70,7 @@
       return dude.remove(id);
     });
     socket.on("online", function(data) {
-
+      online += 1;
       return $("#online").html(data);
     });
     return $("#user_battle").click(function() {

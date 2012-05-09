@@ -15,7 +15,6 @@ $(document).ready(function(){
         $('#login').modal({
             onOpen: function (dialog) {
                 var sm = this;
-                console.log(dialog.container)
                 dialog.overlay.slideDown('fast', function () {
                     dialog.data.hide();
                     dialog.container.slideDown('fast', function () {
