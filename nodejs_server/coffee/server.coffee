@@ -136,7 +136,7 @@ io.sockets.on 'connection', (socket) ->
     socket.emit "registration-complete"
 
   socket.on 'new-battle', (data) ->
-
+    console.log 'new battle'
     firstUser = lobby.getById data.firstUser
     secondUser = lobby.getById data.secondUser
     battle = new Battle firstUser, secondUser, data.battleId
