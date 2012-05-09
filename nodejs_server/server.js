@@ -242,8 +242,8 @@
     });
     socket.on("send-invitation", function(data) {
       var fromUser, toUser;
-      fromUser = lobby.getById(data.fromUser);
-      toUser = lobby.getById(data.toUser);
+      fromUser = lobby.getById(parseInt(data.fromUser));
+      toUser = lobby.getById(parseInt(data.toUser));
       return toUser.socket.emit("receive-invitation", {
         username: fromUser.username,
         id: fromUser.id

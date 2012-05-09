@@ -169,8 +169,8 @@ io.sockets.on 'connection', (socket) ->
     battles.remove battle
 
   socket.on "send-invitation", (data) ->
-    fromUser = lobby.getById data.fromUser
-    toUser = lobby.getById data.toUser
+    fromUser = lobby.getById parseInt(data.fromUser)
+    toUser = lobby.getById parseInt(data.toUser)
 
     toUser.socket.emit "receive-invitation",
       username: fromUser.username
