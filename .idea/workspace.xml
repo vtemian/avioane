@@ -59,19 +59,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="urls.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="11" selection-start="489" selection-end="512" vertical-scroll-proportion="-7.8">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="server.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/nodejs_server/server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="264" column="62" selection-start="7108" selection-end="7108" vertical-scroll-proportion="0.5329341">
+            <state line="19" column="89" selection-start="987" selection-end="987" vertical-scroll-proportion="0.35185185">
               <folding />
             </state>
           </provider>
@@ -80,7 +71,7 @@
       <file leaf-file-name="server.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nodejs_server/coffee/server.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="178" column="0" selection-start="4227" selection-end="4227" vertical-scroll-proportion="0.0">
+            <state line="171" column="36" selection-start="4029" selection-end="4029" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -89,7 +80,7 @@
       <file leaf-file-name="coffee_draw.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="172" column="58" selection-start="5217" selection-end="5217" vertical-scroll-proportion="0.0">
+            <state line="167" column="31" selection-start="5018" selection-end="5018" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -312,6 +303,16 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node JS" working-dir="$PROJECT_DIR$">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
+      <method />
+    </configuration>
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -410,13 +411,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="11" selection-start="489" selection-end="512" vertical-scroll-proportion="-7.8">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lobby/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="22" selection-start="903" selection-end="903" vertical-scroll-proportion="-15.0">
@@ -453,21 +447,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="172" column="58" selection-start="5217" selection-end="5217" vertical-scroll-proportion="0.0">
+        <state line="167" column="31" selection-start="5018" selection-end="5018" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nodejs_server/coffee/server.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="178" column="0" selection-start="4227" selection-end="4227" vertical-scroll-proportion="0.0">
+        <state line="171" column="36" selection-start="4029" selection-end="4029" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nodejs_server/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="264" column="62" selection-start="7108" selection-end="7108" vertical-scroll-proportion="0.5329341">
+        <state line="248" column="36" selection-start="6586" selection-end="6586" vertical-scroll-proportion="0.24550898">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="89" selection-start="987" selection-end="987" vertical-scroll-proportion="0.35185185">
           <folding />
         </state>
       </provider>
