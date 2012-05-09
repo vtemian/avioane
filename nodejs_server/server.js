@@ -257,7 +257,7 @@
       var battle, battleid, client, _ref;
       online_peoples -= 1;
       socket.broadcast.emit("online-peoples", online_peoples);
-      client = lobby.get(socket);
+      client = online.get(socket);
       if (client !== void 0) {
         _ref = battles.battles;
         for (battleid in _ref) {
@@ -273,7 +273,6 @@
         console.log(client);
       }
       lobby.remove(socket);
-      client = online.get(socket);
       if (client !== void 0) {
         online.remove(socket);
         return online.broadcast("remove-online", client.id);

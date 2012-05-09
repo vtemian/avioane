@@ -183,7 +183,7 @@ io.sockets.on 'connection', (socket) ->
     online_peoples -= 1
     socket.broadcast.emit "online-peoples", online_peoples
 
-    client = lobby.get socket
+    client = online.get socket
 
     if client != undefined
       for battleid,battle of battles.battles
@@ -196,7 +196,7 @@ io.sockets.on 'connection', (socket) ->
 
     lobby.remove socket
 
-    client = online.get socket
+
 
     if client != undefined
       online.remove socket

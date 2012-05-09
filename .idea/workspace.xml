@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="636fe8ee-b4d1-4356-9f02-5be2a85c2b76" name="Default" comment="lobby game">
+    <list default="true" id="636fe8ee-b4d1-4356-9f02-5be2a85c2b76" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" afterPath="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" afterPath="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodejs_server/server.js" afterPath="$PROJECT_DIR$/nodejs_server/server.js" />
     </list>
     <ignored path="avioane.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,10 +68,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.coffee" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="server.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nodejs_server/coffee/server.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="172" column="39" selection-start="4078" selection-end="4078" vertical-scroll-proportion="0.0">
+            <state line="185" column="30" selection-start="4397" selection-end="4397" vertical-scroll-proportion="0.5508982">
               <folding />
             </state>
           </provider>
@@ -79,16 +80,16 @@
       <file leaf-file-name="server.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nodejs_server/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="249" column="23" selection-start="6578" selection-end="6578" vertical-scroll-proportion="0.0">
+            <state line="248" column="23" selection-start="6541" selection-end="6541" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="coffee_draw.coffee" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="coffee_draw.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="184" column="43" selection-start="5444" selection-end="5444" vertical-scroll-proportion="0.28832117">
+            <state line="184" column="43" selection-start="5444" selection-end="5444" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -134,8 +135,8 @@
         <option value="$PROJECT_DIR$/nodejs_server/server.js" />
         <option value="$PROJECT_DIR$/battle/views.py" />
         <option value="$PROJECT_DIR$/urls.py" />
-        <option value="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" />
         <option value="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" />
+        <option value="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" />
       </list>
     </option>
   </component>
@@ -431,7 +432,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nodejs_server/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="249" column="23" selection-start="6578" selection-end="6578" vertical-scroll-proportion="0.0">
+        <state line="248" column="23" selection-start="6541" selection-end="6541" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -461,13 +462,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nodejs_server/coffee/server.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="172" column="39" selection-start="4078" selection-end="4078" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/battle/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="78" column="50" selection-start="3090" selection-end="3090" vertical-scroll-proportion="-18.0">
@@ -479,7 +473,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="184" column="43" selection-start="5444" selection-end="5444" vertical-scroll-proportion="0.28832117">
+        <state line="184" column="43" selection-start="5444" selection-end="5444" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodejs_server/coffee/server.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="185" column="30" selection-start="4397" selection-end="4397" vertical-scroll-proportion="0.5508982">
           <folding />
         </state>
       </provider>
