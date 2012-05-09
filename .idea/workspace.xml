@@ -59,19 +59,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="89" selection-start="987" selection-end="987" vertical-scroll-proportion="0.35185185">
+            <state line="19" column="89" selection-start="987" selection-end="987" vertical-scroll-proportion="-11.4">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.coffee" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="server.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nodejs_server/coffee/server.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="171" column="36" selection-start="4029" selection-end="4029" vertical-scroll-proportion="0.0">
+            <state line="172" column="28" selection-start="4065" selection-end="4065" vertical-scroll-proportion="0.65868264">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nodejs_server/server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="247" column="36" selection-start="6547" selection-end="6547" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -126,8 +135,8 @@
         <option value="$PROJECT_DIR$/urls.py" />
         <option value="$PROJECT_DIR$/battle/views.py" />
         <option value="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" />
-        <option value="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" />
         <option value="$PROJECT_DIR$/nodejs_server/server.js" />
+        <option value="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" />
       </list>
     </option>
   </component>
@@ -445,6 +454,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="89" selection-start="987" selection-end="987" vertical-scroll-proportion="-11.4">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state line="167" column="31" selection-start="5018" selection-end="5018" vertical-scroll-proportion="0.0">
@@ -452,23 +468,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nodejs_server/coffee/server.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="171" column="36" selection-start="4029" selection-end="4029" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nodejs_server/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="248" column="36" selection-start="6586" selection-end="6586" vertical-scroll-proportion="0.24550898">
+        <state line="247" column="36" selection-start="6547" selection-end="6547" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/urls.py">
+    <entry file="file://$PROJECT_DIR$/nodejs_server/coffee/server.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="89" selection-start="987" selection-end="987" vertical-scroll-proportion="0.35185185">
+        <state line="172" column="28" selection-start="4065" selection-end="4065" vertical-scroll-proportion="0.65868264">
           <folding />
         </state>
       </provider>

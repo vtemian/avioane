@@ -169,9 +169,8 @@ io.sockets.on 'connection', (socket) ->
     battles.remove battle
 
   socket.on "send-invitation", (data) ->
-    console.log data.fromUser, lobby, "fuck"
-    fromUser = lobby.getById parseInt(data.fromUser)
-    toUser = lobby.getById parseInt(data.toUser)
+    fromUser = online.getById data.fromUser
+    toUser = online.getById data.toUser
 
     toUser.socket.emit "receive-invitation",
       username: fromUser.username

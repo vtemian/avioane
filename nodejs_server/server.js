@@ -242,9 +242,8 @@
     });
     socket.on("send-invitation", function(data) {
       var fromUser, toUser;
-      console.log(data.fromUser, lobby, "fuck");
-      fromUser = lobby.getById(parseInt(data.fromUser));
-      toUser = lobby.getById(parseInt(data.toUser));
+      fromUser = online.getById(data.fromUser);
+      toUser = online.getById(data.toUser);
       return toUser.socket.emit("receive-invitation", {
         username: fromUser.username,
         id: fromUser.id
