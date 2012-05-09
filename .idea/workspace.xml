@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="636fe8ee-b4d1-4356-9f02-5be2a85c2b76" name="Default" comment="">
+    <list default="true" id="636fe8ee-b4d1-4356-9f02-5be2a85c2b76" name="Default" comment="making work">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" afterPath="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/static/js/coffee_draw.js" afterPath="$PROJECT_DIR$/game/static/js/coffee_draw.js" />
     </list>
     <ignored path="avioane.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,7 +88,7 @@
       <file leaf-file-name="coffee_draw.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="181" column="5" selection-start="5392" selection-end="5392" vertical-scroll-proportion="0.729927">
+            <state line="33" column="0" selection-start="939" selection-end="939" vertical-scroll-proportion="0.16423358">
               <folding />
             </state>
           </provider>
@@ -390,7 +389,7 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="accept invitation" />
+    <option name="LAST_COMMIT_MESSAGE" value="making work" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -407,6 +406,7 @@
     <MESSAGE value="receive invitation" />
     <MESSAGE value="parse int" />
     <MESSAGE value="accept invitation" />
+    <MESSAGE value="making work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -478,7 +478,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="181" column="5" selection-start="5392" selection-end="5392" vertical-scroll-proportion="0.729927">
+        <state line="33" column="0" selection-start="939" selection-end="939" vertical-scroll-proportion="0.16423358">
           <folding />
         </state>
       </provider>

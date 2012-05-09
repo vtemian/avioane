@@ -45,6 +45,9 @@ $(document).ready ->
     $("#online").html(data)
 
   $("#user_battle").click ->
+    socket.emit "lobby-registration",
+      username: username
+      id: id
 
   battle = new Battle({
   'squareHeight': 60,
@@ -53,9 +56,7 @@ $(document).ready ->
 
   battle.init()
 
-  socket.emit "lobby-registration",
-    username: username
-    id: id
+
 
   socket.on "registration-complete", (data) ->
     $.post '/lobby/join/', (data) ->

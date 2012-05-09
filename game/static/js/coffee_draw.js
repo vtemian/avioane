@@ -74,16 +74,17 @@
       online += 1;
       return $("#online").html(data);
     });
-    $("#user_battle").click(function() {});
+    $("#user_battle").click(function() {
+      return socket.emit("lobby-registration", {
+        username: username,
+        id: id
+      });
+    });
     battle = new Battle({
       'squareHeight': 60,
       'gameHolder': $('#map')
     });
     battle.init();
-    socket.emit("lobby-registration", {
-      username: username,
-      id: id
-    });
     socket.on("registration-complete", function(data) {
       return $.post('/lobby/join/', function(data) {
         var obj;
