@@ -55,6 +55,7 @@
   dude = new Users();
 
   $(document).ready(function() {
+    var battle;
     socket.emit("handshake", {
       username: username,
       id: id,
@@ -73,164 +74,164 @@
       online += 1;
       return $("#online").html(data);
     });
-    $("#user_battle").click(function() {
-      var battle;
-      battle = new Battle({
-        'squareHeight': 60,
-        'gameHolder': $('#map')
-      });
-      battle.init();
-      socket.emit("lobby-registration", {
-        username: username,
-        id: id
-      });
-      socket.on("registration-complete", function(data) {
-        return $.post('/lobby/join/', function(data) {
-          var obj;
-          obj = $.parseJSON(data);
-          if (obj.not !== void 0) {
-            $('#notification').html("Setting up battle...").dequeue().stop().slideDown(200).delay(1700).slideUp(200);
-            $('#notification').attr('class', 'info');
-            return myTurn = true;
-          } else {
-            return battleId = obj.battle;
-          }
-        });
-      });
-      socket.on("start-battle", function(data) {
-        battleId = data.battleId;
-        $.get('/battle/get-details/', {
-          'battleId': battleId
-        }, function(data) {
-          var obj, user1, user2;
-          obj = $.parseJSON(data);
-          user1 = obj.user1;
-          user2 = obj.user2;
-          $('#lvl1').html("level: " + user1.lvl);
-          $('#lvl2').html("level: " + user2.lvl);
-          $('#won1').html("won: " + user1.won);
-          $('#won2').html("won: " + user2.won);
-          $('#lost1').html("lost: " + user1.lost);
-          $('#lost2').html("lost: " + user2.lost);
-          $('#img1').attr('src', "/static/img/user/lobby/avioane/" + user1.avion + ".png");
-          $('#img2').attr('src', "/static/img/user/lobby/avioane/" + user2.avion + ".png");
-          $('#versus_p1_name').html(user1.username);
-          $('#versus_p2_name').html(user2.username);
-          $('#sub_holder').remove();
-          $('#lobby').remove();
-          $('#versus').css('display', 'block');
-          return setTimeout(function() {
-            return $('#versus').fadeOut('slow', function() {
-              $("#battle").fadeIn(500).css('display', 'block');
-              return $("#start_battle_button").fadeIn(500).css('display', 'block');
-            });
-          }, 3000);
-        });
-        if (data.firstUser === username) {
-          return enemy = data.secondUser;
+    $("#user_battle").click(function() {});
+    battle = new Battle({
+      'squareHeight': 60,
+      'gameHolder': $('#map')
+    });
+    battle.init();
+    socket.emit("lobby-registration", {
+      username: username,
+      id: id
+    });
+    socket.on("registration-complete", function(data) {
+      return $.post('/lobby/join/', function(data) {
+        var obj;
+        obj = $.parseJSON(data);
+        if (obj.not !== void 0) {
+          $('#notification').html("Setting up battle...").dequeue().stop().slideDown(200).delay(1700).slideUp(200);
+          $('#notification').attr('class', 'info');
+          return myTurn = true;
         } else {
-          return enemy = data.firstUser;
+          return battleId = obj.battle;
         }
       });
-      socket.on("ready", function(data) {
-        if (username !== data) {
-          return console.log("your enemy is ready");
-        }
+    });
+    socket.on("start-battle", function(data) {
+      battleId = data.battleId;
+      $.get('/battle/get-details/', {
+        'battleId': battleId
+      }, function(data) {
+        var obj, user1, user2;
+        obj = $.parseJSON(data);
+        user1 = obj.user1;
+        user2 = obj.user2;
+        $('#lvl1').html("level: " + user1.lvl);
+        $('#lvl2').html("level: " + user2.lvl);
+        $('#won1').html("won: " + user1.won);
+        $('#won2').html("won: " + user2.won);
+        $('#lost1').html("lost: " + user1.lost);
+        $('#lost2').html("lost: " + user2.lost);
+        $('#img1').attr('src', "/static/img/user/lobby/avioane/" + user1.avion + ".png");
+        $('#img2').attr('src', "/static/img/user/lobby/avioane/" + user2.avion + ".png");
+        $('#versus_p1_name').html(user1.username);
+        $('#versus_p2_name').html(user2.username);
+        $('#sub_holder').remove();
+        $('#lobby').remove();
+        $('#versus').css('display', 'block');
+        return setTimeout(function() {
+          return $('#versus').fadeOut('slow', function() {
+            $("#battle").fadeIn(500).css('display', 'block');
+            return $("#start_battle_button").fadeIn(500).css('display', 'block');
+          });
+        }, 3000);
       });
-      socket.on("check-hit", function(data) {
-        var x, y;
-        war.myTurn = true;
-        x = data.coordinates.x;
-        y = data.coordinates.y;
-        return $.post('/battle/attack/', {
-          'x': x,
-          'y': y,
-          'battleID': battleId
-        }, function(data) {
-          if (data === 'miss') {
-            return war.miss_attack(x, y, 0, 60 * 11 - 25);
+      if (data.firstUser === username) {
+        return enemy = data.secondUser;
+      } else {
+        return enemy = data.firstUser;
+      }
+    });
+    socket.on("ready", function(data) {
+      if (username !== data) {
+        return console.log("your enemy is ready");
+      }
+    });
+    socket.on("check-hit", function(data) {
+      var x, y;
+      war.myTurn = true;
+      x = data.coordinates.x;
+      y = data.coordinates.y;
+      return $.post('/battle/attack/', {
+        'x': x,
+        'y': y,
+        'battleID': battleId
+      }, function(data) {
+        if (data === 'miss') {
+          return war.miss_attack(x, y, 0, 60 * 11 - 25);
+        } else {
+          if (data === 'hit') {
+            return war.hit_attack(x, y, 0, 60 * 11 - 25);
           } else {
-            if (data === 'hit') {
-              return war.hit_attack(x, y, 0, 60 * 11 - 25);
-            } else {
-              if (data === 'finished') {
-                return $.post('/battle/', {
-                  'state': 'loss',
-                  'enemy': enemy,
-                  'battleId': battleId
-                }, function(data) {
-                  socket.emit("finish", {
-                    battleId: battleId,
-                    user: id
-                  });
-                  $('#notification').attr('class', 'alert');
-                  return $('#notification').html("You lost").dequeue().stop().slideDown(200).delay(1700).slideUp(200, function() {
-                    return window.location = '/';
-                  });
+            if (data === 'finished') {
+              return $.post('/battle/', {
+                'state': 'loss',
+                'enemy': enemy,
+                'battleId': battleId
+              }, function(data) {
+                socket.emit("finish", {
+                  battleId: battleId,
+                  user: id
                 });
-              } else {
-                return war.head_attack(x, y, 0, 60 * 11 - 25);
-              }
+                $('#notification').attr('class', 'alert');
+                return $('#notification').html("You lost").dequeue().stop().slideDown(200).delay(1700).slideUp(200, function() {
+                  return window.location = '/';
+                });
+              });
+            } else {
+              return war.head_attack(x, y, 0, 60 * 11 - 25);
             }
           }
-        });
+        }
       });
-      socket.on("win", function() {
+    });
+    socket.on("win", function() {
+      $('#notification').attr('class', 'succes');
+      return $('#notification').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200, function() {
+        return window.location = '/';
+      });
+    });
+    socket.on("miss", function(data) {
+      var x, y;
+      x = data.coordinates.x;
+      y = data.coordinates.y;
+      war.draw_attack({
+        x: x * war.map.squareHeight + war.map.position.left,
+        y: y * war.map.squareHeight + war.map.position.top,
+        height: war.map.squareHeight,
+        fillStyle: "#FFF"
+      });
+      return console.log("miss");
+    });
+    socket.on("hit", function(data) {
+      var x, y;
+      x = data.coordinates.x;
+      y = data.coordinates.y;
+      war.draw_attack({
+        x: x * war.map.squareHeight + war.map.position.left,
+        y: y * war.map.squareHeight + war.map.position.top,
+        height: war.map.squareHeight,
+        fillStyle: "blue"
+      });
+      return console.log("hit");
+    });
+    socket.on("head", function(data) {
+      var x, y;
+      x = data.coordinates.x;
+      y = data.coordinates.y;
+      war.draw_attack({
+        x: x * war.map.squareHeight + war.map.position.left,
+        y: y * war.map.squareHeight + war.map.position.top,
+        height: war.map.squareHeight,
+        fillStyle: "yellow"
+      });
+      return console.log("head");
+    });
+    socket.on("disconnectGame", function(data) {
+      return $.post('/battle/disconnect/', {
+        'enemy': enemy,
+        'battleID': battleId
+      }, function() {
         $('#notification').attr('class', 'succes');
         return $('#notification').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200, function() {
           return window.location = '/';
         });
       });
-      socket.on("miss", function(data) {
-        var x, y;
-        x = data.coordinates.x;
-        y = data.coordinates.y;
-        war.draw_attack({
-          x: x * war.map.squareHeight + war.map.position.left,
-          y: y * war.map.squareHeight + war.map.position.top,
-          height: war.map.squareHeight,
-          fillStyle: "#FFF"
-        });
-        return console.log("miss");
-      });
-      socket.on("hit", function(data) {
-        var x, y;
-        x = data.coordinates.x;
-        y = data.coordinates.y;
-        war.draw_attack({
-          x: x * war.map.squareHeight + war.map.position.left,
-          y: y * war.map.squareHeight + war.map.position.top,
-          height: war.map.squareHeight,
-          fillStyle: "blue"
-        });
-        return console.log("hit");
-      });
-      socket.on("head", function(data) {
-        var x, y;
-        x = data.coordinates.x;
-        y = data.coordinates.y;
-        war.draw_attack({
-          x: x * war.map.squareHeight + war.map.position.left,
-          y: y * war.map.squareHeight + war.map.position.top,
-          height: war.map.squareHeight,
-          fillStyle: "yellow"
-        });
-        return console.log("head");
-      });
-      return socket.on("disconnectGame", function(data) {
-        return $.post('/battle/disconnect/', {
-          'enemy': enemy,
-          'battleID': battleId
-        }, function() {
-          $('#notification').attr('class', 'succes');
-          return $('#notification').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200, function() {
-            return window.location = '/';
-          });
-        });
-      });
     });
     socket.on("receive-invitation", function(data) {
       var html;
+      console.log(data);
+      console.log("aasdasdadasdasdad");
       $('#notification').attr('class', 'succes');
       html = "<div id='invitation-notification' data-id='" + data.id + "'>" + data.username + " invited you to play! <button id='accept-invitation'>Accept</button><button id='decline-invitation'>Decline</button></div>";
       return $('#notification').html(html).dequeue().stop().slideDown(200);

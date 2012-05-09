@@ -46,140 +46,140 @@ $(document).ready ->
 
   $("#user_battle").click ->
 
-    battle = new Battle({
-    'squareHeight': 60,
-    'gameHolder': $('#map'),
-    })
+  battle = new Battle({
+  'squareHeight': 60,
+  'gameHolder': $('#map'),
+  })
 
-    battle.init()
+  battle.init()
 
-    socket.emit "lobby-registration",
-      username: username
-      id: id
+  socket.emit "lobby-registration",
+    username: username
+    id: id
 
-    socket.on "registration-complete", (data) ->
-      $.post '/lobby/join/', (data) ->
-        obj = $.parseJSON data
-        if obj.not != undefined
-          #waiting for player
-          $('#notification').html("Setting up battle...").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
-          $('#notification').attr('class', 'info')
-          myTurn = true
-        else
-          #go to battle
-          battleId = obj.battle
-
-
-    socket.on "start-battle", (data) ->
-
-      battleId = data.battleId
-      $.get( '/battle/get-details/', {'battleId': battleId}, (data) ->
-        obj = $.parseJSON data
-        user1 = obj.user1
-        user2 = obj.user2
-        $('#lvl1').html("level: " + user1.lvl)
-        $('#lvl2').html("level: " + user2.lvl)
-
-        $('#won1').html("won: " + user1.won)
-        $('#won2').html("won: " + user2.won)
-
-        $('#lost1').html("lost: " + user1.lost)
-        $('#lost2').html("lost: " + user2.lost)
-
-        $('#img1').attr('src', "/static/img/user/lobby/avioane/"+user1.avion+".png")
-        $('#img2').attr('src', "/static/img/user/lobby/avioane/"+user2.avion+".png")
-
-        $('#versus_p1_name').html(user1.username)
-        $('#versus_p2_name').html(user2.username)
-
-        $('#sub_holder').remove()
-        $('#lobby').remove()
-
-        $('#versus').css('display', 'block')
-
-        setTimeout(
-          ->
-            $('#versus').fadeOut('slow', ->
-                $("#battle").fadeIn(500).css('display', 'block')
-                $("#start_battle_button").fadeIn(500).css('display', 'block')
-            )
-          , 3000);
-      )
-
-      if data.firstUser == username
-        enemy = data.secondUser
+  socket.on "registration-complete", (data) ->
+    $.post '/lobby/join/', (data) ->
+      obj = $.parseJSON data
+      if obj.not != undefined
+        #waiting for player
+        $('#notification').html("Setting up battle...").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
+        $('#notification').attr('class', 'info')
+        myTurn = true
       else
-        enemy = data.firstUser
+        #go to battle
+        battleId = obj.battle
 
-    socket.on "ready", (data) ->
-      #check if i'm ready or my enemy
-      if username != data
-        console.log "your enemy is ready"
 
-    socket.on "check-hit", (data) ->
-      war.myTurn = true
-      x = data.coordinates.x
-      y = data.coordinates.y
-      $.post('/battle/attack/', {'x': x, 'y': y, 'battleID': battleId}, (data) ->
-        if data == 'miss'
-          war.miss_attack x, y, 0, 60*11-25
+  socket.on "start-battle", (data) ->
+
+    battleId = data.battleId
+    $.get( '/battle/get-details/', {'battleId': battleId}, (data) ->
+      obj = $.parseJSON data
+      user1 = obj.user1
+      user2 = obj.user2
+      $('#lvl1').html("level: " + user1.lvl)
+      $('#lvl2').html("level: " + user2.lvl)
+
+      $('#won1').html("won: " + user1.won)
+      $('#won2').html("won: " + user2.won)
+
+      $('#lost1').html("lost: " + user1.lost)
+      $('#lost2').html("lost: " + user2.lost)
+
+      $('#img1').attr('src', "/static/img/user/lobby/avioane/"+user1.avion+".png")
+      $('#img2').attr('src', "/static/img/user/lobby/avioane/"+user2.avion+".png")
+
+      $('#versus_p1_name').html(user1.username)
+      $('#versus_p2_name').html(user2.username)
+
+      $('#sub_holder').remove()
+      $('#lobby').remove()
+
+      $('#versus').css('display', 'block')
+
+      setTimeout(
+        ->
+          $('#versus').fadeOut('slow', ->
+              $("#battle").fadeIn(500).css('display', 'block')
+              $("#start_battle_button").fadeIn(500).css('display', 'block')
+          )
+        , 3000);
+    )
+
+    if data.firstUser == username
+      enemy = data.secondUser
+    else
+      enemy = data.firstUser
+
+  socket.on "ready", (data) ->
+    #check if i'm ready or my enemy
+    if username != data
+      console.log "your enemy is ready"
+
+  socket.on "check-hit", (data) ->
+    war.myTurn = true
+    x = data.coordinates.x
+    y = data.coordinates.y
+    $.post('/battle/attack/', {'x': x, 'y': y, 'battleID': battleId}, (data) ->
+      if data == 'miss'
+        war.miss_attack x, y, 0, 60*11-25
+      else
+        if data == 'hit'
+          war.hit_attack x, y, 0, 60*11-25
         else
-          if data == 'hit'
-            war.hit_attack x, y, 0, 60*11-25
+          if data == 'finished'
+            $.post('/battle/', {'state': 'loss', 'enemy': enemy, 'battleId': battleId}, (data) ->
+
+              socket.emit "finish",
+                battleId: battleId
+                user: id
+
+              $('#notification').attr('class', 'alert')
+              $('#notification').html("You lost").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
+            )
           else
-            if data == 'finished'
-              $.post('/battle/', {'state': 'loss', 'enemy': enemy, 'battleId': battleId}, (data) ->
+            war.head_attack x, y, 0, 60*11-25
+    )
 
-                socket.emit "finish",
-                  battleId: battleId
-                  user: id
+  socket.on "win", ->
+    $('#notification').attr('class', 'succes')
+    $('#notification').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
+  socket.on "miss", (data) ->
 
-                $('#notification').attr('class', 'alert')
-                $('#notification').html("You lost").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
-              )
-            else
-              war.head_attack x, y, 0, 60*11-25
-      )
+    x = data.coordinates.x
+    y = data.coordinates.y
+    war.draw_attack
+      x: x * war.map.squareHeight + war.map.position.left
+      y: y * war.map.squareHeight + war.map.position.top
+      height: war.map.squareHeight
+      fillStyle: "#FFF"
+    console.log "miss"
 
-    socket.on "win", ->
+  socket.on "hit", (data) ->
+    x = data.coordinates.x
+    y = data.coordinates.y
+    war.draw_attack
+      x: x * war.map.squareHeight + war.map.position.left
+      y: y * war.map.squareHeight + war.map.position.top
+      height: war.map.squareHeight
+      fillStyle: "blue"
+    console.log "hit"
+
+  socket.on "head", (data) ->
+    x = data.coordinates.x
+    y = data.coordinates.y
+    war.draw_attack
+      x: x * war.map.squareHeight + war.map.position.left
+      y: y * war.map.squareHeight + war.map.position.top
+      height: war.map.squareHeight
+      fillStyle: "yellow"
+    console.log "head"
+
+  socket.on "disconnectGame", (data) ->
+    $.post('/battle/disconnect/', {'enemy': enemy, 'battleID': battleId}, ->
       $('#notification').attr('class', 'succes')
       $('#notification').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
-    socket.on "miss", (data) ->
-
-      x = data.coordinates.x
-      y = data.coordinates.y
-      war.draw_attack
-        x: x * war.map.squareHeight + war.map.position.left
-        y: y * war.map.squareHeight + war.map.position.top
-        height: war.map.squareHeight
-        fillStyle: "#FFF"
-      console.log "miss"
-
-    socket.on "hit", (data) ->
-      x = data.coordinates.x
-      y = data.coordinates.y
-      war.draw_attack
-        x: x * war.map.squareHeight + war.map.position.left
-        y: y * war.map.squareHeight + war.map.position.top
-        height: war.map.squareHeight
-        fillStyle: "blue"
-      console.log "hit"
-
-    socket.on "head", (data) ->
-      x = data.coordinates.x
-      y = data.coordinates.y
-      war.draw_attack
-        x: x * war.map.squareHeight + war.map.position.left
-        y: y * war.map.squareHeight + war.map.position.top
-        height: war.map.squareHeight
-        fillStyle: "yellow"
-      console.log "head"
-
-    socket.on "disconnectGame", (data) ->
-      $.post('/battle/disconnect/', {'enemy': enemy, 'battleID': battleId}, ->
-        $('#notification').attr('class', 'succes')
-        $('#notification').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
-      )
+    )
 
   socket.on "receive-invitation", (data) ->
     console.log data
