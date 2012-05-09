@@ -1,4 +1,4 @@
-socket = io.connect("http://192.168.0.105:5555")
+socket = io.connect("http://outclan.com:5555")
 
 battleId = 0
 war = ""

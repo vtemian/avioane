@@ -1,4 +1,4 @@
-var socket = io.connect('192.168.1.167', {port:5555});
+var socket = io.connect('outclan.com', {port:5555});
 
 $(document).ready(function(){
     socket.on('online-peoples', function(data){
