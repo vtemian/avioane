@@ -137,7 +137,8 @@ def result(request):
     if request.method == 'GET':
         userProfile = UserProfile.objects.get(user=request.user)
         state = request.GET.get('state')
-        
+
+
         enemy = UserProfile.objects.get(user=User.objects.get(pk=request.GET.get('enemy')))
         battle = Battle.objects.get(pk=request.GET.get('battleId'))
 
