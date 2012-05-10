@@ -86,7 +86,7 @@ def send_invitation(request):
 def accept_invitation(request):
     if request.method == 'GET':
         firstUser = UserProfile.objects.get(user=request.user)
-        secondUser = UserProfile.objects.get(userUser.objects.get(pk=request.GET.get('userid')))
+        secondUser = UserProfile.objects.get(user=User.objects.get(pk=request.GET.get('userid')))
 
         invitation = BattleInvitation.objects.get(toUser=firstUser, fromUser=secondUser.user)
 
