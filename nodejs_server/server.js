@@ -211,6 +211,7 @@
     socket.on("attack", function(data) {
       var battle;
       battle = battles.get(data.battleId);
+      console.log(data);
       return battle.attacking_moves(data.user, data.coordinates, "check-hit");
     });
     socket.on("miss-attack", function(data) {

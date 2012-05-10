@@ -145,6 +145,7 @@ io.sockets.on 'connection', (socket) ->
 
   socket.on "attack", (data) ->
     battle = battles.get(data.battleId)
+    console.log data
     battle.attacking_moves data.user, data.coordinates, "check-hit"
 
   socket.on "miss-attack", (data) ->
