@@ -240,7 +240,6 @@
       var fromUser, toUser;
       fromUser = online.getById(data.fromUser);
       toUser = online.getById(data.toUser);
-      console.log(data);
       return toUser.socket.emit("receive-invitation", {
         username: fromUser.username,
         id: fromUser.id

@@ -169,7 +169,6 @@ io.sockets.on 'connection', (socket) ->
   socket.on "send-invitation", (data) ->
     fromUser = online.getById data.fromUser
     toUser = online.getById data.toUser
-    console.log data
     toUser.socket.emit "receive-invitation",
       username: fromUser.username
       id: fromUser.id
