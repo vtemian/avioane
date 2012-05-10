@@ -22,7 +22,7 @@
         var avion = '{{ userprofile.avion }}' ;
 
     </script>
-    <div id="logo"><a href="#"><img src="{{ STATIC_URL }}img/logo.png" alt="Avioane" /></a></div>
+    <div id="logo"><a href="/"><img src="{{ STATIC_URL }}img/logo.png" alt="Avioane" /></a></div>
 
     <!--<nav id="user_menu">
              <ul>
@@ -40,13 +40,14 @@
     </nav>
 
     <nav id="game_menu">
-        <ul>
-            <li>acasa</li>
-            <li>lupta</li>
-            <li>hangar</li>
-            <li>hall of fame</li>
-        </ul>
+        <ol>
+            <li><a href="/">acasa</a></li>
+            <li><a href="#">hangar</a></li>
+            <li><a href="#">batalie</a></li>
+            <li><a href="#">hall of fame</a></li>
+        </ol>
     </nav>
+
 
     <div id="notification">Congratulations! You’we just leveled up!</div>
 
