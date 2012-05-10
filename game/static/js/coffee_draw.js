@@ -241,24 +241,24 @@
       var id;
       id = $(this).parent().data('id');
       $.get('battle/accept-invitation/', function() {});
-      $(this).parent().parent().slideUp(200);
-      return $("#start_battle_button").click(function() {
-        var checked;
-        checked = battle.checkReady(battleId);
-        if (checked) {
-          $("#start_battle_button").remove();
-          war = new War({
-            'user': id,
-            'battleId': battleId,
-            'userSocket': socket,
-            'map': checked,
-            'myTurn': myTurn
-          });
-          return war.map.canvas.onmousedown = function(e) {
-            return war.checkMouseDown(e);
-          };
-        }
-      });
+      return $(this).parent().parent().slideUp(200);
+    });
+    $("#start_battle_button").click(function() {
+      var checked;
+      checked = battle.checkReady(battleId);
+      if (checked) {
+        $("#start_battle_button").remove();
+        war = new War({
+          'user': id,
+          'battleId': battleId,
+          'userSocket': socket,
+          'map': checked,
+          'myTurn': myTurn
+        });
+        return war.map.canvas.onmousedown = function(e) {
+          return war.checkMouseDown(e);
+        };
+      }
     });
     return $("li:[data-id]").live("click", function(e) {
       var id;

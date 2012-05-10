@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="636fe8ee-b4d1-4356-9f02-5be2a85c2b76" name="Default" comment="">
+    <list default="true" id="636fe8ee-b4d1-4356-9f02-5be2a85c2b76" name="Default" comment="server disconect">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" afterPath="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodejs_server/server.js" afterPath="$PROJECT_DIR$/nodejs_server/server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" afterPath="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/static/js/coffee_draw.js" afterPath="$PROJECT_DIR$/game/static/js/coffee_draw.js" />
     </list>
     <ignored path="avioane.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,7 +51,7 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/battle/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="78" column="50" selection-start="3090" selection-end="3090" vertical-scroll-proportion="-18.0">
+            <state line="79" column="29" selection-start="3137" selection-end="3137" vertical-scroll-proportion="-18.6">
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -68,10 +68,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.coffee" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="server.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nodejs_server/coffee/server.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="185" column="30" selection-start="4397" selection-end="4397" vertical-scroll-proportion="0.5508982">
+            <state line="165" column="31" selection-start="3858" selection-end="3858" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -86,10 +86,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="coffee_draw.coffee" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="coffee_draw.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="184" column="43" selection-start="5444" selection-end="5444" vertical-scroll-proportion="0.0">
+            <state line="197" column="0" selection-start="6042" selection-end="6042" vertical-scroll-proportion="0.54379565">
               <folding />
             </state>
           </provider>
@@ -98,7 +98,7 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lobby/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="37" selection-start="1362" selection-end="1362" vertical-scroll-proportion="-23.4">
+            <state line="17" column="0" selection-start="519" selection-end="519" vertical-scroll-proportion="-10.2">
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -135,8 +135,8 @@
         <option value="$PROJECT_DIR$/nodejs_server/server.js" />
         <option value="$PROJECT_DIR$/battle/views.py" />
         <option value="$PROJECT_DIR$/urls.py" />
-        <option value="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" />
         <option value="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" />
+        <option value="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" />
       </list>
     </option>
   </component>
@@ -341,7 +341,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16883117" sideWeight="0.67045456" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16883117" sideWeight="0.68636364" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -390,7 +390,7 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="lobby game" />
+    <option name="LAST_COMMIT_MESSAGE" value="server disconect" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -409,6 +409,7 @@
     <MESSAGE value="accept invitation" />
     <MESSAGE value="making work" />
     <MESSAGE value="lobby game" />
+    <MESSAGE value="server disconect" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -423,26 +424,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nodejs_server/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="4" selection-start="890" selection-end="890" vertical-scroll-proportion="-16.2">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nodejs_server/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="248" column="23" selection-start="6541" selection-end="6541" vertical-scroll-proportion="0.0">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lobby/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="37" selection-start="1362" selection-end="1362" vertical-scroll-proportion="-23.4">
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -464,23 +449,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/battle/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="50" selection-start="3090" selection-end="3090" vertical-scroll-proportion="-18.0">
+        <state line="79" column="29" selection-start="3137" selection-end="3137" vertical-scroll-proportion="-18.6">
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
+    <entry file="file://$PROJECT_DIR$/nodejs_server/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="184" column="43" selection-start="5444" selection-end="5444" vertical-scroll-proportion="0.0">
+        <state line="28" column="4" selection-start="890" selection-end="890" vertical-scroll-proportion="-16.2">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lobby/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="519" selection-end="519" vertical-scroll-proportion="-10.2">
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nodejs_server/coffee/server.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="185" column="30" selection-start="4397" selection-end="4397" vertical-scroll-proportion="0.5508982">
+        <state line="165" column="31" selection-start="3858" selection-end="3858" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="197" column="0" selection-start="6042" selection-end="6042" vertical-scroll-proportion="0.54379565">
           <folding />
         </state>
       </provider>

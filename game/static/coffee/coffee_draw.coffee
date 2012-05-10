@@ -56,8 +56,6 @@ $(document).ready ->
 
   battle.init()
 
-
-
   socket.on "registration-complete", (data) ->
     $.post '/lobby/join/', (data) ->
       obj = $.parseJSON data
@@ -196,20 +194,20 @@ $(document).ready ->
     )
     $(this).parent().parent().slideUp(200);
 
-    $("#start_battle_button").click ->
+  $("#start_battle_button").click ->
 
-      checked = battle.checkReady(battleId)
-      if checked
-        $("#start_battle_button").remove()
-        war = new War({
-          'user': id,
-          'battleId': battleId
-          'userSocket': socket,
-          'map': checked,
-          'myTurn': myTurn
-        })
-        war.map.canvas.onmousedown = (e) ->
-          war.checkMouseDown e
+    checked = battle.checkReady(battleId)
+    if checked
+      $("#start_battle_button").remove()
+      war = new War({
+        'user': id,
+        'battleId': battleId
+        'userSocket': socket,
+        'map': checked,
+        'myTurn': myTurn
+      })
+      war.map.canvas.onmousedown = (e) ->
+        war.checkMouseDown e
 
   $("li:[data-id]").live "click", (e) ->
     id = $(this).data("id")
