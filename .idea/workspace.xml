@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="636fe8ee-b4d1-4356-9f02-5be2a85c2b76" name="Default" comment="accept invitation bug">
+    <list default="true" id="636fe8ee-b4d1-4356-9f02-5be2a85c2b76" name="Default" comment="class button">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" afterPath="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/static/js/coffee_draw.js" afterPath="$PROJECT_DIR$/game/static/js/coffee_draw.js" />
@@ -29,7 +29,7 @@
       <file leaf-file-name="coffee_draw.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="192" column="36" selection-start="5992" selection-end="5992" vertical-scroll-proportion="0.39781022">
+            <state line="189" column="65" selection-start="5817" selection-end="5817" vertical-scroll-proportion="0.34306568">
               <folding />
             </state>
           </provider>
@@ -855,7 +855,7 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="accept invitation bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="class button" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -882,6 +882,7 @@
     <MESSAGE value="ol" />
     <MESSAGE value="images" />
     <MESSAGE value="accept invitation bug" />
+    <MESSAGE value="class button" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -998,7 +999,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="192" column="36" selection-start="5992" selection-end="5992" vertical-scroll-proportion="0.39781022">
+        <state line="189" column="65" selection-start="5817" selection-end="5817" vertical-scroll-proportion="0.34306568">
           <folding />
         </state>
       </provider>

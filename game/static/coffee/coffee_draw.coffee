@@ -186,7 +186,7 @@ $(document).ready ->
 
   socket.on "receive-invitation", (data) ->
     $('#notification').attr('class', 'succes')
-    html = "<div id='invitation-notification' data-id='" + data.id + "' >" + data.username + " wants to battle you! Do you accept the battle? <a id='accept-invitation' class='button'>Yes</a> or <a class='button'>No</a><button id='accept-invitation'>Accept</button><button id='decline-invitation'>Decline</button></div>"
+    html = "<div id='invitation-notification' data-id='" + data.id + "' >" + data.username + " wants to battle you! Do you accept the battle? <a id='accept-invitation' class='button'>Yes</a> or <a class='button'>No</a></div>"
     $('#notification').html(html).dequeue().stop().slideDown(200)
 
   $("#accept-invitation").live "click", ->
