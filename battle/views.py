@@ -130,6 +130,8 @@ def disconnect(request):
         battle.finished = True
         battle.save()
 
+        return HttpResponse('_|_')
+
 #    return HttpResponse('Not here!')
 
 @csrf_exempt

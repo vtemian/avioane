@@ -34,17 +34,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/account/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="62" selection-start="813" selection-end="813" vertical-scroll-proportion="-14.4">
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="coffee_draw.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
           <provider selected="true" editor-type-id="text-editor">
@@ -57,10 +46,19 @@
       <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/battle/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="0" selection-start="4840" selection-end="4840" vertical-scroll-proportion="0.43287328">
+            <state line="132" column="32" selection-start="4834" selection-end="4834" vertical-scroll-proportion="0.4642409">
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="54" selection-start="744" selection-end="744" vertical-scroll-proportion="-9.6">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -439,13 +437,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/nodejs_server/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="18" selection-start="985" selection-end="985" vertical-scroll-proportion="-17.4">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game/static/js/war.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="64" column="24" selection-start="1941" selection-end="1941" vertical-scroll-proportion="0.0">
@@ -548,9 +539,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="54" selection-start="744" selection-end="744" vertical-scroll-proportion="-9.6">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/battle/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="0" selection-start="4840" selection-end="4840" vertical-scroll-proportion="0.43287328">
+        <state line="132" column="32" selection-start="4834" selection-end="4834" vertical-scroll-proportion="0.4642409">
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
