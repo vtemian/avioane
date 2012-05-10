@@ -49,13 +49,6 @@ $(document).ready ->
       username: username
       id: id
 
-  battle = new Battle({
-  'squareHeight': 60,
-  'gameHolder': $('#map'),
-  })
-
-  battle.init()
-
   socket.on "registration-complete", (data) ->
     $.post '/lobby/join/', (data) ->
       obj = $.parseJSON data
@@ -70,6 +63,12 @@ $(document).ready ->
 
 
   socket.on "start-battle", (data) ->
+    battle = new Battle({
+    'squareHeight': 60,
+    'gameHolder': $('#map'),
+    })
+
+    battle.init()
 
     battleId = data.battleId
     $.get( '/battle/get-details/', {'battleId': battleId}, (data) ->
@@ -105,7 +104,7 @@ $(document).ready ->
         , 3000);
     )
 
-    if data.firstUser == username
+    if data.firstUser == id
       enemy = data.secondUser
     else
       enemy = data.firstUser
@@ -200,7 +199,7 @@ $(document).ready ->
     if checked
       $("#start_battle_button").remove()
       war = new War({
-        'user': id,
+        'user': enemy,
         'battleId': battleId
         'userSocket': socket,
         'map': checked,

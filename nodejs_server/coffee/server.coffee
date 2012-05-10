@@ -44,8 +44,8 @@ class Battle
 
   start: ->
     @emit "start-battle",
-      firstUser: @firstUser.username
-      secondUser: @secondUser.username
+      firstUser: @firstUser.id
+      secondUser: @secondUser.id
       battleId: @battleId
 
   emit: (event, message) ->

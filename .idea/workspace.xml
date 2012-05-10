@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="636fe8ee-b4d1-4356-9f02-5be2a85c2b76" name="Default" comment="server disconect">
+    <list default="true" id="636fe8ee-b4d1-4356-9f02-5be2a85c2b76" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" afterPath="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/static/js/coffee_draw.js" afterPath="$PROJECT_DIR$/game/static/js/coffee_draw.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" afterPath="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodejs_server/server.js" afterPath="$PROJECT_DIR$/nodejs_server/server.js" />
     </list>
     <ignored path="avioane.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,17 +27,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lobby/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="144" selection-end="144" vertical-scroll-proportion="-3.0">
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/battle/models.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -71,7 +61,7 @@
       <file leaf-file-name="server.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nodejs_server/coffee/server.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="165" column="31" selection-start="3858" selection-end="3858" vertical-scroll-proportion="0.0">
+            <state line="47" column="32" selection-start="1004" selection-end="1004" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -80,7 +70,7 @@
       <file leaf-file-name="server.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nodejs_server/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="248" column="23" selection-start="6541" selection-end="6541" vertical-scroll-proportion="0.0">
+            <state line="248" column="23" selection-start="6529" selection-end="6529" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -89,7 +79,25 @@
       <file leaf-file-name="coffee_draw.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="197" column="0" selection-start="6042" selection-end="6042" vertical-scroll-proportion="0.54379565">
+            <state line="188" column="42" selection-start="5876" selection-end="5876" vertical-scroll-proportion="0.39781022">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="war.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game/static/js/war.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="64" column="24" selection-start="1941" selection-end="1941" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="war.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game/static/coffee/war.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="50" column="2" selection-start="1119" selection-end="1119" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -109,7 +117,7 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nodejs_server/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="4" selection-start="890" selection-end="890" vertical-scroll-proportion="-16.2">
+            <state line="30" column="18" selection-start="985" selection-end="985" vertical-scroll-proportion="-17.4">
               <folding />
             </state>
           </provider>
@@ -390,7 +398,7 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="server disconect" />
+    <option name="LAST_COMMIT_MESSAGE" value="start battle button" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -410,6 +418,7 @@
     <MESSAGE value="making work" />
     <MESSAGE value="lobby game" />
     <MESSAGE value="server disconect" />
+    <MESSAGE value="start battle button" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -426,7 +435,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nodejs_server/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="248" column="23" selection-start="6541" selection-end="6541" vertical-scroll-proportion="0.0">
+        <state line="248" column="23" selection-start="6529" selection-end="6529" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -447,6 +456,15 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lobby/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="519" selection-end="519" vertical-scroll-proportion="-10.2">
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/battle/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="79" column="29" selection-start="3137" selection-end="3137" vertical-scroll-proportion="-18.6">
@@ -458,30 +476,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nodejs_server/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="4" selection-start="890" selection-end="890" vertical-scroll-proportion="-16.2">
+        <state line="30" column="18" selection-start="985" selection-end="985" vertical-scroll-proportion="-17.4">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lobby/views.py">
+    <entry file="file://$PROJECT_DIR$/game/static/js/war.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="519" selection-end="519" vertical-scroll-proportion="-10.2">
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
+        <state line="64" column="24" selection-start="1941" selection-end="1941" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/static/coffee/war.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="2" selection-start="1119" selection-end="1119" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nodejs_server/coffee/server.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="165" column="31" selection-start="3858" selection-end="3858" vertical-scroll-proportion="0.0">
+        <state line="47" column="32" selection-start="1004" selection-end="1004" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="197" column="0" selection-start="6042" selection-end="6042" vertical-scroll-proportion="0.54379565">
+        <state line="188" column="42" selection-start="5876" selection-end="5876" vertical-scroll-proportion="0.39781022">
           <folding />
         </state>
       </provider>

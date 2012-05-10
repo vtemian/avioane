@@ -86,8 +86,8 @@
 
     Battle.prototype.start = function() {
       return this.emit("start-battle", {
-        firstUser: this.firstUser.username,
-        secondUser: this.secondUser.username,
+        firstUser: this.firstUser.id,
+        secondUser: this.secondUser.id,
         battleId: this.battleId
       });
     };
