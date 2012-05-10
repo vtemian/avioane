@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="636fe8ee-b4d1-4356-9f02-5be2a85c2b76" name="Default" comment="images">
+    <list default="true" id="636fe8ee-b4d1-4356-9f02-5be2a85c2b76" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" afterPath="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/static/js/coffee_draw.js" afterPath="$PROJECT_DIR$/game/static/js/coffee_draw.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/battle/views.py" afterPath="$PROJECT_DIR$/battle/views.py" />
     </list>
     <ignored path="avioane.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,10 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="coffee_draw.coffee" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="coffee_draw.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="198" column="0" selection-start="6017" selection-end="6017" vertical-scroll-proportion="0.50729924">
+            <state line="198" column="0" selection-start="6017" selection-end="6017" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -89,12 +88,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/battle/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="76" selection-start="2842" selection-end="2842" vertical-scroll-proportion="-10.0">
+            <state line="83" column="36" selection-start="3311" selection-end="3311" vertical-scroll-proportion="0.4830615">
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
+                <marker date="1336681854000" expanded="true" signature="3993:4036" placeholder="..." />
+                <marker date="1336681854000" expanded="true" signature="4341:4348" placeholder="..." />
+                <marker date="1336681854000" expanded="true" signature="4928:4935" placeholder="..." />
+                <marker date="1336681854000" expanded="true" signature="5580:5587" placeholder="..." />
+                <marker date="1336681854000" expanded="true" signature="5873:5907" placeholder="..." />
+                <marker date="1336681854000" expanded="true" signature="6045:6053" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -147,9 +152,9 @@
         <option value="$PROJECT_DIR$/account/templates/login.html" />
         <option value="$PROJECT_DIR$/common/static/css/style.css" />
         <option value="$PROJECT_DIR$/nodejs_server/coffee/server.coffee" />
-        <option value="$PROJECT_DIR$/battle/views.py" />
         <option value="$PROJECT_DIR$/common/static/css/modal.css" />
         <option value="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" />
+        <option value="$PROJECT_DIR$/battle/views.py" />
       </list>
     </option>
   </component>
@@ -972,15 +977,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/battle/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="76" selection-start="2842" selection-end="2842" vertical-scroll-proportion="-10.0">
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="341" column="8" selection-start="12114" selection-end="12114" vertical-scroll-proportion="-5.678571">
@@ -997,8 +993,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="198" column="0" selection-start="6017" selection-end="6017" vertical-scroll-proportion="0.50729924">
+        <state line="198" column="0" selection-start="6017" selection-end="6017" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/battle/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="36" selection-start="3311" selection-end="3311" vertical-scroll-proportion="0.4830615">
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+            <marker date="1336681854000" expanded="true" signature="3993:4036" placeholder="..." />
+            <marker date="1336681854000" expanded="true" signature="4341:4348" placeholder="..." />
+            <marker date="1336681854000" expanded="true" signature="4928:4935" placeholder="..." />
+            <marker date="1336681854000" expanded="true" signature="5580:5587" placeholder="..." />
+            <marker date="1336681854000" expanded="true" signature="5873:5907" placeholder="..." />
+            <marker date="1336681854000" expanded="true" signature="6045:6053" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
