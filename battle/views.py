@@ -115,13 +115,13 @@ def check_finished(battle, owner, type):
 
 @csrf_exempt
 def disconnect(request):
-#    if request.method == 'GET':
+    if request.method == 'POST':
         #Get POST values
-        enemyId = request.GET.get('enemy')
-        battleId = request.GET.get('battleID')
+        enemyId = request.POST.get('enemy')
+        battleId = request.POST.get('battleID')
 
         userProfile = UserProfile.objects.get(user=request.user)
-        enemyUserProfile = UserProfile.objects.get(user=User.objects.get(pk=request.GET.get('enemy')))
+        enemyUserProfile = UserProfile.objects.get(user=User.objects.get(pk=request.POST.get('enemy')))
         battle = Battle.objects.get(pk=battleId)
 
         increase_level(userProfile)
@@ -130,9 +130,7 @@ def disconnect(request):
         battle.finished = True
         battle.save()
 
-        return HttpResponse('_|_')
-
-#    return HttpResponse('Not here!')
+    return HttpResponse('Not here!')
 
 @csrf_exempt
 def result(request):
