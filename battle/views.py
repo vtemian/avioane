@@ -134,12 +134,12 @@ def disconnect(request):
 
 @csrf_exempt
 def result(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         userProfile = UserProfile.objects.get(user=request.user)
-        state = request.POST.get('state')
+        state = request.GET.get('state')
         
-        enemy = UserProfile.objects.get(user=User.objects.get(pk=request.POST.get('enemy')))
-        battle = Battle.objects.get(pk=request.POST.get('battleId'))
+        enemy = UserProfile.objects.get(user=User.objects.get(pk=request.GET.get('enemy')))
+        battle = Battle.objects.get(pk=request.GET.get('battleId'))
 
         #finished the battle
         battle.finished = True
