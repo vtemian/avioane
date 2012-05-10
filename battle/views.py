@@ -121,7 +121,7 @@ def disconnect(request):
         battleId = request.POST.get('battleID')
 
         userProfile = UserProfile.objects.get(user=request.user)
-        enemyUserProfile = UserProfile.objects.get(user=User.objects.get(pk=enemyId))
+        enemyUserProfile = UserProfile.objects.get(user=User.objects.get(pk=request.POST.get('enemy')))
         battle = Battle.objects.get(pk=battleId)
 
         increase_level(userProfile)
