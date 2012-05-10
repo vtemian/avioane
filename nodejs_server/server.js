@@ -100,7 +100,7 @@
 
     Battle.prototype.attacking_moves = function(user, coordinates, event) {
       user = online.getById(user);
-      return this.user.socket.emit(event, {
+      return user.socket.emit(event, {
         coordinates: coordinates
       });
     };

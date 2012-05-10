@@ -55,7 +55,7 @@ class Battle
 
   attacking_moves: (user, coordinates, event) ->
     user = online.getById user
-    @user.socket.emit event,
+    user.socket.emit event,
       coordinates: coordinates
 
   ready: (user) ->
