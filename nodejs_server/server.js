@@ -37,6 +37,7 @@
       _ref = this.clients;
       for (idClient in _ref) {
         client = _ref[idClient];
+        console.log(client.id, id);
         if (client.id === id) {
           return client;
         }

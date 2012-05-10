@@ -23,6 +23,7 @@ class Clients
 
   getById: (id) ->
     for idClient, client of @clients
+      console.log client.id, id
       if client.id == id
         return client
 
