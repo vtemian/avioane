@@ -191,7 +191,7 @@ $(document).ready ->
 
   $("#accept-invitation").live "click", ->
     id = $(this).parent().data('id')
-    $.get('battle/accept-invitation/', {userid:id}->
+    $.get('battle/accept-invitation/', { userid:id }, ->
 
     )
     $(this).parent().parent().slideUp(200);
