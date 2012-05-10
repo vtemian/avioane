@@ -4,6 +4,7 @@
     <list default="true" id="636fe8ee-b4d1-4356-9f02-5be2a85c2b76" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/static/css/style.css" afterPath="$PROJECT_DIR$/common/static/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/templates/game.html" afterPath="$PROJECT_DIR$/game/templates/game.html" />
     </list>
     <ignored path="avioane.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,7 +38,7 @@
       <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/common/static/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="239" column="21" selection-start="8146" selection-end="8146" vertical-scroll-proportion="0.5214106">
+            <state line="856" column="21" selection-start="23835" selection-end="23835" vertical-scroll-proportion="0.57808566">
               <folding />
             </state>
           </provider>
@@ -46,7 +47,16 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="10" selection-start="2766" selection-end="2766" vertical-scroll-proportion="-16.375">
+            <state line="46" column="8" selection-start="2478" selection-end="2478" vertical-scroll-proportion="-8.25">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="game.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game/templates/game.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="123" column="35" selection-start="5213" selection-end="5213" vertical-scroll-proportion="-37.0">
               <folding />
             </state>
           </provider>
@@ -99,15 +109,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plane.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game/static/coffee/plane.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="184" column="0" selection-start="5253" selection-end="5253" vertical-scroll-proportion="-9.071428">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="war.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game/static/coffee/war.coffee">
           <provider selected="true" editor-type-id="text-editor">
@@ -145,6 +146,7 @@
         <option value="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" />
         <option value="$PROJECT_DIR$/common/templates/index.html" />
         <option value="$PROJECT_DIR$/common/static/css/style.css" />
+        <option value="$PROJECT_DIR$/game/templates/game.html" />
       </list>
     </option>
   </component>
@@ -236,6 +238,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="avioane" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="avioane" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -517,15 +537,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/plane/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="26" selection-start="286" selection-end="286" vertical-scroll-proportion="-5.4">
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nodejs_server/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="107" column="6" selection-start="2541" selection-end="2541" vertical-scroll-proportion="0.0">
@@ -614,13 +625,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="10" selection-start="2766" selection-end="2766" vertical-scroll-proportion="-16.375">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="0" selection-start="816" selection-end="816" vertical-scroll-proportion="0.0">
@@ -628,9 +632,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/common/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="8" selection-start="2478" selection-end="2478" vertical-scroll-proportion="-8.25">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/templates/game.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="123" column="35" selection-start="5213" selection-end="5213" vertical-scroll-proportion="-37.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/common/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="239" column="21" selection-start="8146" selection-end="8146" vertical-scroll-proportion="0.5214106">
+        <state line="856" column="21" selection-start="23835" selection-end="23835" vertical-scroll-proportion="0.57808566">
           <folding />
         </state>
       </provider>

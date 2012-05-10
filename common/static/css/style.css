@@ -839,32 +839,32 @@ header {	width:920px;
 	/* =============================================================================
    Battle
    ========================================================================== */
-	
-	#start_battle_button{
-		width:285px;
-		height:30px;
-		float:right;
-		border:1px solid red;
-		margin:40px 0px 0px 0px;
-		padding:10px 0px 0px 0px;
-		text-align:center;
-		border-radius:4px;
-		-moz-border-radius:4px;
-		border:1px solid #ccc;
-		background:#f0f0f0;
-		font-size:16px;
-		font-weight:bold;
-		text-shadow:-1px 1px #fff;
-	}
-	
-	#start_battle_button:hover{
-		background:#f8f8f8;
-		}
-		
-	#start_battle_a{text-decoration:none;color:#9c9797;}
-	#start_battle_a:hover{text-decoration:none; #color:#b8b4b4;}		
-	
-	#battle{
+
+    #start_battle_button{
+        width:285px;
+        height:30px;
+        border:1px solid red;
+        margin:0px auto;
+        padding:10px 0px 0px 0px;
+        text-align:center;
+        border-radius:4px;
+        -moz-border-radius:4px;
+        border:1px solid #ccc;
+        background:#f0f0f0;
+        font-size:16px;
+        font-weight:bold;
+        text-shadow:-1px 1px #fff;
+        display: none;
+   }
+
+    #start_battle_button:hover{
+        background:#f8f8f8;
+    }
+
+    #start_battle_a{text-decoration:none;color:#9c9797;}
+    #start_battle_a:hover{text-decoration:none; #color:#b8b4b4;}
+
+#battle{
 	   width:940px;
 	   height:640px;
 	   margin:0px auto;
