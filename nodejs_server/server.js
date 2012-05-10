@@ -99,15 +99,9 @@
 
     Battle.prototype.attacking_moves = function(user, coordinates, event) {
       user = lobby.getById(user);
-      if (user === this.firstUser) {
-        return this.secondUser.socket.emit(event, {
-          coordinates: coordinates
-        });
-      } else {
-        return this.firstUser.socket.emit(event, {
-          coordinates: coordinates
-        });
-      }
+      return this.user.socket.emit(event, {
+        coordinates: coordinates
+      });
     };
 
     Battle.prototype.ready = function(user) {

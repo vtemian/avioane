@@ -54,12 +54,8 @@ class Battle
 
   attacking_moves: (user, coordinates, event) ->
     user = lobby.getById user
-    if user == @firstUser
-      @secondUser.socket.emit event,
-        coordinates: coordinates
-    else
-      @firstUser.socket.emit event,
-        coordinates: coordinates
+    @user.socket.emit event,
+      coordinates: coordinates
 
   ready: (user) ->
     user = lobby.getById user
