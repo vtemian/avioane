@@ -115,7 +115,7 @@ def check_finished(battle, owner, type):
 
 @csrf_exempt
 def disconnect(request):
-    if request.method == 'GET':
+#    if request.method == 'GET':
         #Get POST values
         enemyId = request.GET.get('enemy')
         battleId = request.GET.get('battleID')
@@ -130,7 +130,7 @@ def disconnect(request):
         battle.finished = True
         battle.save()
 
-    return HttpResponse('Not here!')
+#    return HttpResponse('Not here!')
 
 @csrf_exempt
 def result(request):

@@ -57,7 +57,7 @@
       <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/battle/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="129" column="30" selection-start="4777" selection-end="4777" vertical-scroll-proportion="0.35759097">
+            <state line="133" column="0" selection-start="4840" selection-end="4840" vertical-scroll-proportion="0.43287328">
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -383,8 +383,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
-    <option name="CHECK_NEW_TODO" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="myTodoPanelSettings">
       <value>
         <are-packages-shown value="false" />
@@ -550,7 +550,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/battle/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="30" selection-start="4777" selection-end="4777" vertical-scroll-proportion="0.35759097">
+        <state line="133" column="0" selection-start="4840" selection-end="4840" vertical-scroll-proportion="0.43287328">
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
