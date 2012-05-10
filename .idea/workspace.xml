@@ -2,37 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="636fe8ee-b4d1-4356-9f02-5be2a85c2b76" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common/static/img/user/lobby/avioane/airborne.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/online.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/pilot.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/register.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/register.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/user/lobby/avioane/airbone.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/user/menu/avatar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/user/menu/bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/user/menu/icon_drop.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/user/menu/icon_logout.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/user/notification.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/user/notification2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/user/notification3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/user/stats/bar_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/user/stats/battle.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/user/stats/clan.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/user/stats/clan_img.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/user/stats/divizion.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/user/stats/level.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/user/stats/level_points.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/common/static/img/user/stats/user_clan_bar_end.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/static/img/avion.png" afterPath="$PROJECT_DIR$/common/static/img/avion.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/static/img/bg.png" afterPath="$PROJECT_DIR$/common/static/img/bg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/static/img/count_bg.png" afterPath="$PROJECT_DIR$/common/static/img/count_bg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/static/img/insula.png" afterPath="$PROJECT_DIR$/common/static/img/insula.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/static/img/sub_bg.png" afterPath="$PROJECT_DIR$/common/static/img/sub_bg.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/static/css/style.css" afterPath="$PROJECT_DIR$/common/static/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/templates/index.html" afterPath="$PROJECT_DIR$/common/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" afterPath="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" />
     </list>
     <ignored path="avioane.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,25 +28,25 @@
       <file leaf-file-name="coffee_draw.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="142" column="13" selection-start="3985" selection-end="3985" vertical-scroll-proportion="0.0">
+            <state line="25" column="0" selection-start="816" selection-end="816" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/common/static/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="239" column="21" selection-start="8146" selection-end="8146" vertical-scroll-proportion="0.5214106">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Dropbox/avioane (1)/avioane/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="4" selection-start="3397" selection-end="3397" vertical-scroll-proportion="-16.875">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/common/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="10" selection-start="2766" selection-end="2766" vertical-scroll-proportion="0.4924812">
+            <state line="57" column="10" selection-start="2766" selection-end="2766" vertical-scroll-proportion="-16.375">
               <folding />
             </state>
           </provider>
@@ -173,6 +144,7 @@
         <option value="$PROJECT_DIR$/battle/views.py" />
         <option value="$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee" />
         <option value="$PROJECT_DIR$/common/templates/index.html" />
+        <option value="$PROJECT_DIR$/common/static/css/style.css" />
       </list>
     </option>
   </component>
@@ -367,6 +339,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="avioane" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="avioane" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="battle" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -495,7 +489,7 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="clear console.log" />
+    <option name="LAST_COMMIT_MESSAGE" value="notification change" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -517,18 +511,12 @@
     <MESSAGE value="server disconect" />
     <MESSAGE value="start battle button" />
     <MESSAGE value="clear console.log" />
+    <MESSAGE value="notification change" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/account/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="1115" selection-end="1115" vertical-scroll-proportion="-18.125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plane/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="26" selection-start="286" selection-end="286" vertical-scroll-proportion="-5.4">
@@ -619,13 +607,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="13" selection-start="3985" selection-end="3985" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Dropbox/avioane (1)/avioane/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="87" column="4" selection-start="3397" selection-end="3397" vertical-scroll-proportion="-16.875">
@@ -635,7 +616,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/common/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="10" selection-start="2766" selection-end="2766" vertical-scroll-proportion="0.4924812">
+        <state line="57" column="10" selection-start="2766" selection-end="2766" vertical-scroll-proportion="-16.375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/static/coffee/coffee_draw.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="816" selection-end="816" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="239" column="21" selection-start="8146" selection-end="8146" vertical-scroll-proportion="0.5214106">
           <folding />
         </state>
       </provider>
