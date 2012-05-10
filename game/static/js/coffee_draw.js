@@ -219,10 +219,10 @@
       });
     });
     socket.on("disconnectGame", function(data) {
-      console.log(enemy);
       $.post('/battle/disconnect/', {
         'enemy': enemy,
-        'battleID': battleId
+        'battleID': battleId,
+        "state": "loss"
       }, function() {
         $('#notification').attr('class', 'succes');
         return $('#notification').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200, function() {
