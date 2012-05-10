@@ -1,7 +1,7 @@
 socket = io.connect("http://outclan.com:5555")
 
 battle = ""
-battleId = 0
+
 war = ""
 enemy = ""
 myTurn = false
@@ -27,6 +27,7 @@ class Users
 dude = new Users()
 
 $(document).ready ->
+  battleId = 0
 
   socket.emit "handshake",
     username: username,
@@ -110,7 +111,6 @@ $(document).ready ->
     else
       enemy = data.firstUser
 
-    console.log enemy, id
 
   socket.on "ready", (data) ->
     #check if i'm ready or my enemy
@@ -122,7 +122,6 @@ $(document).ready ->
     x = data.coordinates.x
     y = data.coordinates.y
     $.post('/battle/attack/', {'x': x, 'y': y, 'battleID': battleId}, (data) ->
-      console.log data
       if data == 'miss'
         war.miss_attack x, y, 0, 60*11-25
       else
@@ -138,6 +137,8 @@ $(document).ready ->
 
               $('#notification').attr('class', 'alert')
               $('#notification').html("You lost").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
+              myTurn = false
+
             )
           else
             war.head_attack x, y, 0, 60*11-25
@@ -146,8 +147,9 @@ $(document).ready ->
   socket.on "win", ->
     $('#notification').attr('class', 'succes')
     $('#notification').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
-  socket.on "miss", (data) ->
+    myTurn = false
 
+  socket.on "miss", (data) ->
     x = data.coordinates.x
     y = data.coordinates.y
     war.draw_attack
@@ -155,7 +157,6 @@ $(document).ready ->
       y: y * war.map.squareHeight + war.map.position.top
       height: war.map.squareHeight
       fillStyle: "#FFF"
-    console.log "miss"
 
   socket.on "hit", (data) ->
     x = data.coordinates.x
@@ -165,7 +166,6 @@ $(document).ready ->
       y: y * war.map.squareHeight + war.map.position.top
       height: war.map.squareHeight
       fillStyle: "blue"
-    console.log "hit"
 
   socket.on "head", (data) ->
     x = data.coordinates.x
@@ -175,18 +175,15 @@ $(document).ready ->
       y: y * war.map.squareHeight + war.map.position.top
       height: war.map.squareHeight
       fillStyle: "yellow"
-    console.log "head"
 
   socket.on "disconnectGame", (data) ->
-    console.log enemy, battleId
     $.post('/battle/disconnect/', {'enemy': enemy, 'battleID': battleId}, ->
       $('#notification').attr('class', 'succes')
       $('#notification').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
     )
+    myTurn = false
 
   socket.on "receive-invitation", (data) ->
-    console.log data
-    console.log "aasdasdadasdasdad"
     $('#notification').attr('class', 'succes')
     html = "<div id='invitation-notification' data-id='" + data.id + "'>" + data.username + " invited you to play! <button id='accept-invitation'>Accept</button><button id='decline-invitation'>Decline</button></div>"
     $('#notification').html(html).dequeue().stop().slideDown(200)
@@ -197,6 +194,7 @@ $(document).ready ->
 
     )
     $(this).parent().parent().slideUp(200);
+    myTurn = true
 
   $("#start_battle_button").click ->
 
@@ -216,5 +214,5 @@ $(document).ready ->
   $("li:[data-id]").live "click", (e) ->
     id = $(this).data("id")
     $.post("/battle/send-invitation/", {toUserId: id}, (data) ->
-      console.log data
     )
+    myTurn = false

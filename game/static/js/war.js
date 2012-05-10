@@ -72,14 +72,13 @@
         x: x,
         y: y
       };
-      this.sendData("miss-attack", {
+      return this.sendData("miss-attack", {
         user: this.user,
         battleId: this.battleId,
         x: x,
         y: y,
         coordinates: coordinates
       });
-      return console.log("mised");
     };
 
     War.prototype.hit_attack = function(x, y, left, top) {
@@ -115,12 +114,11 @@
         x: x,
         y: y
       };
-      this.sendData("head-attack", {
+      return this.sendData("head-attack", {
         user: this.user,
         battleId: this.battleId,
         coordinates: coordinates
       });
-      return console.log("head");
     };
 
     return War;

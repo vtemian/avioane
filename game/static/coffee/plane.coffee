@@ -107,9 +107,7 @@ class Plane
     setPosition: (newPosition) ->
         #clear the old plane
         @clearRect()
-        #set new position
         @position = newPosition
-        console.log "asd"
         #redraw it
         @draw()
 
@@ -185,7 +183,6 @@ class Plane
                 x: x + component.x
                 y: y + component.y
 
-        console.log @matrixPosition
 
         @isNotReady = check
 

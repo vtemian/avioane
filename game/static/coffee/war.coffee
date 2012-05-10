@@ -75,7 +75,6 @@ class War
       y: y
       coordinates: coordinates
 
-    console.log "mised"
 
   hit_attack: (x, y, left, top) ->
 
@@ -111,7 +110,5 @@ class War
       user: @user
       battleId: @battleId
       coordinates: coordinates
-
-    console.log "head"
 
 window.War = War

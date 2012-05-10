@@ -117,11 +117,11 @@ def check_finished(battle, owner, type):
 def disconnect(request):
     if request.method == 'POST':
         #Get POST values
-        enemyName = request.POST.get('enemy')
+        enemyId = request.POST.get('enemy')
         battleId = request.POST.get('battleID')
 
         userProfile = UserProfile.objects.get(user=request.user)
-        enemyUserProfile = UserProfile.objects.get(user__username=enemyName)
+        enemyUserProfile = UserProfile.objects.get(pk=enemyId)
         battle = Battle.objects.get(pk=battleId)
 
         increase_level(userProfile)
@@ -138,7 +138,7 @@ def result(request):
         userProfile = UserProfile.objects.get(user=request.user)
         state = request.POST.get('state')
         
-        enemy = UserProfile.objects.get(user=User.objects.get(username=request.POST.get('enemy')))
+        enemy = UserProfile.objects.get(user=User.objects.get(pk=request.POST.get('enemy')))
         battle = Battle.objects.get(pk=request.POST.get('battleId'))
 
         #finished the battle

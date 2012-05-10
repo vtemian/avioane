@@ -107,9 +107,7 @@
               'x': coordinate.x,
               'y': coordinate.y,
               'head': myIndex
-            }, function(data) {
-              return console.log(type);
-            });
+            }, function(data) {});
             context.beginPath();
             context.rect(coordinate.x * 27 + this.squareHeight * 11 - 25, coordinate.y * 27, 27, 27);
             context.fill();
