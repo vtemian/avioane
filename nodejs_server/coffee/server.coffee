@@ -189,7 +189,8 @@ io.sockets.on 'connection', (socket) ->
           battle.secondUser.socket.emit "disconnectGame"
         else
             if battle.secondUser.username == client.username
-              battle.firstUser.socket.emit "disconnectGame"
+              battle.firstUser.socket.emit "disconnectGame",
+                battleId: battle.id
       console.log client
 
     lobby.remove socket

@@ -262,7 +262,9 @@
             battle.secondUser.socket.emit("disconnectGame");
           } else {
             if (battle.secondUser.username === client.username) {
-              battle.firstUser.socket.emit("disconnectGame");
+              battle.firstUser.socket.emit("disconnectGame", {
+                battleId: battle.id
+              });
             }
           }
         }

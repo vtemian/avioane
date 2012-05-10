@@ -1,5 +1,6 @@
 socket = io.connect("http://outclan.com:5555")
 
+battle = ""
 battleId = 0
 war = ""
 enemy = ""
@@ -109,6 +110,8 @@ $(document).ready ->
     else
       enemy = data.firstUser
 
+    console.log enemy, id
+
   socket.on "ready", (data) ->
     #check if i'm ready or my enemy
     if username != data
@@ -175,6 +178,7 @@ $(document).ready ->
     console.log "head"
 
   socket.on "disconnectGame", (data) ->
+    console.log enemy, battleId
     $.post('/battle/disconnect/', {'enemy': enemy, 'battleID': battleId}, ->
       $('#notification').attr('class', 'succes')
       $('#notification').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
