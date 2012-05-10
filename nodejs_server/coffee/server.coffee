@@ -53,18 +53,18 @@ class Battle
     @secondUser.socket.emit event, message
 
   attacking_moves: (user, coordinates, event) ->
-    user = lobby.getById user
+    user = online.getById user
     @user.socket.emit event,
       coordinates: coordinates
 
   ready: (user) ->
-    user = lobby.getById user
+    user = online.getById user
     user.ready = true
     @emit "ready",
       user.username
 
   finish: (user) ->
-    user = lobby.getById user
+    user = online.getById user
     if user == @firstUser
       @secondUser.socket.emit "win"
     else

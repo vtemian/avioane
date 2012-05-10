@@ -119,6 +119,7 @@ $(document).ready ->
     x = data.coordinates.x
     y = data.coordinates.y
     $.post('/battle/attack/', {'x': x, 'y': y, 'battleID': battleId}, (data) ->
+      console.log data
       if data == 'miss'
         war.miss_attack x, y, 0, 60*11-25
       else

@@ -98,20 +98,20 @@
     };
 
     Battle.prototype.attacking_moves = function(user, coordinates, event) {
-      user = lobby.getById(user);
+      user = online.getById(user);
       return this.user.socket.emit(event, {
         coordinates: coordinates
       });
     };
 
     Battle.prototype.ready = function(user) {
-      user = lobby.getById(user);
+      user = online.getById(user);
       user.ready = true;
       return this.emit("ready", user.username);
     };
 
     Battle.prototype.finish = function(user) {
-      user = lobby.getById(user);
+      user = online.getById(user);
       if (user === this.firstUser) {
         return this.secondUser.socket.emit("win");
       } else {
