@@ -219,6 +219,7 @@
       });
     });
     socket.on("disconnectGame", function(data) {
+      console.log(enemy);
       $.post('/battle/disconnect/', {
         'enemy': enemy,
         'battleID': battleId

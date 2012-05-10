@@ -177,6 +177,7 @@ $(document).ready ->
       fillStyle: "yellow"
 
   socket.on "disconnectGame", (data) ->
+    console.log enemy
     $.post('/battle/disconnect/', {'enemy': enemy, 'battleID': battleId}, ->
       $('#notification').attr('class', 'succes')
       $('#notification').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
