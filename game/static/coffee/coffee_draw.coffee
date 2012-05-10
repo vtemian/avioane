@@ -137,6 +137,7 @@ $(document).ready ->
 
               $('#notification').attr('class', 'alert')
               $('#notification').html("You lost").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
+
               myTurn = false
 
             )
