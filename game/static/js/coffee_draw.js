@@ -196,9 +196,7 @@
         fillStyle: "#FFF"
       });
       $('#notification').attr('class', 'alert');
-      return $('#notification').html("Miss!").dequeue().stop().slideDown(200).delay(1700).slideUp(200, function() {
-        return window.location = '/';
-      });
+      return $('#notification').html("Miss!").dequeue().stop().slideDown(200).delay(1700).slideUp(200);
     });
     socket.on("hit", function(data) {
       var x, y;
@@ -211,9 +209,7 @@
         fillStyle: "blue"
       });
       $('#notification').attr('class', 'succes');
-      return $('#notification').html("Hit!").dequeue().stop().slideDown(200).delay(1700).slideUp(200, function() {
-        return window.location = '/';
-      });
+      return $('#notification').html("Hit!").dequeue().stop().slideDown(200).delay(1700).slideUp(200);
     });
     socket.on("head", function(data) {
       var x, y;
@@ -226,9 +222,7 @@
         fillStyle: "yellow"
       });
       $('#notification').attr('class', 'succes');
-      return $('#notification').html("OMG a head!").dequeue().stop().slideDown(200).delay(1700).slideUp(200, function() {
-        return window.location = '/';
-      });
+      return $('#notification').html("OMG a head!").dequeue().stop().slideDown(200).delay(1700).slideUp(200);
     });
     socket.on("disconnectGame", function(data) {
       $.post('/battle/disconnect/', {

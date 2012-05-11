@@ -24,9 +24,7 @@
       var coordinates, left, maxLeft, maxTop, position, squareHeight, top, x, y;
       if (!this.myTurn) {
         $('#notification').attr('class', 'alert');
-        return $('#notification').html("It's not your turn").dequeue().stop().slideDown(200).delay(1700).slideUp(200, function() {
-          return window.location = '/';
-        });
+        return $('#notification').html("It's not your turn").dequeue().stop().slideDown(200).delay(1700).slideUp(200);
       } else {
         squareHeight = this.map.squareHeight;
         position = this.map.position;

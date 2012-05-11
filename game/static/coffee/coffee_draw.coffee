@@ -159,7 +159,7 @@ $(document).ready ->
       height: war.map.squareHeight
       fillStyle: "#FFF"
     $('#notification').attr('class', 'alert')
-    $('#notification').html("Miss!").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
+    $('#notification').html("Miss!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
 
   socket.on "hit", (data) ->
     x = data.coordinates.x
@@ -170,7 +170,7 @@ $(document).ready ->
       height: war.map.squareHeight
       fillStyle: "blue"
     $('#notification').attr('class', 'succes')
-    $('#notification').html("Hit!").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
+    $('#notification').html("Hit!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
 
   socket.on "head", (data) ->
     x = data.coordinates.x
@@ -181,7 +181,7 @@ $(document).ready ->
       height: war.map.squareHeight
       fillStyle: "yellow"
     $('#notification').attr('class', 'succes')
-    $('#notification').html("OMG a head!").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
+    $('#notification').html("OMG a head!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
 
   socket.on "disconnectGame", (data) ->
     $.post('/battle/disconnect/', {'enemy': enemy, 'battleID': battleId, "state":"loss"}, ->
