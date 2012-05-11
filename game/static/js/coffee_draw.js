@@ -189,33 +189,45 @@
       var x, y;
       x = data.coordinates.x;
       y = data.coordinates.y;
-      return war.draw_attack({
+      war.draw_attack({
         x: x * war.map.squareHeight + war.map.position.left,
         y: y * war.map.squareHeight + war.map.position.top,
         height: war.map.squareHeight,
         fillStyle: "#FFF"
+      });
+      $('#notification').attr('class', 'alert');
+      return $('#notification').html("Miss!").dequeue().stop().slideDown(200).delay(1700).slideUp(200, function() {
+        return window.location = '/';
       });
     });
     socket.on("hit", function(data) {
       var x, y;
       x = data.coordinates.x;
       y = data.coordinates.y;
-      return war.draw_attack({
+      war.draw_attack({
         x: x * war.map.squareHeight + war.map.position.left,
         y: y * war.map.squareHeight + war.map.position.top,
         height: war.map.squareHeight,
         fillStyle: "blue"
+      });
+      $('#notification').attr('class', 'succes');
+      return $('#notification').html("Hit!").dequeue().stop().slideDown(200).delay(1700).slideUp(200, function() {
+        return window.location = '/';
       });
     });
     socket.on("head", function(data) {
       var x, y;
       x = data.coordinates.x;
       y = data.coordinates.y;
-      return war.draw_attack({
+      war.draw_attack({
         x: x * war.map.squareHeight + war.map.position.left,
         y: y * war.map.squareHeight + war.map.position.top,
         height: war.map.squareHeight,
         fillStyle: "yellow"
+      });
+      $('#notification').attr('class', 'succes');
+      return $('#notification').html("OMG a head!").dequeue().stop().slideDown(200).delay(1700).slideUp(200, function() {
+        return window.location = '/';
       });
     });
     socket.on("disconnectGame", function(data) {

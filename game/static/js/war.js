@@ -23,7 +23,10 @@
     War.prototype.checkMouseDown = function(e) {
       var coordinates, left, maxLeft, maxTop, position, squareHeight, top, x, y;
       if (!this.myTurn) {
-        return alert("Not your turn");
+        $('#notification').attr('class', 'alert');
+        return $('#notification').html("It's not your turn").dequeue().stop().slideDown(200).delay(1700).slideUp(200, function() {
+          return window.location = '/';
+        });
       } else {
         squareHeight = this.map.squareHeight;
         position = this.map.position;

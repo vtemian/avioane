@@ -19,7 +19,8 @@ class War
 
   checkMouseDown: (e) ->
     if not @myTurn
-      alert "Not your turn"
+      $('#notification').attr('class', 'alert')
+      $('#notification').html("It's not your turn").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
     else
       squareHeight = @map.squareHeight
       position = @map.position
