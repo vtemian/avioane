@@ -54,14 +54,18 @@ $(document).ready ->
   socket.on "registration-complete", (data) ->
     $.post '/lobby/join/', (data) ->
       obj = $.parseJSON data
-      if obj.not != undefined
+      if obj.not == "waiting"
         #waiting for player
         $('#notification').html("Setting up battle...").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
         $('#notification').attr('class', 'info')
         myTurn = true
       else
-        #go to battle
-        battleId = obj.battle
+        if obj.not == "not-ready"
+          $('#notification').html("Sorry, but the players are in battle!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
+          $('#notification').attr('class', 'info')
+        else
+          #go to battle
+          battleId = obj.battle
 
 
   socket.on "start-battle", (data) ->
@@ -221,5 +225,16 @@ $(document).ready ->
   $("li:[data-id]").live "click", (e) ->
     id = $(this).data("id")
     $.post("/battle/send-invitation/", {toUserId: id}, (data) ->
+      console.log data
+      if data == 'not-ready'
+        $('#notification').attr('class', 'alert')
+        $('#notification').html("You can't invite him right now! He is already invited!").dequeue().stop().slideDown(200).delay(2000).slideUp(200)
+      else
+        if data == 'battle'
+          $('#notification').attr('class', 'alert')
+          $('#notification').html("Your buddy is in a battle! Wait for him to finish!").dequeue().stop().slideDown(200).delay(2000).slideUp(200)
+        else
+          $('#notification').attr('class', 'success')
+          $('#notification').html("Ready for battle!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
     )
     myTurn = false

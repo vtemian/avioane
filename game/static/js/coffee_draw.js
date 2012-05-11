@@ -85,12 +85,17 @@
       return $.post('/lobby/join/', function(data) {
         var obj;
         obj = $.parseJSON(data);
-        if (obj.not !== void 0) {
+        if (obj.not === "waiting") {
           $('#notification').html("Setting up battle...").dequeue().stop().slideDown(200).delay(1700).slideUp(200);
           $('#notification').attr('class', 'info');
           return myTurn = true;
         } else {
-          return battleId = obj.battle;
+          if (obj.not === "not-ready") {
+            $('#notification').html("Sorry, but the players are in battle!").dequeue().stop().slideDown(200).delay(1700).slideUp(200);
+            return $('#notification').attr('class', 'info');
+          } else {
+            return battleId = obj.battle;
+          }
         }
       });
     });
@@ -274,7 +279,21 @@
       id = $(this).data("id");
       $.post("/battle/send-invitation/", {
         toUserId: id
-      }, function(data) {});
+      }, function(data) {
+        console.log(data);
+        if (data === 'not-ready') {
+          $('#notification').attr('class', 'alert');
+          return $('#notification').html("You can't invite him right now! He is already invited!").dequeue().stop().slideDown(200).delay(2000).slideUp(200);
+        } else {
+          if (data === 'battle') {
+            $('#notification').attr('class', 'alert');
+            return $('#notification').html("Your buddy is in a battle! Wait for him to finish!").dequeue().stop().slideDown(200).delay(2000).slideUp(200);
+          } else {
+            $('#notification').attr('class', 'success');
+            return $('#notification').html("Ready for battle!").dequeue().stop().slideDown(200).delay(1700).slideUp(200);
+          }
+        }
+      });
       return myTurn = false;
     });
   });

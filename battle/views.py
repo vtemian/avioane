@@ -7,6 +7,8 @@ from battle.models import Battle, BattleInvitation
 from plane.models import Plane, Coordinates, Positioning
 from plane.views import check_hit
 from nodejs_server.views import send_message
+from datetime import datetime as dt
+import datetime
 
 def create(firstUser, secondUser):
     try:
@@ -71,31 +73,70 @@ def send_invitation(request):
                     Battle.objects.get(enemy=toUser, finished=False)
                     return HttpResponse('battle')
                 except Battle.DoesNotExist:
-                    #get or create an invitation
-                    invitation = BattleInvitation.objects.get_or_create(fromUser=fromUser, toUser=toUser)
-                    print invitation
-                    message = '"fromUser": "%s", "toUser": "%s"' % (fromUser.id, toUser.user.id)
-                    print message
-                    #send to nodejs to realtime send the invitation
-                    send_message("send-invitation", message)
-                    return HttpResponse('success')
+                    invitations = BattleInvitation.objects.filter(toUser=toUser, finished=False)
+                    dont_make_invitation = False
+                    for invitation in invitations:
+                        print "a"
+                        print check_invitation_time(invitation)
+                        if check_invitation_time(invitation):
+                            invitation.finished = True
+                            invitation.save()
+                        else:
+                            dont_make_invitation = True
+                    print dont_make_invitation
+                    if not dont_make_invitation:
+                        create_invitation(fromUser, toUser)
+                    else:
+                        return HttpResponse("not-ready")
+
+                    return HttpResponse("succes")
         else:
             return HttpResponse('duble')
     return HttpResponse('Not here!')
+
+def create_invitation(fromUser, toUser):
+    #get or create an invitation
+    invitation = BattleInvitation.objects.create(fromUser=fromUser, toUser=toUser)
+    print invitation.start_time, dt.now()
+    message = '"fromUser": "%s", "toUser": "%s"' % (fromUser.id, toUser.user.id)
+    #send to nodejs to realtime send the invitation
+
+    send_message("send-invitation", message)
+
+
+def check_invitation_time(invitation):
+    last_time = invitation.start_time
+    this_time = dt.now()
+    elapsed = this_time - last_time
+    print "iuresh", elapsed, datetime.timedelta(minutes=1)
+    if elapsed >= datetime.timedelta(minutes=1):
+        return True
+    else:
+        return False
+
 @csrf_exempt
 def accept_invitation(request):
     if request.method == 'GET':
         firstUser = UserProfile.objects.get(user=request.user)
         secondUser = UserProfile.objects.get(user=User.objects.get(pk=request.GET.get('userid')))
+        try:
+            invitation = BattleInvitation.objects.get(toUser=firstUser, fromUser=secondUser.user, finished=False)
 
-        invitation = BattleInvitation.objects.get(toUser=firstUser, fromUser=secondUser.user)
+            if check_invitation_time(invitation):
+                invitation.finished = True
+                invitation.save()
+                return HttpResponse('expired')
+            else:
+                battle = create(firstUser=firstUser, secondUser=secondUser)
+                if battle != 'not-ready':
+                    message = '"firstUser": "%s", "secondUser":"%s", "battleId":"%s"' % (firstUser.user.id, secondUser.user.id, battle.id)
+                    send_message("new-battle", message)
 
-        battle = create(firstUser=firstUser, secondUser=secondUser)
-
-        message = '"firstUser": "%s", "secondUser":"%s", "battleId":"%s"' % (firstUser.user.id, secondUser.user.id, battle.id)
-        send_message("new-battle", message)
-
-        invitation.delete()
+                    invitation.delete()
+                else:
+                    return HttpResponse('not-ready')
+        except Exception:
+            return HttpResponse('bad')
 
     return HttpResponse('Not here!')
 
@@ -122,6 +163,10 @@ def disconnect(request):
 
         userProfile = UserProfile.objects.get(user=request.user)
         enemyUserProfile = UserProfile.objects.get(user=User.objects.get(pk=request.POST.get('enemy')))
+
+        userProfile.ready_for_battle = True
+        enemyUserProfile.ready_for_battle = True
+
         battle = Battle.objects.get(pk=battleId)
 
         increase_level(userProfile)
@@ -140,6 +185,9 @@ def result(request):
 
         enemy = UserProfile.objects.get(user=User.objects.get(pk=request.POST.get('enemy')))
         battle = Battle.objects.get(pk=request.POST.get('battleId'))
+
+        enemy.ready_for_battle = True
+        userProfile.ready_for_battle = True
 
         #finished the battle
         battle.finished = True

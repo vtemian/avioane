@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from account.models import UserProfile
 from django.db import models
+from datetime import datetime
 
 class Move(models.Model):
     x = models.CharField(max_length='30')
@@ -23,3 +24,7 @@ class BattleMoves(models.Model):
 class BattleInvitation(models.Model):
     fromUser = models.ForeignKey(User)
     toUser = models.ForeignKey(UserProfile)
+
+    finished = models.BooleanField(default=False)
+
+    start_time = models.DateTimeField(default=datetime.now())
