@@ -121,6 +121,7 @@ INSTALLED_APPS = (
     'medals',
     'lobby',
     'nodejs_server',
+    'hangar',
 )
 
 LOGIN_REDIRECT_URL = '/'
