@@ -109,8 +109,9 @@ def check_invitation_time(invitation):
     last_time = invitation.start_time
     this_time = dt.now()
     elapsed = this_time - last_time
-    print "iuresh", elapsed, datetime.timedelta(minutes=1)
-    if elapsed >= datetime.timedelta(minutes=1):
+    print dir(elapsed)
+    print "iuresh", elapsed.seconds / 60 , datetime.timedelta(minutes=1)
+    if elapsed.seconds / 60 >= 1    :
         return True
     else:
         return False
