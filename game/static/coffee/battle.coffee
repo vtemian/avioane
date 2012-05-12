@@ -109,6 +109,11 @@ class Battle
           return false
       return true
 
+    redrawPlanes: ->
+      if @frontend.planes != undefined
+        for plane in @frontend.planes
+          plane.draw()
+
     init: ->
         @createMap(0, 0, @canvasWidth, @canvasHeight, @squareHeight)
 
@@ -117,6 +122,7 @@ class Battle
         @createPlanes(3)
         @createCollissions(@frontend)
 
-    
+#        callback = @redrawPlanes.bind(this)
+#        setInterval( callback, 30 )
 
 window.Battle = Battle

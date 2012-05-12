@@ -32,4 +32,7 @@ urlpatterns = patterns('',
     url(r'^clan/check-like-state$',  'alliance.views.check_like_state'),
     url(r'^alliance/request/$',  'alliance.views.request'),
     url(r'^alliance/process_request/$',  'alliance.views.process_request'),
+    url(r'^hangar/$',  'common.views.handler404'),
 )
+
+handler404 = 'common.views.handler404'

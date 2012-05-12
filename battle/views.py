@@ -81,6 +81,7 @@ def send_invitation(request):
                         if check_invitation_time(invitation):
                             invitation.finished = True
                             invitation.save()
+                            invitation.delete()
                         else:
                             dont_make_invitation = True
                     print dont_make_invitation
@@ -121,10 +122,10 @@ def accept_invitation(request):
         secondUser = UserProfile.objects.get(user=User.objects.get(pk=request.GET.get('userid')))
         try:
             invitation = BattleInvitation.objects.get(toUser=firstUser, fromUser=secondUser.user, finished=False)
-
             if check_invitation_time(invitation):
                 invitation.finished = True
                 invitation.save()
+                invitation.delete()
                 return HttpResponse('expired')
             else:
                 battle = create(firstUser=firstUser, secondUser=secondUser)

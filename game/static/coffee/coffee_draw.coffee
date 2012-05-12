@@ -5,7 +5,7 @@ battle = ""
 war = ""
 enemy = ""
 myTurn = false
-
+ready = 0
 
 class User
   constructor: (@username, @avion, @id) ->
@@ -56,13 +56,13 @@ $(document).ready ->
       obj = $.parseJSON data
       if obj.not == "waiting"
         #waiting for player
-        $('#notification').html("Setting up battle...").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
-        $('#notification').attr('class', 'info')
+        $('#notificationBig').html("Setting up battle...").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
+        $('#notificationBig').attr('class', 'info notification')
         myTurn = true
       else
         if obj.not == "not-ready"
-          $('#notification').html("Sorry, but the players are in battle!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
-          $('#notification').attr('class', 'info')
+          $('#notificationBig').html("Sorry, but the players are in battle!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
+          $('#notificationBig').attr('class', 'info notification')
         else
           #go to battle
           battleId = obj.battle
@@ -73,7 +73,7 @@ $(document).ready ->
     'squareHeight': 60,
     'gameHolder': $('#map'),
     })
-
+    ready = 0
     battle.init()
 
     battleId = data.battleId
@@ -98,6 +98,7 @@ $(document).ready ->
 
       $('#sub_holder').remove()
       $('#lobby').remove()
+      $('#sub_header_holder').remove()
 
       $('#versus').css('display', 'block')
 
@@ -119,10 +120,22 @@ $(document).ready ->
   socket.on "ready", (data) ->
     #check if i'm ready or my enemy
     if username != data
-      console.log "your enemy is ready"
+      ready += 1
+      if war.ready != undefined
+        war.ready = ready
+      if ready == 2
+        $('#notificationSmall').attr('class', 'succes notification')
+        $('#notificationSmall').html("Start battle!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
+      else
+        $('#notificationSmall').attr('class', 'info notification')
+        $('#notificationSmall').html("Your enemy is ready to play!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
 
   socket.on "check-hit", (data) ->
     war.myTurn = true
+
+    $('#notificationSmall').attr('class', 'succes notification')
+    $('#notificationSmall').html("It's your turn!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
+
     x = data.coordinates.x
     y = data.coordinates.y
     $.post('/battle/attack/', {'x': x, 'y': y, 'battleID': battleId}, (data) ->
@@ -139,8 +152,8 @@ $(document).ready ->
                 battleId: battleId
                 user: id
 
-              $('#notification').attr('class', 'alert')
-              $('#notification').html("You lost").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
+              $('#notificationBig').attr('class', 'alert notification')
+              $('#notificationBig').html("You lost").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
 
               myTurn = false
 
@@ -150,8 +163,8 @@ $(document).ready ->
     )
 
   socket.on "win", ->
-    $('#notification').attr('class', 'succes')
-    $('#notification').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
+    $('#notificationSmall').attr('class', 'succes notification')
+    $('#notificationSmall').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
     myTurn = false
 
   socket.on "miss", (data) ->
@@ -162,8 +175,8 @@ $(document).ready ->
       y: y * war.map.squareHeight + war.map.position.top
       height: war.map.squareHeight
       fillStyle: "#FFF"
-    $('#notification').attr('class', 'alert')
-    $('#notification').html("Miss!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
+    $('#notificationSmall').attr('class', 'alert notification')
+    $('#notificationSmall').html("Miss!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
 
   socket.on "hit", (data) ->
     x = data.coordinates.x
@@ -173,8 +186,8 @@ $(document).ready ->
       y: y * war.map.squareHeight + war.map.position.top
       height: war.map.squareHeight
       fillStyle: "blue"
-    $('#notification').attr('class', 'succes')
-    $('#notification').html("Hit!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
+    $('#notificationSmall').attr('class', 'info notification')
+    $('#notificationSmall').html("Hit!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
 
   socket.on "head", (data) ->
     x = data.coordinates.x
@@ -184,25 +197,25 @@ $(document).ready ->
       y: y * war.map.squareHeight + war.map.position.top
       height: war.map.squareHeight
       fillStyle: "yellow"
-    $('#notification').attr('class', 'succes')
-    $('#notification').html("OMG a head!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
+    $('#notificationSmall').attr('class', 'succes notification')
+    $('#notificationSmall').html("OMG a head!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
 
   socket.on "disconnectGame", (data) ->
     $.post('/battle/disconnect/', {'enemy': enemy, 'battleID': battleId, "state":"loss"}, ->
-      $('#notification').attr('class', 'succes')
-      $('#notification').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
+      $('#notificationBig').attr('class', 'succes')
+      $('#notificationBig').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200 ,-> window.location = '/')
     )
     myTurn = false
 
   socket.on "receive-invitation", (data) ->
-    $('#notification').attr('class', 'succes')
+    $('#notificationBig').attr('class', 'alert notification')
     html = "<div id='invitation-notification' data-id='" + data.id + "' >" + data.username + " wants to battle you! Do you accept the battle? <a id='accept-invitation' class='button'>Yes</a> or <a class='button'>No</a></div>"
-    $('#notification').html(html).dequeue().stop().slideDown(200)
+    $('#notificationBig').html(html).dequeue().stop().slideDown(200)
 
   $("#accept-invitation").live "click", ->
     id = $(this).parent().data('id')
-    $.get('battle/accept-invitation/', { userid:id }, ->
-
+    $.get('battle/accept-invitation/', { userid:id }, (data)->
+      console.log data
     )
     $(this).parent().parent().slideUp(200);
     myTurn = true
@@ -212,12 +225,15 @@ $(document).ready ->
     checked = battle.checkReady(battleId)
     if checked
       $("#start_battle_button").remove()
+      ready += 1
       war = new War({
-        'user': enemy,
+        'user': id,
+        'enemy': enemy,
         'battleId': battleId
         'userSocket': socket,
         'map': checked,
-        'myTurn': myTurn
+        'myTurn': myTurn,
+        'ready': ready
       })
       war.map.canvas.onmousedown = (e) ->
         war.checkMouseDown e
@@ -227,14 +243,14 @@ $(document).ready ->
     $.post("/battle/send-invitation/", {toUserId: id}, (data) ->
       console.log data
       if data == 'not-ready'
-        $('#notification').attr('class', 'alert')
-        $('#notification').html("You can't invite him right now! He is already invited!").dequeue().stop().slideDown(200).delay(2000).slideUp(200)
+        $('#notificationBig').attr('class', 'alert notification')
+        $('#notificationBig').html("You can't invite him right now! He is already invited!").dequeue().stop().slideDown(200).delay(2000).slideUp(200)
       else
         if data == 'battle'
-          $('#notification').attr('class', 'alert')
-          $('#notification').html("Your buddy is in a battle! Wait for him to finish!").dequeue().stop().slideDown(200).delay(2000).slideUp(200)
+          $('#notificationBig').attr('class', 'alert notification')
+          $('#notificationBig').html("Your buddy is in a battle! Wait for him to finish!").dequeue().stop().slideDown(200).delay(2000).slideUp(200)
         else
-          $('#notification').attr('class', 'success')
-          $('#notification').html("Ready for battle!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
+          $('#notificationBig').attr('class', 'info notification')
+          $('#notificationBig').html("Ready for battle!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
     )
     myTurn = false

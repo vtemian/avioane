@@ -28,6 +28,8 @@ class Frontend
 
                 plane.droppeable = !@collession
 
+
+
     checkMouseUp: (e) ->
       for plane in @planes
           if plane.draggable

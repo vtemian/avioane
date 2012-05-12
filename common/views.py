@@ -6,3 +6,5 @@ def base(request):
         return views.start(request)
     else:
         return render(request, 'login.html')
+def handler404(request):
+    return render(request, '404.html')

@@ -132,6 +132,19 @@
       return true;
     };
 
+    Battle.prototype.redrawPlanes = function() {
+      var plane, _i, _len, _ref, _results;
+      if (this.frontend.planes !== void 0) {
+        _ref = this.frontend.planes;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          plane = _ref[_i];
+          _results.push(plane.draw());
+        }
+        return _results;
+      }
+    };
+
     Battle.prototype.init = function() {
       this.createMap(0, 0, this.canvasWidth, this.canvasHeight, this.squareHeight);
       this.frontend = new Frontend(this.map);
