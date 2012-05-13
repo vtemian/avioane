@@ -111,7 +111,7 @@ def check_invitation_time(invitation):
     elapsed = this_time - last_time
     print dir(elapsed)
     print "iuresh", elapsed.seconds / 60 , datetime.timedelta(minutes=1)
-    if elapsed.seconds / 60 >= 1    :
+    if elapsed.seconds / 60 >= 1 :
         return True
     else:
         return False

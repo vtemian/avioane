@@ -17,7 +17,7 @@ class Users
   add: (user) ->
     if @dudes.hasOwnProperty(user.id) == false
       @dudes[user.id] = user
-      htmlToApend = '<li data-id="'+user.id+'"><h2 class="online_player_name"><h2 class="online_player_name"><a class="online_player_link">'+user.username+'</a></h2><div class="online_player_plane"><img src="/static/img/user/lobby/avioane/'+user.avion+'.png" alt="'+user.avion+'" /></div><h3 class="online_player_battle"><a data-id="'+user.id+'">battle</a></h3></li>'
+      htmlToApend = '<li data-id="'+user.id+'"><h2 class=sty"online_player_name"><h2 class="online_player_name"><a class="online_player_link">'+user.username+'</a></h2><div class="online_player_plane"><img src="/static/img/user/lobby/avioane/'+user.avion+'.png" alt="'+user.avion+'" /></div><h3 class="online_player_battle"><a data-id="'+user.id+'">battle</a></h3></li>'
       $('#online_players_list').append(htmlToApend).hide().fadeIn(500);
 
   remove: (id) ->
