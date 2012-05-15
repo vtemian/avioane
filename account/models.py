@@ -13,7 +13,7 @@ class UserProfile(models.Model):
     exp = models.IntegerField(null=True, default=0)
     lvl = models.IntegerField(default=1)
     rank=models.CharField(max_length=30, default='Second Lieutenant')
-    clan= models.CharField(max_length=30, default="none")
+
 
     achieve_points = models.IntegerField(default=0)
 

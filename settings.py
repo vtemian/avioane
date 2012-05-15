@@ -116,7 +116,6 @@ INSTALLED_APPS = (
     'common',
     'facebook',
     'plane',
-    'alliance',
     'notification',
     'medals',
     'lobby',
