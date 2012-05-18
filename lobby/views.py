@@ -21,7 +21,6 @@ def join_lobby(request):
 
             if checkResult == "ok":
                 battle = create_battle(user, waitingUser.user)
-
                 message = '"firstUser":"' + str(user.user.id) + '", "secondUser":"' + str(waitingUser.user.id) + '", "battleId":"' + str(battle.id) + '"'
                 send_message("new-battle", message)
 

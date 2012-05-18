@@ -37,20 +37,27 @@ Create your own custom Modernizr build: www.modernizr.com/download/ -->
     {% endblock %}
 </head>
     <body>
-    <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
-    chromium.org/developers/how-tos/chrome-frame-getting-started -->
-    <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-    <header>
-        {% block header %}
-        {% endblock %}
-    </header>
-        {% block content %}
-        {% endblock %}
+    <div id="container">
+        <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+        chromium.org/developers/how-tos/chrome-frame-getting-started -->
+        <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+        <div id="colorbar"><!--Colors are cool and sexy--></div>
+        <div id="notificationBig" class="alert notification">VTemian wants to battle you! Do you accept the battle? <a href="#" class="button">Yes</a> or <a href="#" class="button">No</a></div>
 
-    <footer>
-        <div class="separator"><!--Separator--></</div>
-        <p>© avioane 2012</p>
-    </footer>
+        <header>
+            {% block header %}
+            {% endblock %}
+        </header>
+            {% block content %}
+            {% endblock %}
+
+        <div class="separator_dark"><!--Separator--></div>
+    </div>
+    <div id="footer_holder">
+        <footer class="clearfix">
+            <p>© avioane 2012</p>
+        </footer>
+    </div>
 
 
     <!-- JavaScript at the bottom for fast page loading -->

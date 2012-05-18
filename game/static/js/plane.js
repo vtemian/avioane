@@ -181,7 +181,6 @@
     Plane.prototype.setPosition = function(newPosition) {
       this.clearRect();
       this.position = newPosition;
-      console.log("asd");
       return this.draw();
     };
 
@@ -259,7 +258,6 @@
           y: y + component.y
         });
       }
-      console.log(this.matrixPosition);
       return this.isNotReady = check;
     };
 

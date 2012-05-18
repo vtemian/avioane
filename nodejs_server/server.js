@@ -37,6 +37,7 @@
       _ref = this.clients;
       for (idClient in _ref) {
         client = _ref[idClient];
+        console.log(client.id, id);
         if (client.id === id) {
           return client;
         }
@@ -86,8 +87,8 @@
 
     Battle.prototype.start = function() {
       return this.emit("start-battle", {
-        firstUser: this.firstUser.username,
-        secondUser: this.secondUser.username,
+        firstUser: this.firstUser.id,
+        secondUser: this.secondUser.id,
         battleId: this.battleId
       });
     };
@@ -98,26 +99,20 @@
     };
 
     Battle.prototype.attacking_moves = function(user, coordinates, event) {
-      user = lobby.getById(user);
-      if (user === this.firstUser) {
-        return this.secondUser.socket.emit(event, {
-          coordinates: coordinates
-        });
-      } else {
-        return this.firstUser.socket.emit(event, {
-          coordinates: coordinates
-        });
-      }
+      user = online.getById(user);
+      return user.socket.emit(event, {
+        coordinates: coordinates
+      });
     };
 
     Battle.prototype.ready = function(user) {
-      user = lobby.getById(user);
+      user = online.getById(user);
       user.ready = true;
       return this.emit("ready", user.username);
     };
 
     Battle.prototype.finish = function(user) {
-      user = lobby.getById(user);
+      user = online.getById(user);
       if (user === this.firstUser) {
         return this.secondUser.socket.emit("win");
       } else {
@@ -217,6 +212,7 @@
     socket.on("attack", function(data) {
       var battle;
       battle = battles.get(data.battleId);
+      console.log(data);
       return battle.attacking_moves(data.user, data.coordinates, "check-hit");
     });
     socket.on("miss-attack", function(data) {
@@ -244,7 +240,6 @@
       var fromUser, toUser;
       fromUser = online.getById(data.fromUser);
       toUser = online.getById(data.toUser);
-      console.log(data);
       return toUser.socket.emit("receive-invitation", {
         username: fromUser.username,
         id: fromUser.id
@@ -266,7 +261,9 @@
             battle.secondUser.socket.emit("disconnectGame");
           } else {
             if (battle.secondUser.username === client.username) {
-              battle.firstUser.socket.emit("disconnectGame");
+              battle.firstUser.socket.emit("disconnectGame", {
+                battleId: battle.id
+              });
             }
           }
         }

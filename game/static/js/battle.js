@@ -107,9 +107,7 @@
               'x': coordinate.x,
               'y': coordinate.y,
               'head': myIndex
-            }, function(data) {
-              return console.log(type);
-            });
+            }, function(data) {});
             context.beginPath();
             context.rect(coordinate.x * 27 + this.squareHeight * 11 - 25, coordinate.y * 27, 27, 27);
             context.fill();
@@ -132,6 +130,19 @@
         }
       }
       return true;
+    };
+
+    Battle.prototype.redrawPlanes = function() {
+      var plane, _i, _len, _ref, _results;
+      if (this.frontend.planes !== void 0) {
+        _ref = this.frontend.planes;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          plane = _ref[_i];
+          _results.push(plane.draw());
+        }
+        return _results;
+      }
     };
 
     Battle.prototype.init = function() {

@@ -11,32 +11,37 @@
     <div id="logo"><a href="#"><img src="{{ STATIC_URL }}img/logo.png" alt="Avioane" /></a></div>
 
     <nav id="user_menu">
-        <ul>
+        <ol>
             <li id="register-trigger">Register</li>
             <li id="login-trigger">Login</li>
-        </ul>
+        </ol>
     </nav>
 
 
 {% endblock %}
 {% block content %}
-    <div id="sub_holder">
+    <<div id="sub_header_holder">
+    <div class="separator"></div>
+    <div id="sub_header">
 
-        <div id="sub_header">
+        <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+            incid  idunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+            nostrud exercitation ullamco laboris nisi ut ali</p>
 
-            <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                incid  idunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                nostrud exercitation ullamco laboris nisi ut ali</p>
+        <div id="sub_header_avion"><img src="{{ STATIC_URL }}img/avion.png" alt="Avion"/></div>
+        <div id="sub_header_online_count_text"></div>
+        <div id="sub_header_online_count">
+            <ul id="online-peoples">
+                <li><h3>0</h3></li>
+                <li><h3>2</h3></li>
 
-            <div id="sub_header_avion"><img src="{{ STATIC_URL }}img/avion.png" alt="Avion"/></div>
-            <div id="sub_header_online_count">
-                <ul id="online-peoples">
-                    <div class="clearfix"></div>
-                </ul>
+                <div class="clearfix"></div>
+            </ul>
 
-            </div>
-            <div id="sub_header_online_count_text"></div>
         </div>
+
+    </div>
+    <div class="separator"></div>
         <div id="login">
             <div id="pilot"></div>
                 <ul>

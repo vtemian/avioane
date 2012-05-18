@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+{% block extrahead %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/socket.io-client/dist/socket.io.min.js"></script>
+    <script src="{{ STATIC_URL }}js/django-validate.js"></script>
+    <script src="{{ STATIC_URL }}js/frontpage.js"></script>
+    <script src="{{ STATIC_URL }}js/login.js"></script>
+    <script src="{{ STATIC_URL }}js/register.js"></script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/frontpage.css">
+{% endblock %}
+{% block header %}
+    <div id="logo"><a href="#"><img src="{{ STATIC_URL }}img/logo.png" alt="Avioane" /></a></div>
+
+    <nav id="user_menu">
+        <ol>
+            <li id="register-trigger">Register</li>
+            <li id="login-trigger">Login</li>
+        </ol>
+    </nav>
+
+
+{% endblock %}
+{% block content %}
+    <div id="error">
+
+
+        <div id="parallax">
+            <div id="avion"><img src="{{ STATIC_URL }}img/404/avion.png" alt=""/></div>
+        </div>
+
+
+    </div>
+
+{% endblock %}
+
+
+

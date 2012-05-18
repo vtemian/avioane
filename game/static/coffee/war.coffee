@@ -3,9 +3,11 @@ class War
 
   constructor: (opts) ->
     @user = opts.user
+    @enemy = opts.enemy
     @battleId = opts.battleId
     @userSocket = opts.userSocket
     @myTurn = opts.myTurn
+    @ready = opts.ready
 
     @map = opts.map
     @context = @map.canvas.getContext('2d')
@@ -18,32 +20,37 @@ class War
     @sendData "ready", opts
 
   checkMouseDown: (e) ->
-    if not @myTurn
-      alert "Not your turn"
+    if @ready < 2
+      $('#notificationSmall').attr('class', 'info notification')
+      $('#notificationSmall').html("Your enemy it's not ready!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
     else
-      squareHeight = @map.squareHeight
-      position = @map.position
+      if not @myTurn
+        $('#notificationSmall').attr('class', 'alert notification')
+        $('#notificationSmall').html("It's not your turn").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
+      else
+        squareHeight = @map.squareHeight
+        position = @map.position
 
-      maxTop = position.top + squareHeight * 10
-      maxLeft = position.left + squareHeight * 10
+        maxTop = position.top + squareHeight * 10
+        maxLeft = position.left + squareHeight * 10
 
-      top = e.offsetY
-      left = e.offsetX
+        top = e.offsetY
+        left = e.offsetX
 
-      if top < maxTop and top > position.top and left < maxLeft and left > position.left
-        y = parseInt((top-position.top) / squareHeight)
-        x = parseInt((left-position.left) / squareHeight)
-        coordinates = {
-          "x": x,
-          "y": y
-        }
+        if top < maxTop and top > position.top and left < maxLeft and left > position.left
+          y = parseInt((top-position.top) / squareHeight)
+          x = parseInt((left-position.left) / squareHeight)
+          coordinates = {
+            "x": x,
+            "y": y
+          }
 
-        @sendData "attack",
-          "coordinates": coordinates
-          "battleId": @battleId
-          "user": @user
+          @sendData "attack",
+            "coordinates": coordinates
+            "battleId": @battleId
+            "user": @enemy
 
-        @myTurn = false
+          @myTurn = false
 
   sendData: (event, message) ->
     @userSocket.emit event, message
@@ -69,13 +76,12 @@ class War
       y: y
 
     @sendData "miss-attack",
-      user: @user
+      user: @enemy
       battleId: @battleId
       x: x
       y: y
       coordinates: coordinates
 
-    console.log "mised"
 
   hit_attack: (x, y, left, top) ->
 
@@ -90,7 +96,7 @@ class War
       y: y
 
     @sendData "hit-attack",
-      user: @user
+      user: @enemy
       battleId: @battleId
       x: x
       y: y
@@ -108,10 +114,8 @@ class War
       y: y
 
     @sendData "head-attack",
-      user: @user
+      user: @enemy
       battleId: @battleId
       coordinates: coordinates
-
-    console.log "head"
 
 window.War = War

@@ -93,7 +93,6 @@ class Battle
           type = "plane" + (index+1)
           for coordinate, myIndex in plane.matrixPosition
               $.post('/plane/create_positioning/'+type+'/', {'battleID': battleId, 'x': coordinate.x, 'y': coordinate.y, 'head': myIndex}, (data)->
-                console.log type
               )
               context.beginPath()
               context.rect coordinate.x*27+@squareHeight*11 - 25, coordinate.y*27, 27, 27
@@ -110,6 +109,11 @@ class Battle
           return false
       return true
 
+    redrawPlanes: ->
+      if @frontend.planes != undefined
+        for plane in @frontend.planes
+          plane.draw()
+
     init: ->
         @createMap(0, 0, @canvasWidth, @canvasHeight, @squareHeight)
 
@@ -118,6 +122,7 @@ class Battle
         @createPlanes(3)
         @createCollissions(@frontend)
 
-    
+#        callback = @redrawPlanes.bind(this)
+#        setInterval( callback, 30 )
 
 window.Battle = Battle

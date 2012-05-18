@@ -23,6 +23,7 @@ class Clients
 
   getById: (id) ->
     for idClient, client of @clients
+      console.log client.id, id
       if client.id == id
         return client
 
@@ -44,8 +45,8 @@ class Battle
 
   start: ->
     @emit "start-battle",
-      firstUser: @firstUser.username
-      secondUser: @secondUser.username
+      firstUser: @firstUser.id
+      secondUser: @secondUser.id
       battleId: @battleId
 
   emit: (event, message) ->
@@ -53,22 +54,18 @@ class Battle
     @secondUser.socket.emit event, message
 
   attacking_moves: (user, coordinates, event) ->
-    user = lobby.getById user
-    if user == @firstUser
-      @secondUser.socket.emit event,
-        coordinates: coordinates
-    else
-      @firstUser.socket.emit event,
-        coordinates: coordinates
+    user = online.getById user
+    user.socket.emit event,
+      coordinates: coordinates
 
   ready: (user) ->
-    user = lobby.getById user
+    user = online.getById user
     user.ready = true
     @emit "ready",
       user.username
 
   finish: (user) ->
-    user = lobby.getById user
+    user = online.getById user
     if user == @firstUser
       @secondUser.socket.emit "win"
     else
@@ -149,6 +146,7 @@ io.sockets.on 'connection', (socket) ->
 
   socket.on "attack", (data) ->
     battle = battles.get(data.battleId)
+    console.log data
     battle.attacking_moves data.user, data.coordinates, "check-hit"
 
   socket.on "miss-attack", (data) ->
@@ -171,7 +169,6 @@ io.sockets.on 'connection', (socket) ->
   socket.on "send-invitation", (data) ->
     fromUser = online.getById data.fromUser
     toUser = online.getById data.toUser
-    console.log data
     toUser.socket.emit "receive-invitation",
       username: fromUser.username
       id: fromUser.id
@@ -191,7 +188,8 @@ io.sockets.on 'connection', (socket) ->
           battle.secondUser.socket.emit "disconnectGame"
         else
             if battle.secondUser.username == client.username
-              battle.firstUser.socket.emit "disconnectGame"
+              battle.firstUser.socket.emit "disconnectGame",
+                battleId: battle.id
       console.log client
 
     lobby.remove socket

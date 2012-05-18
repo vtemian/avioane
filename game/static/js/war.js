@@ -8,9 +8,11 @@
 
     function War(opts) {
       this.user = opts.user;
+      this.enemy = opts.enemy;
       this.battleId = opts.battleId;
       this.userSocket = opts.userSocket;
       this.myTurn = opts.myTurn;
+      this.ready = opts.ready;
       this.map = opts.map;
       this.context = this.map.canvas.getContext('2d');
       opts = {
@@ -22,28 +24,34 @@
 
     War.prototype.checkMouseDown = function(e) {
       var coordinates, left, maxLeft, maxTop, position, squareHeight, top, x, y;
-      if (!this.myTurn) {
-        return alert("Not your turn");
+      if (this.ready < 2) {
+        $('#notificationSmall').attr('class', 'info notification');
+        return $('#notificationSmall').html("Your enemy it's not ready!").dequeue().stop().slideDown(200).delay(1700).slideUp(200);
       } else {
-        squareHeight = this.map.squareHeight;
-        position = this.map.position;
-        maxTop = position.top + squareHeight * 10;
-        maxLeft = position.left + squareHeight * 10;
-        top = e.offsetY;
-        left = e.offsetX;
-        if (top < maxTop && top > position.top && left < maxLeft && left > position.left) {
-          y = parseInt((top - position.top) / squareHeight);
-          x = parseInt((left - position.left) / squareHeight);
-          coordinates = {
-            "x": x,
-            "y": y
-          };
-          this.sendData("attack", {
-            "coordinates": coordinates,
-            "battleId": this.battleId,
-            "user": this.user
-          });
-          return this.myTurn = false;
+        if (!this.myTurn) {
+          $('#notificationSmall').attr('class', 'alert notification');
+          return $('#notificationSmall').html("It's not your turn").dequeue().stop().slideDown(200).delay(1700).slideUp(200);
+        } else {
+          squareHeight = this.map.squareHeight;
+          position = this.map.position;
+          maxTop = position.top + squareHeight * 10;
+          maxLeft = position.left + squareHeight * 10;
+          top = e.offsetY;
+          left = e.offsetX;
+          if (top < maxTop && top > position.top && left < maxLeft && left > position.left) {
+            y = parseInt((top - position.top) / squareHeight);
+            x = parseInt((left - position.left) / squareHeight);
+            coordinates = {
+              "x": x,
+              "y": y
+            };
+            this.sendData("attack", {
+              "coordinates": coordinates,
+              "battleId": this.battleId,
+              "user": this.enemy
+            });
+            return this.myTurn = false;
+          }
         }
       }
     };
@@ -72,14 +80,13 @@
         x: x,
         y: y
       };
-      this.sendData("miss-attack", {
-        user: this.user,
+      return this.sendData("miss-attack", {
+        user: this.enemy,
         battleId: this.battleId,
         x: x,
         y: y,
         coordinates: coordinates
       });
-      return console.log("mised");
     };
 
     War.prototype.hit_attack = function(x, y, left, top) {
@@ -95,7 +102,7 @@
         y: y
       };
       return this.sendData("hit-attack", {
-        user: this.user,
+        user: this.enemy,
         battleId: this.battleId,
         x: x,
         y: y,
@@ -115,12 +122,11 @@
         x: x,
         y: y
       };
-      this.sendData("head-attack", {
-        user: this.user,
+      return this.sendData("head-attack", {
+        user: this.enemy,
         battleId: this.battleId,
         coordinates: coordinates
       });
-      return console.log("head");
     };
 
     return War;
