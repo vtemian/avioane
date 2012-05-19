@@ -10,3 +10,4 @@ class Medal(models.Model):
     title = models.CharField(max_length=30)
     type= models.CharField(max_length=30)
     value= models.CharField(max_length=30)
+    description= models.CharField(max_length=255)
