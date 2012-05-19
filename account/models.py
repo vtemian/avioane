@@ -1,7 +1,7 @@
 from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
-from division.models import devision
+import division.models
 import json
 import urllib
 
@@ -10,7 +10,7 @@ class UserProfile(models.Model):
     gravatar_url = models.CharField(max_length=100)
     facebook_id = models.BigIntegerField(null=True)
     access_token = models.CharField(max_length=150)
-    stats= models.ManyToManyField(UserStats, through='Mystats', null=True)
+#    stats= models.ManyToManyField(UserStats, through='Mystats', null=True)
 
     def get_facebook_profile(self):
         fb_profile = urllib.urlopen('https://graph.facebook.com/me?access_token=%s' % self.access_token)
@@ -23,14 +23,14 @@ class UserStats(models.Model):
     lvl = models.IntegerField(default=1)
     rank=models.CharField(max_length=30, default='Second Lieutenant')
     achieve_points = models.IntegerField(default=0)
-    division = models.ForeignKey()
+#    division = models.ForeignKey()
     avion = models.CharField(default="airbone", max_length=10)
     won = models.IntegerField(null=True, default=0)
     lost = models.IntegerField(null=True, default=0)
 
-class Mystats(models.Model):
-    userstats=models.ForeignKey(UserStats)
-    userprofile=models.ForeignKey(UserProfile)
+#class Mystats(models.Model):
+#    userstats=models.ForeignKey(UserStats)
+#    userprofile=models.ForeignKey(UserProfile)
 
 class PasswordReset(models.Model):
     email = models.EmailField(max_length=50)
