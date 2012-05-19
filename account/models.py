@@ -5,32 +5,34 @@ import division.models
 import json
 import urllib
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User)
-    gravatar_url = models.CharField(max_length=100)
-    facebook_id = models.BigIntegerField(null=True)
-    access_token = models.CharField(max_length=150)
-#    stats= models.ManyToManyField(UserStats, through='Mystats', null=True)
-
-    def get_facebook_profile(self):
-        fb_profile = urllib.urlopen('https://graph.facebook.com/me?access_token=%s' % self.access_token)
-        return json.load(fb_profile)
-
 class UserStats(models.Model):
-    user = models.ForeignKey(UserProfile)
+#    user = models.ForeignKey(UserProfile)
     money = models.IntegerField(null=True, default=10)
     exp = models.IntegerField(null=True, default=0)
     lvl = models.IntegerField(default=1)
     rank=models.CharField(max_length=30, default='Second Lieutenant')
     achieve_points = models.IntegerField(default=0)
-#    division = models.ForeignKey()
+    division = models.ForeignKey(division.models.divisions)
     avion = models.CharField(default="airbone", max_length=10)
     won = models.IntegerField(null=True, default=0)
     lost = models.IntegerField(null=True, default=0)
 
-#class Mystats(models.Model):
-#    userstats=models.ForeignKey(UserStats)
-#    userprofile=models.ForeignKey(UserProfile)
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    gravatar_url = models.CharField(max_length=100)
+    facebook_id = models.BigIntegerField(null=True)
+    access_token = models.CharField(max_length=150)
+    stats= models.ManyToManyField(UserStats, through='Mystats', null=True)
+
+    def get_facebook_profile(self):
+        fb_profile = urllib.urlopen('https://graph.facebook.com/me?access_token=%s' % self.access_token)
+        return json.load(fb_profile)
+
+
+class Mystats(models.Model):
+    userstats=models.ForeignKey(UserStats)
+    userprofile=models.ForeignKey(UserProfile)
 
 class PasswordReset(models.Model):
     email = models.EmailField(max_length=50)
