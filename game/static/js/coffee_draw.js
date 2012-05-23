@@ -40,7 +40,7 @@
       var htmlToApend;
       if (this.dudes.hasOwnProperty(user.id) === false) {
         this.dudes[user.id] = user;
-        htmlToApend = '<li data-id="' + user.id + '"><h2 class="online_player_name"><h2 class="online_player_name"><a class="online_player_link">' + user.username + '</a></h2><div class="online_player_plane"><img src="/static/img/user/lobby/avioane/' + user.avion + '.png" alt="' + user.avion + '" /></div><h3 class="online_player_battle"><a data-id="' + user.id + '">battle</a></h3></li>';
+        htmlToApend = '<li data-id="' + user.id + '"><h2 class=sty"online_player_name"><h2 class="online_player_name"><a class="online_player_link">' + user.username + '</a></h2><div class="online_player_plane"><img src="/static/img/user/lobby/avioane/' + user.avion + '.png" alt="' + user.avion + '" /></div><h3 class="online_player_battle"><a data-id="' + user.id + '">battle</a></h3></li>';
         return $('#online_players_list').append(htmlToApend).hide().fadeIn(500);
       }
     };
@@ -70,14 +70,9 @@
       return dude.add(user);
     });
     socket.on("remove-online", function(id) {
-      console.log(id);
       return dude.remove(id);
     });
-    socket.on("online", function(data) {
-      online += 1;
-      return $("#online").html(data);
-    });
-    $("#user_battle").click(function() {
+    $("#user_battle_button").click(function() {
       return socket.emit("lobby-registration", {
         username: username,
         id: id

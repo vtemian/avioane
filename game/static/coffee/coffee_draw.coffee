@@ -39,14 +39,9 @@ $(document).ready ->
     dude.add(user)
 
   socket.on "remove-online", (id) ->
-    console.log id
     dude.remove(id)
 
-  socket.on "online", (data) ->
-    online += 1
-    $("#online").html(data)
-
-  $("#user_battle").click ->
+  $("#user_battle_button").click ->
     socket.emit "lobby-registration",
       username: username
       id: id

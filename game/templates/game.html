@@ -55,9 +55,49 @@
 {% block content %}
     <div id="sub_header_holder">
         <div class="separator"></div>
-        <div id="sub_header">
+        <div id="sub_header" class="clearfix">
 
-            <a href="#"><div id="user_battle"><h3 class="stats_text">battle</h3></div></a>
+            <div id="user_stats">
+
+                <div id="user_indicators">
+
+                    <div id="user_level_holder" class="clearfix">
+                        <div id="user_level" class="stats_square stats_contrast">{{ userprofile.lvl }}</div>
+                        <div id="user_level_bar_holder" class="stats_contrast"><div id="user_level_bar"><div id="user_level_bar_fluid"></div></div></div>
+                        <div id="user_level_progress" class="stats_square stats_contrast"></div>
+                    </div>
+
+                    <div id="user_division_holder" class="clearfix">
+                        <div id="user_division" class="stats_square stats_contrast">{{ userprofile.division }}</div>
+                        <div id="user_division_relegation" class="stats_square stats_contrast">C</div>
+                        <div id="user_division_status" class="stats_contrast"><div id="user_division_bar_holder"><div id="user_division_bar"></div></div></div>
+                        <div id="user_division_promotion" class="stats_square stats_contrast">A</div>
+                    </div>
+
+                </div>
+
+                <div id="user_hangar_holder" class="stats_contrast">
+                    <div id="user_hangar_plane"><img src="{{ STATIC_URL }}img/battle/map/mini_maps/airborne.png" alt="airborne"/></div>
+                    <div id="user_hangar_button" class="stats_contrast">hangar</div>
+                </div>
+
+                <div id="user_profile_money_holder">
+                    <div id="user_money" class="stats_contrast"><strong>$</strong> {{ userprofile.money }}</div>
+                    <div id="user_profile" class="stats_contrast">profile</div>
+                </div>
+
+                <div id="user_season_games">
+                    <div id="user_remaining_games_holder"><div id="user_remaining_games" class="stats_square stats_contrast">7</div><span>remaining games</span></div>
+                    <div id="user_games_stats_holder"><div id="user_games_won" class="stats_square stats_contrast">{{ userprofile.won }}</div><div id="user_games_lost" class="stats_square stats_contrast">{{ userprofile.lost }}</div><span>won vs. lost</span></div>
+                </div>
+
+                <div id="user_battle_button" class="stats_contrast">
+                    <span>division battle</span>
+                </div>
+
+            </div>
+
+
 
         </div>
         <div class="separator"></div>
@@ -84,60 +124,10 @@
                     <tbody>
                     <tr>
                         <td>1</td>
-                        <td><div class="user_avatar"><img src="img/user/menu/avatar.png" /></div>arghy zmeu</td>
+                        <td><div class="user_avatar"><img src="{{ userprofile.gravatar_url }}?s=21" /></div>arghy zmeu</td>
                         <td>23</td>
                         <td>24 won / 7 lost</td>
-                        <td>28 *view locker)</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><div class="user_avatar"><img src="img/user/menu/avatar.png" /></div>arghy zmeu</td>
-                        <td>23</td>
-                        <td>24 won / 7 lost</td>
-                        <td>28 *view locker)</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><div class="user_avatar"><img src="img/user/menu/avatar.png" /></div>arghy zmeu</td>
-                        <td>23</td>
-                        <td>24 won / 7 lost</td>
-                        <td>28 *view locker)</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><div class="user_avatar"><img src="img/user/menu/avatar.png" /></div>arghy zmeu</td>
-                        <td>23</td>
-                        <td>24 won / 7 lost</td>
-                        <td>28 *view locker)</td>
-
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><div class="user_avatar"><img src="img/user/menu/avatar.png" /></div>arghy zmeu</td>
-                        <td>23</td>
-                        <td>24 won / 7 lost</td>
-                        <td>28 *view locker)</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><div class="user_avatar"><img src="img/user/menu/avatar.png" /></div>arghy zmeu</td>
-                        <td>23</td>
-                        <td>24 won / 7 lost</td>
-                        <td>28 *view locker)</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><div class="user_avatar"><img src="img/user/menu/avatar.png" /></div>arghy zmeu</td>
-                        <td>23</td>
-                        <td>24 won / 7 lost</td>
-                        <td>28 *view locker)</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><div class="user_avatar"><img src="img/user/menu/avatar.png" /></div>arghy zmeu</td>
-                        <td>23</td>
-                        <td>24 won / 7 lost</td>
-                        <td>28 *view locker)</td>
+                            <td>28 <a href="#" class="button">view locker</a></td>
                     </tr>
                     </tbody>
                     <tfoot>
@@ -152,9 +142,9 @@
             <div id="online_players_list_header" class="clearfix">
                 <span><h3>Online Players List</h3></span>
                 <span><form method="post" action="#" id="division_stats_sort"><label for="online_sort">Order by:</label><select id="online_sort"><option>rank</option><option>level</option><option>badges</option><option>money</option></select></form></span>
-                <ul id="online_players_list">
+            </div>
 
-                    <div class="clearfix"></div>
+            <ul id="online_players_list" class="clearfix">
 
                 </ul>
             </div>

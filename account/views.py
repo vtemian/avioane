@@ -8,7 +8,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response, redirect, render
 from django.template.context import RequestContext
 
-from account.models import UserProfile, PasswordReset
+from account.models import UserProfile, PasswordReset, UserStats
+from division.models import Divisions
 
 def register(request):
     if request.method == "POST":
@@ -17,8 +18,13 @@ def register(request):
             user = User.objects.create_user(username=request.POST['username'], password=request.POST['password'], email=request.POST['email'])
             user.save()
             gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(request.POST.get('email')).hexdigest()
-            userprofile = UserProfile(user=user, gravatar_url=gravatar_url).save()
-            
+
+            userprofile = UserProfile.objects.create(user = user, gravatar_url = gravatar_url)
+
+            division = get_division('D')
+
+            userstats = UserStats(user = userprofile).save()
+
             auth_login(request,authenticate(username=request.POST['username'], password=request.POST['password']))
             return HttpResponse(simplejson.dumps({'ok': '/'}))
         else:
@@ -60,7 +66,7 @@ def change_password(request):
 
 def user_menu(request):
     render_context = {}
-    user = UserProfile.objects.get(user=request.user)
+    user = UserStats.objects.get(user = UserProfile.objects.get(user=request.user))
     render_context['userprofile'] = user
     return render_context
 
@@ -68,7 +74,6 @@ def profile(request, profile_id):
     context = user_menu(request)
     user= UserProfile.objects.get(pk=profile_id)
     context['user'] = user
-    print user
     return render_to_response('profile.html',
         context,
         context_instance=RequestContext(request))

@@ -4,20 +4,23 @@ from django.contrib.auth.models import User
 import json
 import urllib
 
-class Leagues(models.Model):
-    name= models.CharField(max_length=2, default='D')
-    dateAdded= models.DateTimeField(default=datetime.now())
+class Weapons(models.Model):
+    name = models.CharField(max_length=2, default='a')
+    image = models.CharField(max_length=50, dafault='ImagePath')
 
+    description = models.TextField(null=True)
 
+class Division(models.Model):
+    name = models.CharField(max_length=2, default='D')
+    go_up_points = models.IntegerField(max_length=5)
+    go_down_points = models.IntegerField(max_length=5)
 
-class divisions(models.Model):
-    name=models.IntegerField(default= 1)
-    pointsUp= models.IntegerField()
-    pointsDown= models.IntegerField()
-    dateAdded= models.DateTimeField(default=datetime.now())
-    League= models.ManyToManyField(Leagues, through='DivisionsLeagues')
+    plane_type = models.CharField(default="airborne", max_length=10)
 
+    achieve_points = models.IntegerField(max_length=500, default='10')
 
-class DivisionsLeagues(models.Model):
-    divisions=models.ForeignKey(divisions)
-    leagues=models.ForeignKey(Leagues)
+    weapons = models.ManyToManyField(Weapons, through='DivisionWeapons', null=True)
+
+class DivisionWeapons(models.Model):
+    division = models.ForeignKey(Division)
+    weapons = models.ForeignKey(Weapons)

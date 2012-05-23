@@ -2,8 +2,8 @@
 (function() {
 
   $(document).ready(function() {
-    $('#user_level_bar_progress').css('width', parseInt(progress) + '%');
-    return $('#user_progress').html(parseInt(progress));
+    $('#user_level_bar_fluid').css('width', parseInt(progress) + '%');
+    return $('#user_level_progress').html(parseInt(progress) + '%');
   });
 
 }).call(this);
