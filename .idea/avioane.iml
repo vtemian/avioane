@@ -13,6 +13,7 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="jdk" jdkName="Python 2.7.2+ (/usr/bin/python2.7)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="Avioane-Ui" />
   </component>
   <component name="TemplatesService">
     <option name="templateLanguage" value="Django" />
