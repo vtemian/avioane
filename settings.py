@@ -116,11 +116,12 @@ INSTALLED_APPS = (
     'common',
     'facebook',
     'plane',
-    'alliance',
     'notification',
     'medals',
     'lobby',
     'nodejs_server',
+    'hangar',
+    'division',
 )
 
 LOGIN_REDIRECT_URL = '/'
