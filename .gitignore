@@ -1,1 +1,11 @@
-.idea/
+.DS_Store
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.*~
+benchmarks/*.png
+.idea
