@@ -1,3 +1,3 @@
 $(document).ready ->
-  $('#user_level_bar_progress').css('width', parseInt(progress)+'%')
-  $('#user_progress').html(parseInt(progress))
+  $('#user_level_bar_fluid').css('width', parseInt(progress)+'%')
+  $('#user_level_progress').html(parseInt(progress)+'%')
