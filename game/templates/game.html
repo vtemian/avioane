@@ -68,7 +68,7 @@
                     </div>
 
                     <div id="user_division_holder" class="clearfix">
-                        <div id="user_division" class="stats_square stats_contrast">{{ division }}</div>
+                        <div id="user_division" class="stats_square stats_contrast">{{ division.name }}</div>
                         <div id="user_division_relegation" class="stats_square stats_contrast">{{ prev_division }}</div>
                         <div id="user_division_status" class="stats_contrast"><div id="user_division_bar_holder"><div id="user_division_bar"></div></div></div>
                         <div id="user_division_promotion" class="stats_square stats_contrast">{{ next_division }}</div>
@@ -106,7 +106,7 @@
     <div id="body">
         <div id="lobby">
             <div id="division_stats_header" class="clearfix">
-                <span><h3>Divison D1 Statistics</h3></span>
+                <span><h3>Divison {{ division.name }} Statistics</h3></span>
                 <span><form method="post" action="#" id="division_stats_sort"><label for="stats_sort">Order by:</label><select id="stats_sort"><option>rank</option><option>level</option><option>badges</option><option>money</option></select></form></span>
             </div>
 
@@ -119,20 +119,25 @@
                         <th>level</th>
                         <th>battles</th>
                         <th>badges</th>
+                        <th>points</th>
                     </tr>
                     </thead>
                     <tbody>
+                    {% for user in division_users %}
                     <tr>
-                        <td>1</td>
-                        <td><div class="user_avatar"><img src="{{ userprofile.user.gravatar_url }}?s=21" /></div>arghy zmeu</td>
-                        <td>23</td>
-                        <td>24 won / 7 lost</td>
-                            <td>28 <a href="#" class="button">view locker</a></td>
+
+                        <td>{{ forloop.counter }}</td>
+                        <td><div class="user_avatar"><img src="{{ user.user.user.gravatar_url }}?s=21" /></div>{{ user.user.user.user.username }}</td>
+                        <td>{{ user.user.lvl }}</td>
+                        <td>{{ user.user.won }} won / {{ user.user.lost }} lost</td>
+                        <td>{{ user.user.achieve_points }} <a href="#" class="button">view locker</a></td>
+                        <td>{{ user.points }}</td>
                     </tr>
+                    {% endfor %}
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="5"><a class="button">load more</a></td>
+                        <td colspan="6"><a class="button">load more</a></td>
                     </tr>
                     </tfoot>
 

@@ -16,7 +16,10 @@ def start(request):
     context['prev_division'] = prev_division
 
     context['avion'] = divisions.get_division_by_name(user_division.name)['plane_type']
-    context['division'] = user_division.name
+
+    division_users = UserDivision.objects.filter(name=context['division'].name).order_by('points', '-matches_played')
+
+    context['division_users'] = division_users
 
     return render_to_response('game.html',
                               context,

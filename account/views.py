@@ -71,7 +71,10 @@ def user_menu(request):
     render_context = {}
     user = UserStats.objects.get(user = UserProfile.objects.get(user=request.user))
     render_context['userprofile'] = user
-#    division_ user = UserDIvision.obje
+
+    division_user = UserDivision.objects.get(user=user)
+    render_context['division'] = division_user
+
     return render_context
 
 def profile(request, profile_id):
