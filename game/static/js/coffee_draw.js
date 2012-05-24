@@ -26,21 +26,11 @@
 
   })();
 
-  Users = (function() {
-
-    function Users() {
-      this.dudes = {};
-    }
-
-    return Users;
-
-  })();
-
   Countdown = (function() {
 
     function Countdown(target_id, start_time) {
       this.target_id = target_id != null ? target_id : "#time_left";
-      this.start_time = start_time != null ? start_time : "1:30";
+      this.start_time = start_time != null ? start_time : "60";
     }
 
     Countdown.prototype.init = function() {
@@ -53,23 +43,23 @@
     };
 
     Countdown.prototype.reset = function() {
-      var time;
-      time = this.start_time.split(':');
-      this.minutes = parseInt(time[0]);
-      this.seconds = parseInt(time[1]);
+      this.seconds = parseInt(this.start_time);
       return this.updateTarget();
     };
 
     Countdown.prototype.tick = function() {
-      var minutes, seconds, _ref;
-      _ref = [this.seconds, this.minutes], seconds = _ref[0], minutes = _ref[1];
-      if (seconds > 0 || minutes > 0) {
-        if (seconds === 0) {
-          this.minutes = minutes - 1;
-          this.seconds = 59;
+      var seconds;
+      seconds = [this.seconds][0];
+      if (seconds > 0) {
+        if (seconds === 10) {
+          console.log("WARNING! You have 10 secnds left");
+          this.seconds = seconds - 1;
         } else {
           this.seconds = seconds - 1;
         }
+      }
+      if (seconds === 0) {
+        console.log("_|_");
       }
       return this.updateTarget();
     };
@@ -80,10 +70,20 @@
       if (seconds < 10) {
         seconds = '0' + seconds;
       }
-      return console.log("ATENTIE! mai ai doar" + seconds);
+      return console.log("Seconds left:" + seconds);
     };
 
-    Countdown.prototype.add = function(user) {
+    return Countdown;
+
+  })();
+
+  Users = (function() {
+
+    function Users() {
+      this.dudes = {};
+    }
+
+    Users.prototype.add = function(user) {
       var htmlToApend;
       if (this.dudes.hasOwnProperty(user.id) === false) {
         this.dudes[user.id] = user;
@@ -92,20 +92,22 @@
       }
     };
 
-    Countdown.prototype.remove = function(id) {
+    Users.prototype.remove = function(id) {
       delete this.dudes[id];
       return $("li:[data-id = '" + id + "']").remove();
     };
 
-    return Countdown;
+    return Users;
 
   })();
 
   dude = new Users();
 
   $(document).ready(function() {
-    var battleId;
+    var battleId, timer;
     battleId = 0;
+    timer = new Countdown();
+    timer.init();
     socket.emit("handshake", {
       username: username,
       id: id,

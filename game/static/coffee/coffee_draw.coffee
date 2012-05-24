@@ -6,16 +6,11 @@ war = ""
 enemy = ""
 myTurn = false
 ready = 0
-
 class User
   constructor: (@username, @avion, @id) ->
 
-class Users
-  constructor: ->
-    @dudes = {}
-
 class Countdown
-  constructor: (@target_id = "#time_left", @start_time = "1:30") ->
+  constructor: (@target_id = "#time_left", @start_time = "60") ->
 
   init: ->
     @reset()
@@ -24,25 +19,30 @@ class Countdown
     setInterval(window.tick, 1000)
 
   reset: ->
-    time = @start_time.split(':')
-    @minutes = parseInt(time[0])
-    @seconds = parseInt(time[1])
+    #time = @start_time
+    @seconds = parseInt(@start_time)
     @updateTarget()
 
   tick: ->
-    [seconds, minutes] = [@seconds, @minutes]
-    if seconds > 0 or minutes > 0
-      if seconds is 0
-        @minutes = minutes - 1
-        @seconds = 59
+    [seconds] = [@seconds]
+    if seconds > 0
+      if seconds is 10
+        console.log("WARNING! You have 10 secnds left")
+        @seconds = seconds - 1
       else
         @seconds = seconds - 1
+     if seconds is 0
+          console.log("_|_")
     @updateTarget()
 
   updateTarget: ->
     seconds = @seconds
     seconds = '0' + seconds if seconds < 10
-    console.log("ATENTIE! mai ai doar" + seconds)
+    console.log("Seconds left:"+ seconds)
+
+class Users
+  constructor: ->
+    @dudes = {}
 
   add: (user) ->
     if @dudes.hasOwnProperty(user.id) == false
@@ -58,7 +58,8 @@ dude = new Users()
 
 $(document).ready ->
   battleId = 0
-
+  timer = new Countdown()
+  timer.init()
   socket.emit "handshake",
     username: username,
     id: id,
