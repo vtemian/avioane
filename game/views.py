@@ -7,7 +7,7 @@ def start(request):
     context = user_menu(request)
     users = UserProfile.objects.all().order_by('-lvl','-money', 'user__username')[:10]
     context['users'] = users
-    print users
+#    context['next_division'] =
     return render_to_response('game.html',
                               context,
                               context_instance=RequestContext(request))

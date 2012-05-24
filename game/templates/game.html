@@ -33,7 +33,7 @@
 
     <nav id="user_menu_logged">
         <ul>
-            <li><div class="user_avatar"><img src="{{ userprofile.gravatar_url }}?s=21" alt="avatar" /></div><h3 id="user_name">{{ user.username }}</h3></li>
+            <li><div class="user_avatar"><img src="{{ userprofile.user.gravatar_url }}?s=21" alt="avatar" /></div><h3 id="user_name">{{ user.username }}</h3></li>
             <li><img src="{{ STATIC_URL }}img/user/menu/icon_drop.png"/></li>
             <li><a href="/logout"><img src="{{ STATIC_URL }}img/user/menu/icon_logout.png"/></a></li>
         </ul>
@@ -124,7 +124,7 @@
                     <tbody>
                     <tr>
                         <td>1</td>
-                        <td><div class="user_avatar"><img src="{{ userprofile.gravatar_url }}?s=21" /></div>arghy zmeu</td>
+                        <td><div class="user_avatar"><img src="{{ userprofile.user.gravatar_url }}?s=21" /></div>arghy zmeu</td>
                         <td>23</td>
                         <td>24 won / 7 lost</td>
                             <td>28 <a href="#" class="button">view locker</a></td>

@@ -9,7 +9,6 @@ from django.shortcuts import render_to_response, redirect, render
 from django.template.context import RequestContext
 
 from account.models import UserProfile, PasswordReset, UserStats
-from division.models import Divisions
 
 def register(request):
     if request.method == "POST":
@@ -20,8 +19,6 @@ def register(request):
             gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(request.POST.get('email')).hexdigest()
 
             userprofile = UserProfile.objects.create(user = user, gravatar_url = gravatar_url)
-
-            division = get_division('D')
 
             userstats = UserStats(user = userprofile).save()
 
