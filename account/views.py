@@ -8,22 +8,28 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response, redirect, render
 from django.template.context import RequestContext
 
-from account.models import UserProfile, PasswordReset, UserStats
+from account.models import UserProfile, PasswordReset, UserStats, UserDivision
 
 def register(request):
     if request.method == "POST":
         form =  UserRegister(request.POST)
         if form.is_valid():
-            user = User.objects.create_user(username=request.POST['username'], password=request.POST['password'], email=request.POST['email'])
-            user.save()
-            gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(request.POST.get('email')).hexdigest()
+            try:
+                user = User.objects.create_user(username=request.POST['username'], password=request.POST['password'], email=request.POST['email'])
+                user.save()
+                gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(request.POST.get('email')).hexdigest()
 
-            userprofile = UserProfile.objects.create(user = user, gravatar_url = gravatar_url)
+                userprofile = UserProfile.objects.create(user = user, gravatar_url = gravatar_url)
 
-            userstats = UserStats(user = userprofile).save()
 
-            auth_login(request,authenticate(username=request.POST['username'], password=request.POST['password']))
-            return HttpResponse(simplejson.dumps({'ok': '/'}))
+                userstats = UserStats.objects.create(user = userprofile)
+
+                division = UserDivision.objects.create(user=userstats)
+
+                auth_login(request,authenticate(username=request.POST['username'], password=request.POST['password']))
+                return HttpResponse(simplejson.dumps({'ok': '/'}))
+            except Exception as exp:
+                print exp.message
         else:
             return HttpResponse(simplejson.dumps(form.errors))
 
@@ -65,6 +71,7 @@ def user_menu(request):
     render_context = {}
     user = UserStats.objects.get(user = UserProfile.objects.get(user=request.user))
     render_context['userprofile'] = user
+#    division_ user = UserDIvision.obje
     return render_context
 
 def profile(request, profile_id):
