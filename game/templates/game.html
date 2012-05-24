@@ -19,7 +19,7 @@
         var id = '{{ user.id }}';
         var lvl = {{ userprofile.lvl }} * {{ userprofile.lvl }} * {{ userprofile.lvl }} * 5;
         var progress = 100 * {{ userprofile.exp }} / lvl;
-        var avion = '{{ userprofile.avion }}' ;
+        var avion = '{{ avion }}' ;
 
     </script>
     <div id="logo"><a href="/"><img src="{{ STATIC_URL }}img/logo.png" alt="Avioane" /></a></div>
@@ -68,10 +68,10 @@
                     </div>
 
                     <div id="user_division_holder" class="clearfix">
-                        <div id="user_division" class="stats_square stats_contrast">{{ userprofile.division }}</div>
-                        <div id="user_division_relegation" class="stats_square stats_contrast">C</div>
+                        <div id="user_division" class="stats_square stats_contrast">{{ division }}</div>
+                        <div id="user_division_relegation" class="stats_square stats_contrast">{{ prev_division }}</div>
                         <div id="user_division_status" class="stats_contrast"><div id="user_division_bar_holder"><div id="user_division_bar"></div></div></div>
-                        <div id="user_division_promotion" class="stats_square stats_contrast">A</div>
+                        <div id="user_division_promotion" class="stats_square stats_contrast">{{ next_division }}</div>
                     </div>
 
                 </div>

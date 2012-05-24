@@ -16,7 +16,6 @@ class UserProfile(models.Model):
 
 class UserStats(models.Model):
     user = models.ForeignKey(UserProfile)
-    division = models.CharField(max_length=30, default='D')
 
     money = models.IntegerField(null=True, default=10)
     exp = models.IntegerField(null=True, default=0)
@@ -27,7 +26,14 @@ class UserStats(models.Model):
     won = models.IntegerField(null=True, default=0)
     lost = models.IntegerField(null=True, default=0)
 
+class UserDivision(models.Model):
+    user = models.ForeignKey(UserStats)
+    name = models.CharField(max_length=30, default='D')
 
+    rank = models.IntegerField(max_length=30, default=100)
+    points = models.IntegerField(max_length=30, default=0)
+
+    matches_played = models.IntegerField(max_length=30, default=0)
 
 class PasswordReset(models.Model):
     email = models.EmailField(max_length=50)
