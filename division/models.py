@@ -6,7 +6,7 @@ import urllib
 
 class Weapons(models.Model):
     name = models.CharField(max_length=2, default='a')
-    image = models.CharField(max_length=50, dafault='ImagePath')
+    image = models.CharField(max_length=50, default='ImagePath')
 
     description = models.TextField(null=True)
 

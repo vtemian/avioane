@@ -16,7 +16,7 @@ class UserProfile(models.Model):
 
 class UserStats(models.Model):
     user = models.ForeignKey(UserProfile)
-    division = models.ForeignKey(Division)
+    division = models.CharField(max_length=30, default='D')
 
     money = models.IntegerField(null=True, default=10)
     exp = models.IntegerField(null=True, default=0)
