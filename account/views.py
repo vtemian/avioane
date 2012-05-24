@@ -29,7 +29,7 @@ def register(request):
                 auth_login(request,authenticate(username=request.POST['username'], password=request.POST['password']))
                 return HttpResponse(simplejson.dumps({'ok': '/'}))
             except Exception as exp:
-                print exp.message
+                return HttpResponse(exp.message)
         else:
             return HttpResponse(simplejson.dumps(form.errors))
 
