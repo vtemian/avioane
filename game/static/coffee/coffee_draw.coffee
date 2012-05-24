@@ -6,9 +6,41 @@ war = ""
 enemy = ""
 myTurn = false
 ready = 0
-
 class User
   constructor: (@username, @avion, @id) ->
+
+class Countdown
+  constructor: (@target_id, @start_time, @finished) ->
+
+  init: ->
+    @reset()
+    window.tick = =>
+      @tick()
+    @my_interval = setInterval(window.tick, 1000)
+
+  reset: ->
+    #time = @start_time
+    @seconds = parseInt(@start_time)
+    @updateTarget()
+
+  tick: ->
+
+    [seconds] = [@seconds]
+    if seconds > 0
+      if seconds is 10
+        console.log("WARNING! You have 10 secnds left")
+        @seconds = seconds - 1
+      else
+        @seconds = seconds - 1
+    @updateTarget()
+    if seconds is 1
+      clearInterval(@my_interval)
+      @finished()
+
+  updateTarget: ->
+    seconds = @seconds
+    seconds = '0' + seconds if seconds < 10
+    console.log("Seconds left:"+ seconds)
 
 class Users
   constructor: ->
@@ -28,7 +60,9 @@ dude = new Users()
 
 $(document).ready ->
   battleId = 0
-
+  timer = new Countdown("#time_left", "10", -> console.log('asd'))
+  timer.init()
+  console.log timer
   socket.emit "handshake",
     username: username,
     id: id,
@@ -102,8 +136,12 @@ $(document).ready ->
           $('#versus').fadeOut('slow', ->
               $("#battle").fadeIn(500).css('display', 'block')
               $("#start_battle_button").fadeIn(500).css('display', 'block')
+
+
           )
         , 3000);
+
+
     )
 
     if data.firstUser == id
