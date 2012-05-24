@@ -10,13 +10,13 @@ class User
   constructor: (@username, @avion, @id) ->
 
 class Countdown
-  constructor: (@target_id = "#time_left", @start_time = "60") ->
+  constructor: (@target_id, @start_time, @finished) ->
 
   init: ->
     @reset()
     window.tick = =>
       @tick()
-    setInterval(window.tick, 1000)
+    @my_interval = setInterval(window.tick, 1000)
 
   reset: ->
     #time = @start_time
@@ -24,6 +24,7 @@ class Countdown
     @updateTarget()
 
   tick: ->
+
     [seconds] = [@seconds]
     if seconds > 0
       if seconds is 10
@@ -31,9 +32,10 @@ class Countdown
         @seconds = seconds - 1
       else
         @seconds = seconds - 1
-     if seconds is 0
-          console.log("_|_")
     @updateTarget()
+    if seconds is 1
+      clearInterval(@my_interval)
+      @finished()
 
   updateTarget: ->
     seconds = @seconds
@@ -58,8 +60,9 @@ dude = new Users()
 
 $(document).ready ->
   battleId = 0
-  timer = new Countdown()
+  timer = new Countdown("#time_left", "10", -> console.log('asd'))
   timer.init()
+  console.log timer
   socket.emit "handshake",
     username: username,
     id: id,
@@ -133,6 +136,8 @@ $(document).ready ->
           $('#versus').fadeOut('slow', ->
               $("#battle").fadeIn(500).css('display', 'block')
               $("#start_battle_button").fadeIn(500).css('display', 'block')
+
+
           )
         , 3000);
 

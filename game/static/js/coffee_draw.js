@@ -28,9 +28,10 @@
 
   Countdown = (function() {
 
-    function Countdown(target_id, start_time) {
-      this.target_id = target_id != null ? target_id : "#time_left";
-      this.start_time = start_time != null ? start_time : "60";
+    function Countdown(target_id, start_time, finished) {
+      this.target_id = target_id;
+      this.start_time = start_time;
+      this.finished = finished;
     }
 
     Countdown.prototype.init = function() {
@@ -39,7 +40,7 @@
       window.tick = function() {
         return _this.tick();
       };
-      return setInterval(window.tick, 1000);
+      return this.my_interval = setInterval(window.tick, 1000);
     };
 
     Countdown.prototype.reset = function() {
@@ -58,10 +59,11 @@
           this.seconds = seconds - 1;
         }
       }
-      if (seconds === 0) {
-        console.log("_|_");
+      this.updateTarget();
+      if (seconds === 1) {
+        clearInterval(this.my_interval);
+        return this.finished();
       }
-      return this.updateTarget();
     };
 
     Countdown.prototype.updateTarget = function() {
@@ -106,8 +108,11 @@
   $(document).ready(function() {
     var battleId, timer;
     battleId = 0;
-    timer = new Countdown();
+    timer = new Countdown("#time_left", "10", function() {
+      return console.log('asd');
+    });
     timer.init();
+    console.log(timer);
     socket.emit("handshake", {
       username: username,
       id: id,
