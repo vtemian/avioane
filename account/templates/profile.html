@@ -1,75 +1,93 @@
 {% extends 'index.html' %}
 {% block extrahead %}
-    <script src="{{ STATIC_URL }}jquery-collision-1.0.1.js"></script>
-    <script src="{{ STATIC_URL }}js/jquery.simplemodal.1.4.1.min.js"></script>
-    <script src="{{ STATIC_URL }}jquery-ui-draggable-collision-1.0.1.js"></script>
-    <script src="{{ STATIC_URL }}js/game.js"></script>
-
+    <script type="text/javascript" src="{{ STATIC_URL }}js/map.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/battle.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/war.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/frontend.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plane.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/collissions.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/socket.io-client/dist/socket.io.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/coffee_draw.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/lobby.js"></script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/frontpage.css">
 {% endblock %}
 {% block header %}
-    <script type="text/javascript">
-        var socket = io.connect('192.168.0.167', {port:5551});
-        var username = '{{ user.username }}';
-        socket.on('identified', function (data) {
-            socket.emit('handshaking', { user: '{{ user.username }}' });
-        });
-    </script>
-    <div id="notifications_bar"></div>
-    <div id="wrap">
+    <div id="logo"><a href="/"><img src="{{ STATIC_URL }}img/logo.png" alt="Avioane" /></a></div>
+    <nav id="user_menu_logged">
+        <ul>
+            <li><div class="user_avatar"><img src="{{ userprofile.user.gravatar_url }}?s=21" alt="avatar" /></div><h3 id="user_name">{{ user.username }}</h3></li>
+            <li><img src="{{ STATIC_URL }}img/user/menu/icon_drop.png"/></li>
+            <li><a href="/logout"><img src="{{ STATIC_URL }}img/user/menu/icon_logout.png"/></a></li>
+        </ul>
+    </nav>
 
-    <div id="top">
-        <img class="imag_avion" src="{{ STATIC_URL }}images/avionn.png" width="100px" height="80px" />
-        <span class="title">Planes</span><span class="title" id="war-title">WAR</span>
-        <div id="que">
-            <span id="online"></span> online players
-        </div>
-        <div id="mini_profile">
-            <div style="float: left; padding-top: 20px">
-                <div style="text-align: center; display: block;">Welcome</div>
-                <div style="text-align: center; display: block;">{{ user.username }}!</div>
-                <div style="text-align: center; padding-top: 10px;"><a href="/logout">Logout</a></div>
-            </div>
-            <img style="float: right;" src="{{ userprofile.gravatar_url }}?s=100"><br>
+    <nav id="game_menu">
+        <ol>
+            <li><a href="/">acasa</a></li>
+            <li><a href="#">hangar</a></li>
+            <li><a href="#">batalie</a></li>
+            <li><a href="#">hall of fame</a></li>
+        </ol>
+    </nav>
 
-        </div>
-    </div>
 
 {% endblock %}
 {% block content %}
-    <div id="content">
-        <div id="stats">
-            <div id="turn"></div>
-            <div id="join-battle">Join battle!</div>
+    <div id="body">
+
+        <div id="profile_page" class="clearfix">
+            <div id="profile_body">
+                <div id="profile_top" class="clearfix">
+                    <div id="profile_avatar"><img src="{{ userpro.gravatar_url }}" alt="avatar" /></div>
+                    <div id="profile_stats" class="clearfix">
+                        <span><img src="{{ STATIC_URL }}img/user/profile/locker/ranks/liutenant.png" alt="liutenant" /></span><h2>{{ userpro.user.username }}</h2><h3>({{ stats.rank }})</h3>
+                        <ul>
+                            <li>Level: {{ stats.lvl }}</li>
+                            <li>Division: {{ userdiv.name }}</li>
+                            <li>Badges unlocked: {{ medalsnr }}</li>
+                            <li>Won: {{ stats.won }}</li>
+                            <li>Lost: {{ stats.lost }}</li>
+                        </ul>
+                    </div>
+                    <div id="profile_settings"><img src="{{ STATIC_URL }}img/user/profile/locker/settings.png" alt="profile_settings"/>settings</div>
+                </div>
+                <div id="profile_last_badge">
+                    <div id="profile_last_badge_description" class="clearfix"><span><img src="{{ STATIC_URL }}img/user/profile/badges/{{ stats.medals }}" alt="Badge Description"/></span><p>Woow, are you a magician? You just beat up your enemy without any of your planes getting hit! Hudini! You've just unlocked The <q>Brothers in peace</q> badge. Check out the new cool trophy in your locker! </p></div>
+                </div>
+                <div id="profile_locker" class="clearfix">
+                    <div id="locker_top">
+                    </div>
+                    <div id="locker_middle">
+                        <ul id="locker_rafturi">
+
+
+
+                                <li class="locker_raft clearfix">
+                                    {% for medal in medals %}
+                                <div class="trophy"><img src="{{ STATIC_URL }}img/user/profile/trophies/{{ medal.medals.image }}" alt="{{ medal.medals.description }}"/></div>
+                                    {% endfor %}
+
+                                </li>
+
+
+                        </ul>
+                    </div>
+                    <div id="locker_bottom">
+                    </div>
+                    <div id="locker_stickers" class="clearfix">
+                        <div class="sticker"><img src="{{ STATIC_URL }}img/user/profile/stickers/oldschool.png" /></div>
+
+
+
+                    </div>
+                </div>
+                <div id="profile_stickers">
+                </div>
+            </div>
+
+            <div id="profile_sidebar">
+            </div>
         </div>
-        <div id="rank">
-            <table class="rank_profile">
-                <thead>
-                <td></td>
-                <td>user</td>
-                <td>level</td>
-                <td>coins</td>
-                <td>experience</td>
-                <td>rank</td>
-                <td>alliance</td>
-                </thead>
-                <tbody>
-
-                    <tr>
-                        <td><img src="{{ user.gravatar_url }}?s=50"></td>
-                        <td>{{ user.user.username }}</td>
-                        <td>{{ user.lvl }}</td>
-                        <td>{{ user.money }}</td>
-                        <td>{{ user.exp }}</td>
-                        <td>{{ user.rank }}</td>
-                        <td>{{ user.clan }}</td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
-
-
-    </div>
 
 
 {% endblock %}

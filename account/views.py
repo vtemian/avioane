@@ -7,6 +7,7 @@ from account.form import UserRegister, UserLogin, ResetPassword
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response, redirect, render
 from django.template.context import RequestContext
+from account.models import UserMedals
 
 from account.models import UserProfile, PasswordReset, UserStats, UserDivision
 
@@ -79,8 +80,19 @@ def user_menu(request):
 
 def profile(request, profile_id):
     context = user_menu(request)
-    user= UserProfile.objects.get(pk=profile_id)
-    context['user'] = user
+    userpro= UserProfile.objects.get(pk=profile_id)
+    context['userpro'] = userpro
+    stats=UserStats.objects.get(pk=userpro.user_id)
+    context['stats'] = stats
+    userdiv=UserDivision.objects.get(pk=userpro.user_id)
+    context['userdiv'] = userdiv
+    medals=UserMedals.objects.filter(user=stats)
+    context['medals'] = medals
+    medalsnr=0
+    for medal in medals:
+        medalsnr=medalsnr+1
+    context['medalsnr']= medalsnr
+
     return render_to_response('profile.html',
         context,
         context_instance=RequestContext(request))

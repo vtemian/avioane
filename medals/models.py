@@ -11,3 +11,4 @@ class Medal(models.Model):
     type= models.CharField(max_length=30)
     value= models.CharField(max_length=30)
     description= models.CharField(max_length=255)
+    image = models.CharField(max_length=50, default='ImagePath')

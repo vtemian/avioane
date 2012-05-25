@@ -110,6 +110,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'medals',
     'account',
     'battle',
     'game',
@@ -117,7 +118,7 @@ INSTALLED_APPS = (
     'facebook',
     'plane',
     'notification',
-    'medals',
+
     'lobby',
     'nodejs_server',
     'hangar',

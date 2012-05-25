@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from division.models import Division
 import json
 import urllib
+import medals
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     gravatar_url = models.CharField(max_length=100)
@@ -25,6 +27,7 @@ class UserStats(models.Model):
 
     won = models.IntegerField(null=True, default=0)
     lost = models.IntegerField(null=True, default=0)
+    medals=models.ManyToManyField(medals.models.Medal, through='UserMedals', null=True)
 
 class UserDivision(models.Model):
     user = models.ForeignKey(UserStats)
@@ -39,3 +42,7 @@ class PasswordReset(models.Model):
     token = models.CharField(max_length=50)
     created_at = models.DateTimeField(default=datetime.now)
     done = models.BooleanField(default=False)
+
+class UserMedals(models.Model):
+    user = models.ForeignKey(UserStats)
+    medals= models.ForeignKey(medals.models.Medal)
