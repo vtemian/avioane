@@ -46,6 +46,7 @@
               "x": x,
               "y": y
             };
+            this.move_timer.clearMyInterval();
             this.sendData("attack", {
               "coordinates": coordinates,
               "battleId": this.battleId,

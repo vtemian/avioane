@@ -178,20 +178,32 @@
         <div id="mini_map"></div>
 
 
-        <div id="planes_health">
-            <ul>
-                <li><div class="mini_plane"></div><div class="plane_health_bar"><div class="plane_health"></div></div></li>
-                <li><div class="mini_plane"></div><div class="plane_health_bar"><div class="plane_health"></div></div></li>
-                <li><div class="mini_plane"></div><div class="plane_health_bar"><div class="plane_health"></div></div></li>
-                <div class="clearfix"></div>
+        <div id="mini_info">
+
+            <div id="timer">
+
+                <h1>Your turn!!</h1>
+                <div id="seconds">59</div>
+
+            </div>
+
+            <div id="weapons">
+                <ul>
+                    <li><img src="{{ STATIC_URL }}img/store/weapons/missle.png" alt="radar"></li>
+                    <li><img src="{{ STATIC_URL }}img/store/weapons/missle.png" alt="radar"></li>
+                    <li><img src="{{ STATIC_URL }}img/store/weapons/missle.png" alt="radar"></li>
+                    <li><img src="{{ STATIC_URL }}img/store/weapons/missle.png" alt="radar"></li>
+                </ul>
+            </div>
+
+
+            <ul id="planes_health" class="clearfix">
+                <li><div class="mini_plane"></div></li>
+                <li><div class="mini_plane"></div></li>
+                <li><div class="mini_plane"></div></li>
             </ul>
 
-            <div id="console">
-                Last shot: Missed (A-5) (5:20 , 5/5/2012)
-                Last shot: Missed (A-4) (5:20 , 5/5/2012)
-                Last shot: Missed (D-8) (5:20 , 5/5/2012)
-                Last shot: Missed (F-3) (5:20 , 5/5/2012)
-            </div>
+
 
         </div>
 

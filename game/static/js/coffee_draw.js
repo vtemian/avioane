@@ -40,6 +40,7 @@
       this.target_id = target_id;
       this.start_time = start_time;
       this.finished = finished;
+      this.target_id = $('#seconds');
     }
 
     Countdown.prototype.init = function() {
@@ -60,10 +61,13 @@
       var seconds;
       seconds = [this.seconds][0];
       if (seconds > 0) {
-        if (seconds === 10) {
-          console.log("WARNING! You have 10 secnds left");
+        $('#timer>h1').remove();
+        $('#timer>h2').remove();
+        if (seconds <= 10) {
+          $('#timer').prepend('<h2>Hurry up!</h2>');
           this.seconds = seconds - 1;
         } else {
+          $('#timer').prepend('<h1>Your turn!</h1>');
           this.seconds = seconds - 1;
         }
       }
@@ -80,10 +84,14 @@
       if (seconds < 10) {
         seconds = '0' + seconds;
       }
-      return console.log("Seconds left:" + seconds);
+      return this.target_id.html(seconds);
     };
 
     Countdown.prototype.clearMyInterval = function() {
+      $('#timer>h1').remove();
+      $('#timer>h2').remove();
+      $('#timer').prepend('<h2>Opponent!</h2>');
+      this.target_id.html('00');
       return clearInterval(this.my_interval);
     };
 
@@ -197,7 +205,7 @@
                 'state': 'loss',
                 'enemy': enemy,
                 'battleId': battleId
-              }, function(data) {
+              }, function() {
                 socket.emit("finish", {
                   battleId: battleId,
                   user: id
@@ -229,10 +237,14 @@
           $('#notificationSmall').attr('class', 'succes notification');
           $('#notificationSmall').html("Start battle!").dequeue().stop().slideDown(200).delay(1700).slideUp(200);
           war.move_timer = new Countdown("#time_left", "10", function() {
-            return war.sendData("next-turn", {
+            war.sendData("next-turn", {
               enemy: enemy
             });
-          }, $('#notificationSmall').attr('class', 'alert notification'), $('#notificationSmall').html("To late!").dequeue().stop().slideDown(200).delay(1700).slideUp(200), myTurn = false);
+            $('#notificationSmall').attr('class', 'alert notification');
+            $('#notificationSmall').html("To late!").dequeue().stop().slideDown(200).delay(1700).slideUp(200);
+            war.move_timer.clearMyInterval();
+            return myTurn = false;
+          });
           return war.move_timer.init();
         } else {
           $('#notificationSmall').attr('class', 'info notification');
@@ -251,6 +263,7 @@
         });
         $('#notificationSmall').attr('class', 'alert notification');
         $('#notificationSmall').html("To late!").dequeue().stop().slideDown(200).delay(1700).slideUp(200);
+        war.move_timer.clearMyInterval();
         return myTurn = false;
       });
       war.move_timer.init();
@@ -338,7 +351,18 @@
     });
     socket.on("next-turn", function(data) {
       myTurn = true;
-      return $('#notificationSmall').html("It's your turn!").dequeue().stop().slideDown(200).delay(1700).slideUp(200);
+      $('#notificationSmall').attr('class', 'succes notification');
+      $('#notificationSmall').html("It's your turn!").dequeue().stop().slideDown(200).delay(1700).slideUp(200);
+      war.move_timer = new Countdown("#time_left", "10", function() {
+        war.sendData("next-turn", {
+          enemy: enemy
+        });
+        $('#notificationSmall').attr('class', 'alert notification');
+        $('#notificationSmall').html("To late!").dequeue().stop().slideDown(200).delay(1700).slideUp(200);
+        war.move_timer.clearMyInterval();
+        return myTurn = false;
+      });
+      return war.move_timer.init();
     });
     socket.on("disconnectGame", function(data) {
       $.post('/battle/disconnect/', {

@@ -8,7 +8,7 @@ from division.views import Divisions
 from plane.models import Plane, Coordinates, Positioning
 from plane.views import check_hit
 from nodejs_server.views import send_message
-from datetime import datetime as dt
+from datetime import datetime as dt, timedelta
 import datetime
 
 def create(firstUser, secondUser):
@@ -77,7 +77,6 @@ def send_invitation(request):
                     invitations = BattleInvitation.objects.filter(toUser=toUser, finished=False)
                     dont_make_invitation = False
                     for invitation in invitations:
-                        print "a"
                         print check_invitation_time(invitation)
                         if check_invitation_time(invitation):
                             invitation.finished = True
@@ -109,13 +108,7 @@ def create_invitation(fromUser, toUser):
 def check_invitation_time(invitation):
     last_time = invitation.start_time
     this_time = dt.now()
-    elapsed = this_time - last_time
-    print dir(elapsed)
-    print "iuresh", elapsed.seconds / 60 , datetime.timedelta(minutes=1)
-    if elapsed.seconds / 60 >= 1 :
-        return True
-    else:
-        return False
+    return (this_time -last_time) > timedelta (minutes = 1)
 
 @csrf_exempt
 def accept_invitation(request):
@@ -187,29 +180,32 @@ def disconnect(request):
 @csrf_exempt
 def result(request):
     if request.method == 'POST':
-        userProfile = UserProfile.objects.get(user=request.user)
-        state = request.POST.get('state')
+        try:
+            userProfile = UserProfile.objects.get(user=request.user)
+            state = request.POST.get('state')
 
-        enemy = UserProfile.objects.get(user=User.objects.get(pk=request.POST.get('enemy')))
-        battle = Battle.objects.get(pk=request.POST.get('battleId'))
+            enemy = UserProfile.objects.get(user=User.objects.get(pk=request.POST.get('enemy')))
+            battle = Battle.objects.get(pk=request.POST.get('battleId'), finished=false)
 
-        enemy.ready_for_battle = True
-        userProfile.ready_for_battle = True
+            enemy.ready_for_battle = True
+            userProfile.ready_for_battle = True
 
-        #finished the battle
-        battle.finished = True
-        
-        if state == 'loss':
-            increase_level(enemy)
-            increase_money(enemy, userProfile)
+            #finished the battle
+            battle.finished = True
 
-            division = Divisions()
-            division.check_division(enemy, userProfile)
+            if state == 'loss':
+                increase_level(enemy)
+                increase_money(enemy, userProfile)
 
-        enemy.save()
-        userProfile.save()
-        battle.save()
-        return HttpResponse('ok')
+                division = Divisions()
+                division.check_division(enemy, userProfile)
+
+            enemy.save()
+            userProfile.save()
+            battle.save()
+            return HttpResponse('ok')
+        except Exception as ext:
+            print ext.message
     return HttpResponse('Not here!')
 
 

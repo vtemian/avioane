@@ -30,6 +30,7 @@ class War
         $('#notificationSmall').attr('class', 'alert notification')
         $('#notificationSmall').html("It's not your turn").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
       else
+
         squareHeight = @map.squareHeight
         position = @map.position
 
@@ -46,7 +47,7 @@ class War
             "x": x,
             "y": y
           }
-
+          @move_timer.clearMyInterval()
           @sendData "attack",
             "coordinates": coordinates
             "battleId": @battleId
