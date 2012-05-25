@@ -856,6 +856,7 @@ Lobby Page
 		}
 
 		#user_profile{
+        cursor:pointer;
 		width:115px;
 		height:35px;
 		margin-top:12px;

@@ -176,6 +176,11 @@ io.sockets.on 'connection', (socket) ->
   socket.on 'test', (data) ->
     console.log data
 
+  socket.on 'next-turn', (data) ->
+    nextTurnUser = online.getById data.enemy
+
+    nextTurnUser.socket.emit "next-turn"
+
   socket.on 'disconnect', ->
     online_peoples -= 1
     socket.broadcast.emit "online-peoples", online_peoples

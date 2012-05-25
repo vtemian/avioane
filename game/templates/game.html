@@ -19,7 +19,10 @@
         var id = '{{ user.id }}';
         var lvl = {{ userprofile.lvl }} * {{ userprofile.lvl }} * {{ userprofile.lvl }} * 5;
         var progress = 100 * {{ userprofile.exp }} / lvl;
-        var avion = '{{ avion }}' ;
+        var avion = '{{ avion }}';
+
+        var points = {{ division.points }};
+        var division_progress = points*100/({{ my_division.go_up_points }} - {{ my_division.go_down_points }}) + 3;
 
     </script>
     <div id="logo"><a href="/"><img src="{{ STATIC_URL }}img/logo.png" alt="Avioane" /></a></div>
@@ -77,13 +80,13 @@
                 </div>
 
                 <div id="user_hangar_holder" class="stats_contrast">
-                    <div id="user_hangar_plane"><img src="{{ STATIC_URL }}img/battle/map/mini_maps/airborne.png" alt="airborne"/></div>
+                    <div id="user_hangar_plane"><img src="{{ STATIC_URL }}img/battle/map/mini_maps/{{ avion }}.png" alt="{{ avion }}"/></div>
                     <div id="user_hangar_button" class="stats_contrast">hangar</div>
                 </div>
 
                 <div id="user_profile_money_holder">
                     <div id="user_money" class="stats_contrast"><strong>$</strong> {{ userprofile.money }}</div>
-                    <div id="user_profile" class="stats_contrast">profile</div>
+                    <div id="user_profile" data-id="{{ user.id }}" class="stats_contrast">profile</div>
                 </div>
 
                 <div id="user_season_games">
@@ -155,7 +158,7 @@
             </div>
 
         </div>
-    </div>
+
 
     <div id="versus">
 
@@ -194,15 +197,5 @@
 
     </div>
 
-        <div id="game" style="display: none">
-            <div id="gameTools">
-                <button id="ready">I'm Ready!</button>
-            </div>
-            <div id="gameHolder" style="position: relative;"></div>
-        </div>
-
-    <div id="win-loss" style="display: none;">
-        YOU WON!
-    </div>
-
+</div>
 {% endblock %}

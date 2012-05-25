@@ -248,6 +248,11 @@
     socket.on('test', function(data) {
       return console.log(data);
     });
+    socket.on('next-turn', function(data) {
+      var nextTurnUser;
+      nextTurnUser = online.getById(data.enemy);
+      return nextTurnUser.socket.emit("next-turn");
+    });
     return socket.on('disconnect', function() {
       var battle, battleid, client, _ref;
       online_peoples -= 1;

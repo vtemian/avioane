@@ -1,5 +1,5 @@
 from lobby.models import WaitingUser
-from account.models import UserProfile
+from account.models import UserProfile, UserDivision, UserStats
 from django.views.decorators.csrf import csrf_exempt
 from battle.views import create as create_battle
 from django.http import HttpResponse
@@ -40,6 +40,14 @@ def join_lobby(request):
 
 #checking the matching battle posibility
 def check_matching(firstUser, secondUser):
+
     if firstUser == secondUser:
         return "same"
-    return "ok"
+
+    first_division = UserDivision.objects.get(user=UserStats.objects.get(user=firstUser))
+    second_division = UserDivision.objects.get(user=UserStats.objects.get(user=secondUser))
+
+    if first_division.name == second_division.name:
+        return "ok"
+    else:
+        return "wait"

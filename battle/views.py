@@ -2,8 +2,9 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
-from account.models import UserProfile
+from account.models import UserProfile, UserStats, UserDivision
 from battle.models import Battle, BattleInvitation
+from division.views import Divisions
 from plane.models import Plane, Coordinates, Positioning
 from plane.views import check_hit
 from nodejs_server.views import send_message
@@ -174,6 +175,10 @@ def disconnect(request):
         increase_level(userProfile)
         increase_money(userProfile, enemyUserProfile)
 
+        division = Divisions()
+        division.check_division(userProfile, enemyUserProfile)
+
+
         battle.finished = True
         battle.save()
 
@@ -198,6 +203,9 @@ def result(request):
             increase_level(enemy)
             increase_money(enemy, userProfile)
 
+            division = Divisions()
+            division.check_division(enemy, userProfile)
+
         enemy.save()
         userProfile.save()
         battle.save()
@@ -206,6 +214,7 @@ def result(request):
 
 
 def increase_level(user):
+    user = UserStats.objects.get(user=user)
     if user.lvl == 1:
         user.lvl += 1
     else:
@@ -217,10 +226,17 @@ def increase_level(user):
     user.save()
 
 def increase_money(win, loss):
+    win = UserStats.objects.get(user=win)
+    loss = UserStats.objects.get(user=loss)
+
     win.money += 100 + loss.lvl*2
     win.won += 1
+
     loss.money -= 50 - win.lvl
+    if loss.money < 0:
+        loss.money = 0
     loss.lost += 1
+
     win.save()
     loss.save()
 
@@ -228,9 +244,40 @@ def increase_money(win, loss):
 def get_details(request):
     try:
         battle = Battle.objects.get(pk=request.GET.get('battleId'))
-        user1 = battle.enemy
-        user2 = UserProfile.objects.get(user=battle.user)
-
-        return HttpResponse(simplejson.dumps({'user1': {'lvl': user1.lvl, 'username': user1.user.username, 'avion': user1.avion, 'won':user1.won, 'lost':user1.lost}, 'user2': {'lvl': user2.lvl, 'username': user2.user.username, 'avion': user2.avion, 'won':user2.won, 'lost':user2.lost}}))
-    except Exception:
+        user1 = UserStats.objects.get(user=battle.enemy)
+        user2 = UserStats.objects.get(user=UserProfile.objects.get(user=battle.user))
+        user_division1 = UserDivision.objects.get(user=user1)
+        user_division2 = UserDivision.objects.get(user=user2)
+        divisions = Divisions()
+        avion1 = divisions.get_division_by_name(user_division1.name)['plane_type']
+        avion2 = divisions.get_division_by_name(user_division2.name)['plane_type']
+        return HttpResponse(simplejson.dumps({'user1': {'lvl': user1.lvl, 'username': user1.user.user.username, 'avion': avion1, 'won':user1.won, 'lost':user1.lost}, 'user2': {'lvl': user2.lvl, 'username': user2.user.user.username, 'avion': avion2, 'won':user2.won, 'lost':user2.lost}}))
+    except Exception as exp:
+        print exp.message
         return HttpResponse(simplejson.dumps({'message': 'error'}))
+
+@csrf_exempt
+def lost_planes_position(request):
+    if request.method == 'POST':
+        userProfile = UserProfile.objects.get(user=request.user)
+
+        enemy = UserProfile.objects.get(user=User.objects.get(pk=request.POST.get('enemy')))
+        battle = Battle.objects.get(pk=request.POST.get('battleId'))
+
+        enemy.ready_for_battle = True
+        userProfile.ready_for_battle = True
+
+        #finished the battle
+        battle.finished = True
+
+        increase_level(enemy)
+        increase_money(enemy, userProfile)
+
+        division = Divisions()
+        division.check_division(enemy, userProfile)
+
+        enemy.save()
+        userProfile.save()
+        battle.save()
+        return HttpResponse('ok')
+    return HttpResponse('Not here!')

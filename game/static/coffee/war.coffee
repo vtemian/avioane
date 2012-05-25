@@ -8,6 +8,8 @@ class War
     @userSocket = opts.userSocket
     @myTurn = opts.myTurn
     @ready = opts.ready
+    @move_timer = opts.move_timer
+
 
     @map = opts.map
     @context = @map.canvas.getContext('2d')
