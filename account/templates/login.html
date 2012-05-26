@@ -5,6 +5,17 @@
     <script src="{{ STATIC_URL }}js/frontpage.js"></script>
     <script src="{{ STATIC_URL }}js/login.js"></script>
     <script src="{{ STATIC_URL }}js/register.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.jparallax.min.js" ></script>
+    <script src="{{ STATIC_URL }}js/jquery.event.frame.js" ></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function()
+        {
+            $('#parallax2 .parallax-layer2')
+                    .parallax2({
+                        mouseport: $('#parallax2')
+                    });
+        });
+    </script>
     <link rel="stylesheet" href="{{ STATIC_URL }}css/frontpage.css">
 {% endblock %}
 {% block header %}
@@ -90,8 +101,15 @@
         </div>
     
     </div>
+    <div id="insula">
+        <div id="nor"></div>
+        <div id="nori"></div>
+        <div id="avion1"></div>
+        <div id="avion2"></div>
+        <div id="avion3"></div>
+        <div id="bombe"></div>
+    </div>
 
-    <aside id="insula"><!--Island--></aside>
 </div>
 
 {% endblock %}

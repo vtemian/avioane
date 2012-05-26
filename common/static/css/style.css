@@ -2022,9 +2022,9 @@ padding-right:10px;
 
 
 #error{
-    width:940px;
-    height:390px;
-    background:url(../img/404/bg.png) ;
+    width:950px;
+    height:250px;
+
     background-size:100% 390px;
     margin:0 auto;
     margin-bottom:100px;
@@ -2103,3 +2103,99 @@ Inlined to avoid required HTTP connection: h5bp.com/r
     p, h2, h3 { orphans: 3; widows: 3; }
     h2, h3 { page-break-after: avoid; }
 }
+
+
+
+/*Insula - Parallax----------------*/
+
+#insula{
+    position:relative;
+    width:940px;
+    height:620px;
+    margin:0px auto;
+    margin-top:30px;
+    margin-bottom:80px;
+    background:url(../img/insula.png) no-repeat bottom;
+}
+
+#nor{
+    position:absolute;
+    z-index:1;
+    left:50px;
+    width:301px;
+    height:111px;
+    background:url(../img/nori.png);
+}
+
+#nori{
+    position:absolute;
+    z-index:2;
+    right:20px;
+    width:381px;
+    height:159px;
+    background:url(../img/nori2.png);
+}
+
+#avion1{
+    position:absolute;
+    z-index:3;
+    top:105px;
+    left:320px;
+    width:162px;
+    height:61px;
+    background:url(../img/avion1.png);
+}
+
+#avion2{
+    position:absolute;
+    z-index:4;
+    top:80px;
+    right:320px;
+    width:104px;
+    height:39px;
+    background:url(../img/avion2.png);
+}
+
+#avion3{
+    position:absolute;
+    z-index:5;
+    top:70px;
+    left:350px;
+    width:81px;
+    height:30px;
+    background:url(../img/avion3.png);
+}
+
+#bombe{
+    position:absolute;
+    z-index:5;
+    top:140px;
+    right:350px;
+    width:38px;
+    height:76px;
+    background:url(../img/bombe.png);
+}
+
+
+/*---- ----------------*/
+
+/* ==|== PARALLAX =======================================================
+PARALLAX
+========================================================================== */
+
+
+#parallax-header { height:200px; background-color:gray;  }
+#parallax {position:relative; overflow:hidden; width:950px; height:250px;
+    background-image:url('../img/404/bg.png');
+}
+.parallax-viewport {
+    position: relative;     /* relative, absolute, fixed */
+    overflow: hidden;
+}
+.parallax-layer {
+    position: absolute;
+    padding-top:100px;
+    padding-left:75px;
+}
+
+

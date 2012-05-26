@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
-from account.models import UserProfile, UserStats, UserDivision
+from account.models import UserProfile, UserStats, UserDivision, UserMedals
 from battle.models import Battle, BattleInvitation
 from division.views import Divisions
 from plane.models import Plane, Coordinates, Positioning
@@ -10,6 +10,7 @@ from plane.views import check_hit
 from nodejs_server.views import send_message
 from datetime import datetime as dt, timedelta
 import datetime
+from medals.models import Medal
 
 def create(firstUser, secondUser):
     try:
@@ -28,6 +29,24 @@ def create(firstUser, secondUser):
     return battle
 
 @csrf_exempt
+def get_badge(badge_type ,user):
+
+    try:
+        stats = UserStats.objects.get(user=user)
+        badge= Medal.objects.get(type=badge_type)
+        medals=UserMedals.objects.filter(user=stats)
+        exist=0
+        for medal in medals:
+            if medal.medals == badge.pk:
+                exist=1
+        if exist==0:
+            succes= UserMedals.objects.create(user= stats, medals=badge)
+            succes.save()
+        return HttpResponse(simplejson.dumps({'ok': '/'}))
+    except Exception as exp:
+        print exp.message
+        return HttpResponse(simplejson.dumps({'ok': '/'}))
+@csrf_exempt
 def attack(request):
     if request.method == 'POST':
         #get data from post
@@ -36,12 +55,13 @@ def attack(request):
         battle = Battle.objects.get(pk=request.POST.get('battleID'))
         user = UserProfile.objects.get(user=request.user)
         types = ['plane1', 'plane2', 'plane3']
-        
+
         for type in types:
             plane = Plane.objects.get(battle=battle, owner=user, type=type)
             result = check_hit(plane, x, y)
             #checking for the result: head, hit, False
             if result == 'head':
+
                 if check_finished(battle, user, type):
                     return HttpResponse('finished')
                 else:

@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response, redirect, render
 from django.template.context import RequestContext
 from account.models import UserMedals
+from battle.views import get_badge
 
 from account.models import UserProfile, PasswordReset, UserStats, UserDivision
 
@@ -18,6 +19,7 @@ def register(request):
             try:
                 user = User.objects.create_user(username=request.POST['username'], password=request.POST['password'], email=request.POST['email'])
                 user.save()
+
                 gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(request.POST.get('email')).hexdigest()
 
                 userprofile = UserProfile.objects.create(user = user, gravatar_url = gravatar_url)
@@ -28,11 +30,14 @@ def register(request):
                 division = UserDivision.objects.create(user=userstats)
 
                 auth_login(request,authenticate(username=request.POST['username'], password=request.POST['password']))
+                badge_type="newaccont"
+                get_badge(badge_type, userstats.user)
                 return HttpResponse(simplejson.dumps({'ok': '/'}))
             except Exception as exp:
                 return HttpResponse(exp.message)
         else:
             return HttpResponse(simplejson.dumps(form.errors))
+
 
 def login(request):
     form = UserLogin(request.POST)
@@ -82,9 +87,9 @@ def profile(request, profile_id):
     context = user_menu(request)
     userpro= UserProfile.objects.get(pk=profile_id)
     context['userpro'] = userpro
-    stats=UserStats.objects.get(pk=userpro.user_id)
+    stats=UserStats.objects.get(user=userpro.user_id)
     context['stats'] = stats
-    userdiv=UserDivision.objects.get(pk=userpro.user_id)
+    userdiv=UserDivision.objects.get(user=userpro.user_id)
     context['userdiv'] = userdiv
     medals=UserMedals.objects.filter(user=stats)
     context['medals'] = medals
