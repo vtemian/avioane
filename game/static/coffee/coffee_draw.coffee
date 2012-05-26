@@ -214,7 +214,7 @@ $(document).ready ->
         $('#notificationSmall').attr('class', 'succes notification')
         $('#notificationSmall').html("Start battle!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
         if war.myTurn
-          war.move_timer = new Countdown("#time_left", "10",
+          war.move_timer = new Countdown("#time_left", "30",
             ->
               war.sendData "next-turn",
                 enemy: enemy
@@ -237,7 +237,7 @@ $(document).ready ->
 
     $('#notificationSmall').attr('class', 'succes notification')
     $('#notificationSmall').html("It's your turn!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
-    war.move_timer = new Countdown("#time_left", "10",
+    war.move_timer = new Countdown("#time_left", "30",
       ->
         war.sendData "next-turn",
           enemy: enemy
@@ -287,7 +287,7 @@ $(document).ready ->
       x: x * war.map.squareHeight + war.map.position.left
       y: y * war.map.squareHeight + war.map.position.top
       height: war.map.squareHeight
-      fillStyle: "#FFF"
+      fillStyle: "#f2e9e1"
     $('#notificationSmall').attr('class', 'alert notification')
     $('#notificationSmall').html("Miss!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
 
@@ -298,7 +298,7 @@ $(document).ready ->
       x: x * war.map.squareHeight + war.map.position.left
       y: y * war.map.squareHeight + war.map.position.top
       height: war.map.squareHeight
-      fillStyle: "blue"
+      fillStyle: "#f8ca00"
     $('#notificationSmall').attr('class', 'info notification')
     $('#notificationSmall').html("Hit!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
 
@@ -309,7 +309,7 @@ $(document).ready ->
       x: x * war.map.squareHeight + war.map.position.left
       y: y * war.map.squareHeight + war.map.position.top
       height: war.map.squareHeight
-      fillStyle: "yellow"
+      fillStyle: "#fa2a00"
     $('#notificationSmall').attr('class', 'succes notification')
     $('#notificationSmall').html("OMG a head!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
 
@@ -317,7 +317,7 @@ $(document).ready ->
     war.myTurn = true
     $('#notificationSmall').attr('class', 'succes notification')
     $('#notificationSmall').html("It's your turn!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
-    war.move_timer = new Countdown("#time_left", "10",
+    war.move_timer = new Countdown("#time_left", "30",
       ->
         war.sendData "next-turn",
           enemy: enemy
@@ -331,7 +331,7 @@ $(document).ready ->
 
   socket.on "disconnectGame", (data) ->
     $.post('/battle/disconnect/', {'enemy': enemy, 'battleID': battleId, "state":"loss"}, ->
-      $('#notificationBig').attr('class', 'succes')
+      $('#notificationBig').attr('class', 'succes notification')
       $('#notificationBig').html("You won").dequeue().stop().slideDown(200).delay(1700).slideUp(200, -> window.location = '/')
     )
     myTurn = false
@@ -389,8 +389,12 @@ $(document).ready ->
   $("#chat-text").bind('keypress', (e) ->
     if(e.keyCode==13)
       e.preventDefault()
-      text = $(this).val()
+      str = $(this).val()
+      str=str.replace(/\\/g,'\\\\');
+      str=str.replace(/\'/g,'\\\'');
+      str=str.replace(/\"/g,'\\"');
+      str=str.replace(/\0/g,'\\0');
       $(this).val(" ")
-      socket.emit "chat", {'enemy': enemy, 'message': text}
-      $("#chat_middle").prepend('<p class="chat_you"><b>You:</b>'+text+'</p>')
+      socket.emit "chat", {'enemy': enemy, 'message': str}
+      $("#chat_middle").prepend('<p class="chat_you"><b>You:</b>'+str+'</p>')
   )

@@ -18,14 +18,14 @@ class Divisions:
                     {
                         'radar': {
                             'description': ">Using the radar you can discover parts of your opponents map. Planes protected by stealth, won't be detected by the radar.",
-                            'cost': "1131",
+                            'cost': "1",
                             'image': "radar",
                         }
                     },
                     {
                         'stealth': {
                             'description': "Stealth protects your planes against radar.",
-                            'cost': "1131",
+                            'cost': "1",
                             'image': "stealth",
                         }
                     }
@@ -34,14 +34,14 @@ class Divisions:
                     {
                         'homing': {
                             'description': "The homing missle never misses an opponents plane, however it can be deviated by the deviation weapon",
-                            'cost': "1131",
+                            'cost': "1",
                             'image': "missle",
                         }
                     },
                     {
                         'deviation': {
                             'description': "With the deviation weapon you can deviate your opponent atacks. Atacks will land randomly from their original destination",
-                            'cost': "1131",
+                            'cost': "1",
                             'image': "deviation",
                         }
 
@@ -51,7 +51,7 @@ class Divisions:
                     {
                         'nuclear': {
                             'description': "The nuclear strike is the most powerful weapon a plane can carry. It will destroy anythinhg on a 3x3 grid",
-                            'cost': "1131",
+                            'cost': "1",
                             'image': "strike",
                         }
                     }
@@ -70,7 +70,7 @@ class Divisions:
             'C': {
                 'go_up_points': 100,
                 'go_down_points': 50,
-                'plane_type': 'mig',
+                'plane_type': 'paw',
                 'max_weapons': 2,
                 'achieve_points': 50,
                 'matches': 100,

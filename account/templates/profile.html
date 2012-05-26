@@ -38,15 +38,13 @@
         <div id="profile_page" class="clearfix">
             <div id="profile_body">
                 <div id="profile_top" class="clearfix">
-                    <div id="profile_avatar"><img src="{{ userpro.gravatar_url }}" alt="avatar" /></div>
+                    <div id="profile_avatar"><img src="{{ userpro.gravatar_url }}?s=93" alt="avatar" /></div>
                     <div id="profile_stats" class="clearfix">
                         <span><img src="{{ STATIC_URL }}img/user/profile/locker/ranks/liutenant.png" alt="liutenant" /></span><h2>{{ userpro.user.username }}</h2><h3>({{ stats.rank }})</h3>
                         <ul>
                             <li>Level: {{ stats.lvl }}</li>
                             <li>Division: {{ userdiv.name }}</li>
                             <li>Badges unlocked: {{ medalsnr }}</li>
-                            <li>Won: {{ stats.won }}</li>
-                            <li>Lost: {{ stats.lost }}</li>
                         </ul>
                     </div>
                     <div id="profile_settings"><img src="{{ STATIC_URL }}img/user/profile/locker/settings.png" alt="profile_settings"/>settings</div>

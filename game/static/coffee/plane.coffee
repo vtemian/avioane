@@ -68,7 +68,7 @@ class Plane
     ]
     #        @draw()
     @orientation = 0
-    @fillStyle = "#71b44b"
+    @fillStyle = "#e0e0e0"
     @collesionFillStyle = '#FFF'
     #create each plane have it's own canvas to optimize the drawing time
     @m_canvas = document.createElement('canvas')

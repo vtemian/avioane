@@ -151,7 +151,7 @@
         ]
       ];
       this.orientation = 0;
-      this.fillStyle = "#71b44b";
+      this.fillStyle = "#e0e0e0";
       this.collesionFillStyle = '#FFF';
       this.m_canvas = document.createElement('canvas');
       this.m_canvas.width = 1000;

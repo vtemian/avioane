@@ -205,7 +205,7 @@ def result(request):
             state = request.POST.get('state')
 
             enemy = UserProfile.objects.get(user=User.objects.get(pk=request.POST.get('enemy')))
-            battle = Battle.objects.get(pk=request.POST.get('battleId'), finished=false)
+            battle = Battle.objects.get(pk=request.POST.get('battleId'), finished=False)
 
             enemy.ready_for_battle = True
             userProfile.ready_for_battle = True

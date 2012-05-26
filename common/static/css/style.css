@@ -504,7 +504,7 @@ padding:0px;
 #user_menu_logged { float:right;
     height:29px;
     margin:8px 0px 0px 0px;
-    background:url(../img/user/menu/bg.png) repeat-x;
+    background: #e0e0e0;
     border:1px solid #bebcbc;
     border-radius:4px;
     -moz-border-radius:4px;

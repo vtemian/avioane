@@ -72,7 +72,7 @@ class War
       x: x * 27 + top
       y: y * 27 + left
       height: 27
-      fillStyle: "#FFF"
+      fillStyle: "#f2e9e1"
 
     coordinates =
       x: x
@@ -92,7 +92,7 @@ class War
       x: x * 27 + top
       y: y * 27 + left
       height: 27
-      fillStyle: "blue"
+      fillStyle: "#f8ca00"
 
     coordinates =
       x: x
@@ -110,7 +110,7 @@ class War
       x: x * 27 + top
       y: y * 27 + left
       height: 27
-      fillStyle: "yellow"
+      fillStyle: "#fa2a00"
 
     coordinates =
       x: x

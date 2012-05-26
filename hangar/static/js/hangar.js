@@ -41,6 +41,8 @@ $(function(){
             $li.fadeOut(400,$li.remove())
         });
     })
-
+    $('#buy_weapons').click(function(){
+        window.location = '/shop'
+    })
 });
 
