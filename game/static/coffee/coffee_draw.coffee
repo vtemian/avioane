@@ -384,12 +384,13 @@ $(document).ready ->
     myTurn = false
 
   socket.on "chat", (data) ->
-    console.log(data)
+    $("#chat_middle").prepend('<p class="chat_opponent"><b>Enemy:</b>'+data+'</p>')
 
   $("#chat-text").bind('keypress', (e) ->
     if(e.keyCode==13)
+      e.preventDefault()
       text = $(this).val()
       $(this).val(" ")
       socket.emit "chat", {'enemy': enemy, 'message': text}
-
+      $("#chat_middle").prepend('<p class="chat_you"><b>You:</b>'+text+'</p>')
   )

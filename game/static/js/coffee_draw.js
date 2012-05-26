@@ -464,17 +464,19 @@
       return myTurn = false;
     });
     socket.on("chat", function(data) {
-      return console.log(data);
+      return $("#chat_middle").prepend('<p class="chat_opponent"><b>Enemy:</b>' + data + '</p>');
     });
     return $("#chat-text").bind('keypress', function(e) {
       var text;
       if (e.keyCode === 13) {
+        e.preventDefault();
         text = $(this).val();
         $(this).val(" ");
-        return socket.emit("chat", {
+        socket.emit("chat", {
           'enemy': enemy,
           'message': text
         });
+        return $("#chat_middle").prepend('<p class="chat_you"><b>You:</b>' + text + '</p>');
       }
     });
   });
