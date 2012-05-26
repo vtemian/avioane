@@ -243,7 +243,11 @@ button[disabled], input[disabled] { cursor: default; }
 input[type="checkbox"], input[type="radio"] { box-sizing: border-box; padding: 0; *width: 13px; *height: 13px; }
 input[type="search"] { -webkit-appearance: textfield; -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
 input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
-
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 /*
 * Remove inner padding and border in FF3/4: h5bp.com/l
 */
@@ -1386,24 +1390,39 @@ Hangar
 
 }
 
-		#hangar_platform{
-		width:194px;
-		height:248px;
-		background:url(../img/lobby/online_player_bg.png) no-repeat;
-		margin-left:22px;
-		margin-top:20px;
-		}
+#hangar_platform{
+    width:194px;
+    height:248px;
+    background:url(../img/lobby/online_player_bg.png) no-repeat;
+    margin-left:22px;
+    margin-top:20px;
+}
 
-		#customize_platform_button{cursor:pointer;font-size:14px; font-weight:bold; padding:0px; margin:0px auto; margin-top:10px; text-align:center;color:#fff; width:75px; display:block; background:#484848; padding:2px; border-radius:3px; -moz-border-radius:3px;}
-		#customize_platform_button:hover{background:#585858;}
+#customize_platform_button{
+   cursor:pointer;
+    font-size:14px;
+    font-weight:bold;
+    padding:0px;
+    margin:0px auto;
+    margin-top:10px;
+    text-align:center;
+    color:#fff;
+    width:75px;
+    display:block;
+    background:#484848;
+    padding:2px;
+    border-radius:3px;
+    -moz-border-radius:3px;
+}
+#customize_platform_button:hover{background:#585858;}
 
-		#plane_info ul{
-		list-style:none;
-		padding:0px;
-		margin-left:20px;
-		margin-top:50px;
-		margin-bottom:50px;
-		}
+#plane_info ul{
+list-style:none;
+padding:0px;
+margin-left:20px;
+margin-top:50px;
+margin-bottom:50px;
+}
 
 
 	#hangar_body{
@@ -1456,14 +1475,13 @@ Hangar
 				border-radius:5px;
 				-moz-border-radius:5px;
 				margin-top:10px;
-				display:none;
 			}
 
 				#weapon_info>ul>li>img{
 				float:left;
 				margin-top:14px;
 				margin-left:14px;
-}
+                }
 
 				.weapon_stats{
 				float:left;
@@ -1553,6 +1571,147 @@ Hangar
 					background:#ccc;
 				}
 
+/* =============================================================================
+store
+========================================================================== */
+
+  #store{
+	width:940px;
+	margin:0px auto;
+	margin-bottom:50px;
+	background:#fcfcfc;
+		border-radius:5px;
+		-moz-border-radius:5px;
+		box-shadow:0px 5px 10px #dedede;
+    }
+
+	#store_hint{
+	width:900px;
+	margin:0px auto;
+	margin-top:10px;
+	margin-bottom:30px;
+	padding:10px;
+	font-size:14px;
+	font-weight:bold;
+	text-align:center;
+	text-shadow:-1px 1px 0px #fff;
+	background:#e4e4e4;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	}
+
+	#store h2{
+	margin-left:10px;
+	margin-bottom:15px;
+	}
+
+	#unlocked_weapons{
+	list-style:none;
+	padding:0px;
+	margin:0px;
+	margin-left:30px;
+	}
+
+		#unlocked_weapons li{
+		width:430px;
+		height:120px;
+		background:#e4e4e4;
+		float:left;
+		margin-right:20px;
+		margin-bottom:20px;
+		border-radius:5px;
+		-moz-border-radius:5px;
+		}
+
+    #all_weapons{
+        list-style:none;
+        padding:0px;
+        margin:0px;
+        margin-left:30px;
+    }
+
+    #all_weapons li{
+        width:430px;
+        height:120px;
+        background:#e4e4e4;
+        float:left;
+        margin-right:20px;
+        margin-bottom:20px;
+        border-radius:5px;
+        -moz-border-radius:5px;
+    }
+
+		.weapon_left{
+			float:left;
+			width:100px;
+			margin-top:10px;
+		}
+
+			.weapon_name{
+			font-weight:bold;
+			text-align:center;
+			text-shadow:-1px 1px 0px #fff;
+			}
+
+			.weapon_image{
+			margin-top:10px;
+			margin-left:15px;
+			}
+
+		.weapon_middle{
+			float:left;
+			width:200px;
+			height:100px;
+			margin-top:10px;
+		}
+
+			.weapon_cost{
+			font-weight:bold;
+			}
+			.weapon_description{
+			padding:0px;
+			margin:0px;
+			margin-top:10px;
+			font-size:13px;
+			}
+
+		.weapon_right{
+			float:right;
+			width:90px;
+			height:70px;
+			margin-top:40px;
+		}
+
+		.weapon_pcs{
+			float:left;
+			font-weight:bold;
+		}
+
+		.weapon_pcs_input{
+			width:18px;
+			margin-left:5px;
+            padding: 3px;
+            background: #fcfcfc;
+            border: 1px solid #ccc;
+		}
+
+		.weapon_buy{
+			width:50px;
+			text-align:center;
+			color:#fff;
+			font-weight:bold;
+			margin:0px auto;
+			border-radius:5px;
+			-moz-border-radius:5px;
+			background:#888;
+			padding:5px;
+			margin-top:10px;
+			cursor:pointer;
+		}
+
+
+	#all_weapons{
+	}
 
 
 /* =============================================================================
@@ -1631,6 +1790,9 @@ Battle
     border-bottom:1px solid #ccc;
 }
 #mini_info{
+position: absolute;
+right: 0px;
+bottom: 10px;
 width:275px;
 height:275px;
 border:10px solid #ccc;
@@ -1755,6 +1917,103 @@ opacity:0.3;
     margin:1px 0px 0px 0px;
 }
 
+
+/* =============================================================================
+Battle CHAT
+========================================================================== */
+
+#chat{
+position:absolute;
+position:fixed;
+z-index:5;
+right:5px;
+bottom:0px;
+width:300px;
+background:#efefef;
+border-top-left-radius:5px;
+border-top-right-radius:5px;
+-moz-border-topleft-radius:5px;
+-moz-border-topright-radius:5px;
+border:1px solid #ccc;
+border-bottom:0px;
+display:none;
+}
+
+#chat_top{
+width:300px;
+height:30px;
+border-top-left-radius:5px;
+border-top-right-radius:5px;
+-moz-border-topleft-radius:5px;
+-moz-border-topright-radius:5px;
+}
+
+.chat_top_normal{
+ 	background:#ccc;
+ }
+
+ .chat_top_notification{
+ 	background:#e6a1a1;
+ }
+
+	#chat_user{
+	font-size:14px;
+	font-weight:bold;
+	color:#fff;
+	float:left;
+	margin-left:5px;
+	margin-top:5px;
+	}
+
+	#chat_close{
+	font-size:12px;
+	color:#fff;
+	cursor:pointer;
+	padding:3px 5px 3px 5px;
+	float:right;
+	font-weight:bold;
+	margin-top:5px;
+	margin-right:5px;
+	background:#3d3d3d;
+	border-radius:3px;
+	-moz-border-radius:3px;
+	}
+
+#chat_middle{
+width:300px;
+height:235px;
+overflow-y:scroll;
+background:#fcfcfc;
+}
+
+#chat_bottom{
+height:35px;
+}
+
+#chat_bottom textarea{
+resize:none;
+width:294px;
+height:25px;
+}
+
+.chat_you{
+padding:10px;
+background:#ededed;
+font-size:14px;
+}
+
+.chat_you b{
+padding-right:10px;
+}
+
+.chat_opponent{
+padding:10px;
+font-size:14px;
+}
+
+.chat_opponent b{
+padding-right:10px;
+}
 
 
 /* =============================================================================

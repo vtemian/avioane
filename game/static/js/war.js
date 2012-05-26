@@ -14,6 +14,7 @@
       this.myTurn = opts.myTurn;
       this.ready = opts.ready;
       this.move_timer = opts.move_timer;
+      this.shieldTurn = false;
       this.map = opts.map;
       this.context = this.map.canvas.getContext('2d');
       opts = {

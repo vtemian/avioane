@@ -97,6 +97,9 @@ io.sockets.on 'connection', (socket) ->
   socket.emit "online-peoples", online_peoples
   socket.broadcast.emit "online-peoples", online_peoples
 
+  socket.on 'chat', (data) ->
+    user = online.getById data.enemy
+    user.socket.emit "chat", data.message
 
   socket.on 'handshake', (data) ->
     newUser = new User

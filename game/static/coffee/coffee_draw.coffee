@@ -8,6 +8,7 @@ myTurn = false
 ready = 0
 timer = ""
 move_timer = ""
+checked = false
 
 class User
   constructor: (@username, @avion, @id) ->
@@ -149,7 +150,15 @@ $(document).ready ->
           $('#versus').fadeOut('slow', ->
               $("#battle").fadeIn(500).css('display', 'block')
               $("#start_battle_button").fadeIn(500).css('display', 'block')
-
+#              get weapons
+              $('#chat').css('display', 'block')
+              $.get('/hangar/get-wepons/',
+                (data) ->
+                  obj = $.parseJSON(data)
+                  $.each(obj.weapons, (index, item) ->
+                    $('#weapons-ul').append('<li data-type="'+item.name+'"><img src="/static/img/store/weapons/'+item.image+'.png" alt="radar"></li>')
+                  )
+              )
               timer = new Countdown("#time_left", "60",
                 ->
                   $.post('/battle/', {'state': 'loss', 'enemy': enemy, 'battleId': battleId},
@@ -182,6 +191,18 @@ $(document).ready ->
     else
       enemy = data.firstUser
 
+  $('li[data-type=shield]').live("click", ->
+    if checked
+      if myTurn
+        $('#notificationBig').attr('class', 'alert notification')
+        $('#notificationBig').html("The future is near...").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
+      else
+        $('#notificationBig').attr('class', 'alert notification')
+        $('#notificationBig').html("Not your turn").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
+    else
+      $('#notificationBig').attr('class', 'info notification')
+      $('#notificationBig').html("Start the battle first!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
+  )
 
   socket.on "ready", (data) ->
     #check if i'm ready or my enemy
@@ -192,18 +213,21 @@ $(document).ready ->
       if ready == 2
         $('#notificationSmall').attr('class', 'succes notification')
         $('#notificationSmall').html("Start battle!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
+        if war.myTurn
+          war.move_timer = new Countdown("#time_left", "10",
+            ->
+              war.sendData "next-turn",
+                enemy: enemy
 
-        war.move_timer = new Countdown("#time_left", "10",
-          ->
-            war.sendData "next-turn",
-              enemy: enemy
-
-            $('#notificationSmall').attr('class', 'alert notification')
-            $('#notificationSmall').html("To late!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
-            war.move_timer.clearMyInterval()
-            myTurn = false
-        )
-        war.move_timer.init()
+              $('#notificationSmall').attr('class', 'alert notification')
+              $('#notificationSmall').html("To late!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
+              war.move_timer.clearMyInterval()
+              war.myTurn = false
+          )
+          war.move_timer.init()
+        else
+          war.sendData "next-turn",
+            enemy: enemy
       else
         $('#notificationSmall').attr('class', 'info notification')
         $('#notificationSmall').html("Your enemy is ready to play!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
@@ -221,7 +245,7 @@ $(document).ready ->
         $('#notificationSmall').attr('class', 'alert notification')
         $('#notificationSmall').html("To late!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
         war.move_timer.clearMyInterval()
-        myTurn = false;
+        war.myTurn = false;
     )
     war.move_timer.init()
 
@@ -244,7 +268,7 @@ $(document).ready ->
               $('#notificationBig').attr('class', 'alert notification')
               $('#notificationBig').html("You lost").dequeue().stop().slideDown(200).delay(1700).slideUp(200, -> window.location = '/')
 
-              myTurn = false
+              war.myTurn = false
 
             )
           else
@@ -290,7 +314,7 @@ $(document).ready ->
     $('#notificationSmall').html("OMG a head!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
 
   socket.on "next-turn", (data) ->
-    myTurn = true
+    war.myTurn = true
     $('#notificationSmall').attr('class', 'succes notification')
     $('#notificationSmall').html("It's your turn!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
     war.move_timer = new Countdown("#time_left", "10",
@@ -301,7 +325,7 @@ $(document).ready ->
         $('#notificationSmall').attr('class', 'alert notification')
         $('#notificationSmall').html("To late!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
         war.move_timer.clearMyInterval()
-        myTurn = false;
+        war.myTurn = false;
     )
     war.move_timer.init()
 
@@ -325,7 +349,6 @@ $(document).ready ->
     myTurn = true
 
   $("#start_battle_button").click ->
-
     checked = battle.checkReady(battleId)
     if checked
       $("#start_battle_button").remove()
@@ -359,3 +382,14 @@ $(document).ready ->
           $('#notificationBig').html("Ready for battle!").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
     )
     myTurn = false
+
+  socket.on "chat", (data) ->
+    console.log(data)
+
+  $("#chat-text").bind('keypress', (e) ->
+    if(e.keyCode==13)
+      text = $(this).val()
+      $(this).val(" ")
+      socket.emit "chat", {'enemy': enemy, 'message': text}
+
+  )

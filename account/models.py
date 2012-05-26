@@ -1,7 +1,6 @@
 from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
-from division.models import Division
 import json
 import urllib
 import medals
@@ -29,6 +28,12 @@ class UserStats(models.Model):
     lost = models.IntegerField(null=True, default=0)
     medals=models.ManyToManyField(medals.models.Medal, through='UserMedals', null=True)
 
+class Weapon(models.Model):
+    name = models.CharField(max_length=200, default='a')
+    image = models.CharField(max_length=50, default='ImagePath')
+
+    description = models.TextField(null=True)
+
 class UserDivision(models.Model):
     user = models.ForeignKey(UserStats)
     name = models.CharField(max_length=30, default='D')
@@ -36,6 +41,15 @@ class UserDivision(models.Model):
     points = models.IntegerField(max_length=30, default=0)
 
     matches_played = models.IntegerField(max_length=30, default=0)
+    weapons=models.ManyToManyField(Weapon, through='UserWeapons', null=True)
+
+class UserWeapons(models.Model):
+    user = models.ForeignKey(UserDivision)
+    weapon= models.ForeignKey(Weapon)
+
+    qty = models.IntegerField(default=1, max_length=50)
+
+    on = models.BooleanField(default=False)
 
 class PasswordReset(models.Model):
     email = models.EmailField(max_length=50)

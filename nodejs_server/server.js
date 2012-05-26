@@ -161,6 +161,11 @@
     online_peoples += 1;
     socket.emit("online-peoples", online_peoples);
     socket.broadcast.emit("online-peoples", online_peoples);
+    socket.on('chat', function(data) {
+      var user;
+      user = online.getById(data.enemy);
+      return user.socket.emit("chat", data.message);
+    });
     socket.on('handshake', function(data) {
       var client, idClient, newUser, _ref;
       newUser = new User({

@@ -1,0 +1,66 @@
+{% extends 'index.html' %}
+
+{% block extrahead %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shop_frontend.js"></script>
+{% endblock %}
+
+{% block header %}
+<script type="text/javascript">
+
+    var username = '{{ user.username }}';
+    var id = '{{ user.id }}';
+
+    var money = {{ userprofile.money }};
+
+</script>
+<div id="logo"><a href="/"><img src="{{ STATIC_URL }}img/logo.png" alt="Avioane" /></a></div>
+
+<!--<nav id="user_menu">
+    <ul>
+        <li>Register</li>
+        <li>Login</li>
+    </ul>
+</nav>-->
+
+<nav id="user_menu_logged">
+    <ul>
+        <li><div class="user_avatar"><img src="{{ userprofile.user.gravatar_url }}?s=21" alt="avatar" /></div><h3 id="user_name">{{ user.username }}</h3></li>
+        <li><img src="{{ STATIC_URL }}img/user/menu/icon_drop.png"/></li>
+        <li><a href="/logout"><img src="{{ STATIC_URL }}img/user/menu/icon_logout.png"/></a></li>
+    </ul>
+</nav>
+
+<nav id="game_menu">
+    <ol>
+        <li><a href="/">home</a></li>
+        <li><a href="/hangar">hangar</a></li>
+        <li><a href="/shop">shop</a></li>
+    </ol>
+</nav>
+
+
+<div id="notificationBig" class="notification">Congratulations! You’we just leveled up!</div>
+
+{% endblock %}
+{% block content %}
+<div id="body">
+    <div id="store" class="clearfix">
+
+        <div id="store_hint">Note: <q>You can unlock more weapons by promoting to a higher division! Every division brings you new planes and weapons letting you develop new tactics to win against your opponents</q></div>
+
+        <h2>Unlocked Weapons:</h2>
+
+        <ul id="unlocked_weapons" class="clearfix">
+
+        </ul>
+        <h2>All Weapons:</h2>
+
+        <ul id="all_weapons" class="clearfix">
+
+        </ul>
+    <div id="what_i_can_buy"></div>
+    <div id="what_i_cant_buy"></div>
+</div>
+
+
+{% endblock %}

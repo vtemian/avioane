@@ -5,16 +5,64 @@ class Divisions:
         self.keys = ['D', 'C', 'B', 'A']
 
         weapons = {
-            'D': ['simple'],
-            'C': ['double', 'armor'],
-            'B': ['triple', 'radar'],
-            'A': ['antena', 'nuclear']
+            'D': [
+                    {
+                        'shield': {
+                            'description': "The shield protects your plane once from an opponents hit.",
+                            'cost': "1",
+                            'image': "shield",
+                        }
+                    }
+                ],
+            'C': [
+                    {
+                        'radar': {
+                            'description': ">Using the radar you can discover parts of your opponents map. Planes protected by stealth, won't be detected by the radar.",
+                            'cost': "1131",
+                            'image': "radar",
+                        }
+                    },
+                    {
+                        'stealth': {
+                            'description': "Stealth protects your planes against radar.",
+                            'cost': "1131",
+                            'image': "stealth",
+                        }
+                    }
+            ],
+            'B': [
+                    {
+                        'homing': {
+                            'description': "The homing missle never misses an opponents plane, however it can be deviated by the deviation weapon",
+                            'cost': "1131",
+                            'image': "missle",
+                        }
+                    },
+                    {
+                        'deviation': {
+                            'description': "With the deviation weapon you can deviate your opponent atacks. Atacks will land randomly from their original destination",
+                            'cost': "1131",
+                            'image': "deviation",
+                        }
+
+                    }
+            ],
+            'A': [
+                    {
+                        'nuclear': {
+                            'description': "The nuclear strike is the most powerful weapon a plane can carry. It will destroy anythinhg on a 3x3 grid",
+                            'cost': "1131",
+                            'image': "strike",
+                        }
+                    }
+            ]
         }
         self.divisions = {
             'D': {
                 'go_up_points': 10,
                 'go_down_points': -1,
                 'plane_type': 'airborne',
+                'max_weapons': 1,
                 'achieve_points': 50,
                 'matches': 10,
                 'weapons': weapons['D']
@@ -23,6 +71,7 @@ class Divisions:
                 'go_up_points': 100,
                 'go_down_points': 50,
                 'plane_type': 'mig',
+                'max_weapons': 2,
                 'achieve_points': 50,
                 'matches': 100,
                 'weapons': weapons['C']
@@ -31,6 +80,7 @@ class Divisions:
                 'go_up_points': 1000,
                 'go_down_points': 500,
                 'plane_type': 'mig',
+                'max_weapons': 3,
                 'achieve_points': 50,
                 'matches': 500,
                 'weapons': weapons['B']
@@ -39,6 +89,7 @@ class Divisions:
                 'go_up_points': 100,
                 'go_down_points': -1,
                 'plane_type': 'mig',
+                'max_weapons': 4,
                 'achieve_points': 50,
                 'matches': 1000,
                 'weapons': weapons['A']
@@ -50,6 +101,12 @@ class Divisions:
 
     def divisions_ranking(self, name):
         return self.keys.index(name) +1
+
+    def get_list(self):
+
+        for name in self.divisions:
+            for division in self.divisions[name]:
+                print self.divisions[name][division]
 
     def next_division(self, name):
         my_division = self.keys.index(name)
