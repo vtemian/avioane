@@ -16,7 +16,7 @@
                     });
         });
     </script>
-    <link rel="stylesheet" href="{{ STATIC_URL }}/static/css/style.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
 {% endblock %}
 {% block header %}
     <div id="logo"><a href="#"><img src="{{ STATIC_URL }}img/logo.png" alt="Avioane" /></a></div>
@@ -30,10 +30,9 @@
 
     <nav id="game_menu">
         <ol>
-            <li><a href="#">acasa</a></li>
-            <li><a href="#">hangar</a></li>
-            <li><a href="#">batalie</a></li>
-            <li><a href="#">hall of fame</a></li>
+            <li><a href="/">home</a></li>
+            <li><a href="/hangar">hangar</a></li>
+            <li><a href="/shop">shop</a></li>
         </ol>
     </nav>
 
