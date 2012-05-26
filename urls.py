@@ -23,4 +23,5 @@ urlpatterns = patterns('',
     url(r'^facebook/login$', 'facebook.views.login'),
     url(r'^facebook/authentication_callback$', 'facebook.views.authentication_callback'),
     url(r'^profile/(?P<profile_id>.*)/$', 'account.views.profile'),
+    url(r'^404/$', 'common.views.handler404'),
 )

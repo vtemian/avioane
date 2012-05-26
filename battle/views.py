@@ -30,17 +30,22 @@ def create(firstUser, secondUser):
 
 @csrf_exempt
 def get_badge(badge_type ,user):
-    stats = UserStats.objects.get(user=user)
-    badge= Medal.objects.get(type=badge_type)
-    medals=serMedals.objects.filter(user=stats)
-    exist=False
-    for medal in medals:
-        if medal.medals == badge.pk:
-            exist=True
-    if not exist:
-        succes= UserMedals.objects.create(user= user, medal= badge.pk)
-        succes.save()
 
+    try:
+        stats = UserStats.objects.get(user=user)
+        badge= Medal.objects.get(type=badge_type)
+        medals=UserMedals.objects.filter(user=stats)
+        exist=0
+        for medal in medals:
+            if medal.medals == badge.pk:
+                exist=1
+        if exist==0:
+            succes= UserMedals.objects.create(user= stats, medals=badge)
+            succes.save()
+        return HttpResponse(simplejson.dumps({'ok': '/'}))
+    except Exception as exp:
+        print exp.message
+        return HttpResponse(simplejson.dumps({'ok': '/'}))
 @csrf_exempt
 def attack(request):
     if request.method == 'POST':
@@ -56,7 +61,7 @@ def attack(request):
             result = check_hit(plane, x, y)
             #checking for the result: head, hit, False
             if result == 'head':
-                get_badge(head, battle.enemy)
+
                 if check_finished(battle, user, type):
                     return HttpResponse('finished')
                 else:

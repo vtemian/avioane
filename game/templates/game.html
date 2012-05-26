@@ -133,7 +133,7 @@
                         <td><div class="user_avatar"><img src="{{ user.user.user.gravatar_url }}?s=21" /></div>{{ user.user.user.user.username }}</td>
                         <td>{{ user.user.lvl }}</td>
                         <td>{{ user.user.won }} won / {{ user.user.lost }} lost</td>
-                        <td>{{ user.user.achieve_points }} <a href="#" class="button">view locker</a></td>
+                        <td>{{ user.user.achieve_points }} <a href="{{ SITE_URL }}profile/{{ user.user.pk }}" class="button">view locker</a></td>
                         <td>{{ user.points }}</td>
                     </tr>
                     {% endfor %}
