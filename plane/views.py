@@ -1,9 +1,13 @@
 from django.http import HttpResponse
 from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
-from account.models import UserProfile
+from account.models import UserProfile, UserMedals, UserStats
 from battle.models import Battle
 from plane.models import Plane, Coordinates, Positioning
+
+
+
+
 
 @csrf_exempt
 def position_coordinates(request, type):

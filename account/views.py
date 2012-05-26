@@ -82,9 +82,9 @@ def profile(request, profile_id):
     context = user_menu(request)
     userpro= UserProfile.objects.get(pk=profile_id)
     context['userpro'] = userpro
-    stats=UserStats.objects.get(pk=userpro.user_id)
+    stats=UserStats.objects.get(user=userpro.user_id)
     context['stats'] = stats
-    userdiv=UserDivision.objects.get(pk=userpro.user_id)
+    userdiv=UserDivision.objects.get(user=userpro.user_id)
     context['userdiv'] = userdiv
     medals=UserMedals.objects.filter(user=stats)
     context['medals'] = medals
