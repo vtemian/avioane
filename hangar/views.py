@@ -81,15 +81,17 @@ def get_wepons(request):
 
     division_user = UserDivision.objects.get(user=user)
 
-    weapons = UserWeapons.objects.filter(user=division_user, on=True)
+    weapons = UserWeapons.objects.filter(user=division_user, on=True, qty__gt=3)
 
     my_weapons = []
 
     for weapon in weapons:
+        print weapon
         my_weapons.append(
                 {
                     'name': weapon.weapon.name,
                     'image': weapon.weapon.image,
+                    'qty': weapon.qty,
                 }
         )
 

@@ -147,6 +147,10 @@ io.sockets.on 'connection', (socket) ->
     #ready a player
     battle.ready(data.user)
 
+  socket.on "weapon-set", (data) ->
+    battle = battles.get(data.battleId)
+    battle.attacking_moves data.user, data.coordinates, "weapon-usage"
+
   socket.on "attack", (data) ->
     battle = battles.get(data.battleId)
     console.log data

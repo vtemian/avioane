@@ -26,3 +26,8 @@ def start(request):
                               context,
                               context_instance=RequestContext(request))
 
+def initiate_new_game(request):
+    context = user_menu(request)
+    return render_to_response('multiplayer_game.html',
+        context,
+        context_instance=RequestContext(request))

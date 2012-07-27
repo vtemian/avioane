@@ -41,13 +41,14 @@ class UserDivision(models.Model):
     points = models.IntegerField(max_length=30, default=0)
 
     matches_played = models.IntegerField(max_length=30, default=0)
-    weapons=models.ManyToManyField(Weapon, through='UserWeapons', null=True)
+    weapons = models.ManyToManyField(Weapon, through='UserWeapons', null=True)
+
 
 class UserWeapons(models.Model):
     user = models.ForeignKey(UserDivision)
     weapon= models.ForeignKey(Weapon)
 
-    qty = models.IntegerField(default=1, max_length=50)
+    qty = models.IntegerField(default=0, max_length=50)
 
     on = models.BooleanField(default=False)
 

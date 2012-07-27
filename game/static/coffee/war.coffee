@@ -15,6 +15,9 @@ class War
     @map = opts.map
     @context = @map.canvas.getContext('2d')
 
+    @weapons = opts.weapons
+    @weaponSet = false
+
     opts = {
       "user": @user,
       "battleId": @battleId+''
@@ -48,10 +51,19 @@ class War
               "y": y
             }
             @move_timer.clearMyInterval()
-            @sendData "attack",
-              "coordinates": coordinates
-              "battleId": @battleId
-              "user": @enemy
+            if not @weaponSet
+              @sendData "attack",
+                "coordinates": coordinates
+                "battleId": @battleId
+                "user": @enemy
+            else
+              @sendData "weapon-set",
+                "coordinates": coordinates
+                "battleId": @battleId
+                "user": @enemy
+                "type": @weaponSet
+              if @weaponSet == 'shield'
+                @weapon_usage(x, y, 0, 60*11-27)
 
             @myTurn = false
 
@@ -84,6 +96,25 @@ class War
       x: x
       y: y
       coordinates: coordinates
+  weapon_usage: (x, y, left, top) ->
+
+    @draw_attack
+      x: x * 27 + top
+      y: y * 27 + left
+      height: 27
+      fillStyle: "#000000"
+
+    coordinates =
+      x: x
+      y: y
+
+    @sendData "weapon_usage",
+      user: @enemy
+      battleId: @battleId
+      x: x
+      y: y
+      coordinates: coordinates,
+      "type": @weaponSet
 
 
   hit_attack: (x, y, left, top) ->

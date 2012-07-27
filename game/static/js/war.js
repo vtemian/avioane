@@ -17,6 +17,8 @@
       this.shieldTurn = false;
       this.map = opts.map;
       this.context = this.map.canvas.getContext('2d');
+      this.weapons = opts.weapons;
+      this.weaponSet = false;
       opts = {
         "user": this.user,
         "battleId": this.battleId + ''
@@ -48,11 +50,23 @@
               "y": y
             };
             this.move_timer.clearMyInterval();
-            this.sendData("attack", {
-              "coordinates": coordinates,
-              "battleId": this.battleId,
-              "user": this.enemy
-            });
+            if (!this.weaponSet) {
+              this.sendData("attack", {
+                "coordinates": coordinates,
+                "battleId": this.battleId,
+                "user": this.enemy
+              });
+            } else {
+              this.sendData("weapon-set", {
+                "coordinates": coordinates,
+                "battleId": this.battleId,
+                "user": this.enemy,
+                "type": this.weaponSet
+              });
+              if (this.weaponSet === 'shield') {
+                this.weapon_usage(x, y, 0, 60 * 11 - 27);
+              }
+            }
             return this.myTurn = false;
           }
         }
@@ -89,6 +103,28 @@
         x: x,
         y: y,
         coordinates: coordinates
+      });
+    };
+
+    War.prototype.weapon_usage = function(x, y, left, top) {
+      var coordinates;
+      this.draw_attack({
+        x: x * 27 + top,
+        y: y * 27 + left,
+        height: 27,
+        fillStyle: "#000000"
+      });
+      coordinates = {
+        x: x,
+        y: y
+      };
+      return this.sendData("weapon_usage", {
+        user: this.enemy,
+        battleId: this.battleId,
+        x: x,
+        y: y,
+        coordinates: coordinates,
+        "type": this.weaponSet
       });
     };
 

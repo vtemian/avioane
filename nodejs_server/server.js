@@ -214,6 +214,11 @@
       battle = battles.get(data.battleId);
       return battle.ready(data.user);
     });
+    socket.on("weapon-set", function(data) {
+      var battle;
+      battle = battles.get(data.battleId);
+      return battle.attacking_moves(data.user, data.coordinates, "weapon-usage");
+    });
     socket.on("attack", function(data) {
       var battle;
       battle = battles.get(data.battleId);

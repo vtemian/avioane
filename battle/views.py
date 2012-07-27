@@ -9,7 +9,6 @@ from plane.models import Plane, Coordinates, Positioning
 from plane.views import check_hit
 from nodejs_server.views import send_message
 from datetime import datetime as dt, timedelta
-import datetime
 from medals.models import Medal
 
 def create(firstUser, secondUser):
