@@ -19,7 +19,7 @@
 
         var username = '{{ user.username }}';
         var id = '{{ user.id }}';
-        var lvl = {{ userprofile.lvl }} * {{ userprofile.lvl }} * {{ userprofile.lvl }} * 5;
+        var lvl = {{ userprofile.lvl }} * {{ userprofile.lvl }} * {{ userprofile.lvl }} +4 * {{ userprofile.lvl }};
         var progress = 100 * {{ userprofile.exp }} / lvl;
         var avion = '{{ avion }}';
 
@@ -49,6 +49,7 @@
             <li><a href="/">home</a></li>
             <li><a href="/hangar">hangar</a></li>
             <li><a href="/shop">shop</a></li>
+            <li><a href="/help">help</a></li>
         </ol>
     </nav>
 

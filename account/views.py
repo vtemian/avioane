@@ -9,7 +9,6 @@ from django.shortcuts import render_to_response, redirect, render
 from django.template.context import RequestContext
 from account.models import UserMedals
 from battle.views import get_badge
-
 from account.models import UserProfile, PasswordReset, UserStats, UserDivision
 
 def register(request):
@@ -30,7 +29,7 @@ def register(request):
                 division = UserDivision.objects.create(user=userstats)
 
                 auth_login(request,authenticate(username=request.POST['username'], password=request.POST['password']))
-                badge_type="newaccont"
+                badge_type="newaccount"
                 get_badge(badge_type, userstats.user)
                 return HttpResponse(simplejson.dumps({'ok': '/'}))
             except Exception as exp:
@@ -101,3 +100,8 @@ def profile(request, profile_id):
     return render_to_response('profile.html',
         context,
         context_instance=RequestContext(request))
+
+
+def help(request):
+    context = user_menu(request)
+    return render_to_response('help.html', context, context_instance=RequestContext(request))

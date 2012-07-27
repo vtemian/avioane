@@ -44,7 +44,7 @@ def get_badge(badge_type ,user):
         return HttpResponse(simplejson.dumps({'ok': '/'}))
     except Exception as exp:
         print exp.message
-        return HttpResponse(simplejson.dumps({'ok': '/'}))
+        return HttpResponse(simplejson.dumps({'nok': '/'}))
 @csrf_exempt
 def attack(request):
     if request.method == 'POST':
@@ -60,6 +60,7 @@ def attack(request):
             result = check_hit(plane, x, y)
             #checking for the result: head, hit, False
             if result == 'head':
+                get_badge(bullseye,user.user_id)
 
                 if check_finished(battle, user, type):
                     return HttpResponse('finished')
@@ -233,10 +234,10 @@ def increase_level(user):
     if user.lvl == 1:
         user.lvl += 1
     else:
-        #TODO: formula pentru lvl
+        #TODO: formula pentru lvl ->done
         exp = user.lvl * user.lvl + user.lvl * 2
         user.exp += exp
-        if user.exp >= user.lvl * user.lvl * user.lvl *5:
+        if user.exp >= user.lvl * user.lvl * user.lvl + user.lvl * 4:
             user.lvl += 1
     user.save()
 
