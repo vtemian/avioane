@@ -123,6 +123,8 @@ INSTALLED_APPS = (
     'nodejs_server',
     'hangar',
     'division',
+
+    'shop',
 )
 
 LOGIN_REDIRECT_URL = '/'

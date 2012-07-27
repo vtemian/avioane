@@ -97,6 +97,9 @@ io.sockets.on 'connection', (socket) ->
   socket.emit "online-peoples", online_peoples
   socket.broadcast.emit "online-peoples", online_peoples
 
+  socket.on 'chat', (data) ->
+    user = online.getById data.enemy
+    user.socket.emit "chat", data.message
 
   socket.on 'handshake', (data) ->
     newUser = new User
@@ -143,6 +146,10 @@ io.sockets.on 'connection', (socket) ->
     battle = battles.get(data.battleId)
     #ready a player
     battle.ready(data.user)
+
+  socket.on "weapon-set", (data) ->
+    battle = battles.get(data.battleId)
+    battle.attacking_moves data.user, data.coordinates, "weapon-usage"
 
   socket.on "attack", (data) ->
     battle = battles.get(data.battleId)

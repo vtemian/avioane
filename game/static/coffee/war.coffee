@@ -10,9 +10,13 @@ class War
     @ready = opts.ready
     @move_timer = opts.move_timer
 
+    @shieldTurn = false
 
     @map = opts.map
     @context = @map.canvas.getContext('2d')
+
+    @weapons = opts.weapons
+    @weaponSet = false
 
     opts = {
       "user": @user,
@@ -30,30 +34,38 @@ class War
         $('#notificationSmall').attr('class', 'alert notification')
         $('#notificationSmall').html("It's not your turn").dequeue().stop().slideDown(200).delay(1700).slideUp(200)
       else
+          squareHeight = @map.squareHeight
+          position = @map.position
 
-        squareHeight = @map.squareHeight
-        position = @map.position
+          maxTop = position.top + squareHeight * 10
+          maxLeft = position.left + squareHeight * 10
 
-        maxTop = position.top + squareHeight * 10
-        maxLeft = position.left + squareHeight * 10
+          top = e.offsetY
+          left = e.offsetX
 
-        top = e.offsetY
-        left = e.offsetX
+          if top < maxTop and top > position.top and left < maxLeft and left > position.left
+            y = parseInt((top-position.top) / squareHeight)
+            x = parseInt((left-position.left) / squareHeight)
+            coordinates = {
+              "x": x,
+              "y": y
+            }
+            @move_timer.clearMyInterval()
+            if not @weaponSet
+              @sendData "attack",
+                "coordinates": coordinates
+                "battleId": @battleId
+                "user": @enemy
+            else
+              @sendData "weapon-set",
+                "coordinates": coordinates
+                "battleId": @battleId
+                "user": @enemy
+                "type": @weaponSet
+              if @weaponSet == 'shield'
+                @weapon_usage(x, y, 0, 60*11-27)
 
-        if top < maxTop and top > position.top and left < maxLeft and left > position.left
-          y = parseInt((top-position.top) / squareHeight)
-          x = parseInt((left-position.left) / squareHeight)
-          coordinates = {
-            "x": x,
-            "y": y
-          }
-          @move_timer.clearMyInterval()
-          @sendData "attack",
-            "coordinates": coordinates
-            "battleId": @battleId
-            "user": @enemy
-
-          @myTurn = false
+            @myTurn = false
 
   sendData: (event, message) ->
     @userSocket.emit event, message
@@ -72,7 +84,7 @@ class War
       x: x * 27 + top
       y: y * 27 + left
       height: 27
-      fillStyle: "#FFF"
+      fillStyle: "#f2e9e1"
 
     coordinates =
       x: x
@@ -84,6 +96,25 @@ class War
       x: x
       y: y
       coordinates: coordinates
+  weapon_usage: (x, y, left, top) ->
+
+    @draw_attack
+      x: x * 27 + top
+      y: y * 27 + left
+      height: 27
+      fillStyle: "#000000"
+
+    coordinates =
+      x: x
+      y: y
+
+    @sendData "weapon_usage",
+      user: @enemy
+      battleId: @battleId
+      x: x
+      y: y
+      coordinates: coordinates,
+      "type": @weaponSet
 
 
   hit_attack: (x, y, left, top) ->
@@ -92,7 +123,7 @@ class War
       x: x * 27 + top
       y: y * 27 + left
       height: 27
-      fillStyle: "blue"
+      fillStyle: "#f8ca00"
 
     coordinates =
       x: x
@@ -110,7 +141,7 @@ class War
       x: x * 27 + top
       y: y * 27 + left
       height: 27
-      fillStyle: "yellow"
+      fillStyle: "#fa2a00"
 
     coordinates =
       x: x

@@ -9,6 +9,8 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/socket.io-client/dist/socket.io.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/coffee_draw.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/lobby.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/chat.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/weapons.js"></script>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/game_style.css">
 
 {% endblock %}
@@ -44,10 +46,9 @@
 
     <nav id="game_menu">
         <ol>
-            <li><a href="/">acasa</a></li>
-            <li><a href="#">hangar</a></li>
-            <li><a href="#">batalie</a></li>
-            <li><a href="#">hall of fame</a></li>
+            <li><a href="/">home</a></li>
+            <li><a href="/hangar">hangar</a></li>
+            <li><a href="/shop">shop</a></li>
         </ol>
     </nav>
 
@@ -56,6 +57,17 @@
 
 {% endblock %}
 {% block content %}
+    <div id="chat">
+        <div id="chat_top" class="chat_top_normal"><span id="chat_user">Chat</span><span id="chat_close">X</span></div>
+        <div id="chat_slide">
+            <div id="chat_middle">
+
+            </div>
+            <div id="chat_bottom">
+                <textarea id="chat-text"></textarea>
+            </div>
+        </div>
+    </div>
     <div id="sub_header_holder">
         <div class="separator"></div>
         <div id="sub_header" class="clearfix">
@@ -182,17 +194,13 @@
 
             <div id="timer">
 
-                <h1>Your turn!!</h1>
+                <h1>Your turn!</h1>
                 <div id="seconds">59</div>
 
             </div>
 
             <div id="weapons">
-                <ul>
-                    <li><img src="{{ STATIC_URL }}img/store/weapons/missle.png" alt="radar"></li>
-                    <li><img src="{{ STATIC_URL }}img/store/weapons/missle.png" alt="radar"></li>
-                    <li><img src="{{ STATIC_URL }}img/store/weapons/missle.png" alt="radar"></li>
-                    <li><img src="{{ STATIC_URL }}img/store/weapons/missle.png" alt="radar"></li>
+                <ul id="weapons-ul">
                 </ul>
             </div>
 

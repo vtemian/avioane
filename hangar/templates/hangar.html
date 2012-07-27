@@ -1,76 +1,104 @@
-<!doctype html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-    <meta charset="utf-8">
+{% extends 'index.html' %}
 
-    <!-- Use the .htaccess and remove these lines to avoid edge case issues.
- More info: h5bp.com/i/378 -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-    <title>Avioane</title>
-    <meta name="Avioane" content="avioane,joc,airplanes,battle">
-
-    <!-- Mobile viewport optimized: h5bp.com/viewport -->
-    <meta name="viewport" content="width=device-width">
-
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
-
-    <link rel="shortcut icon" href="{{ STATIC_URL }}favicon.ico">
-
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/modal.css">
-
-    <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
-
-    <!-- All JavaScript at the bottom, except this Modernizr build.
-Modernizr enables HTML5 elements & feature detects for optimal performance.
-Create your own custom Modernizr build: www.modernizr.com/download/ -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="{{ STATIC_URL }}js/libs/modernizr-2.5.3.min.js"></script>
-    <script src="{{ STATIC_URL }}js/libs/jquery.simplemodal.1.4.2.min.js"></script>
-    {% block extrahead %}
-    {% endblock %}
-</head>
-<body>
-<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
-chromium.org/developers/how-tos/chrome-frame-getting-started -->
-<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-<header>
-    {% block header %}
-    {% endblock %}
-</header>
-{% block content %}
+{% block extrahead %}
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/hangar.js"></script>
 {% endblock %}
 
-<footer>
-    <div class="separator"><!--Separator--></</div>
-    <p>© avioane 2012</p>
-</footer>
+{% block header %}
+<script type="text/javascript">
 
+    var username = '{{ user.username }}';
+    var id = '{{ user.id }}';
 
-<!-- JavaScript at the bottom for fast page loading -->
-
-<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-
-<script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-
-<!-- scripts concatenated and minified via build script -->
-<script src="{{ STATIC_URL }}js/plugins.js"></script>
-<script src="{{ STATIC_URL }}js/script.js"></script>
-<!-- end scripts -->
-
-<!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
-mathiasbynens.be/notes/async-analytics-snippet -->
-<script>
-    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-        s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>
-</body>
-</html>
+<div id="logo"><a href="/"><img src="{{ STATIC_URL }}img/logo.png" alt="Avioane" /></a></div>
+
+<!--<nav id="user_menu">
+    <ul>
+        <li>Register</li>
+        <li>Login</li>
+    </ul>
+</nav>-->
+
+<nav id="user_menu_logged">
+    <ul>
+        <li><div class="user_avatar"><img src="{{ userprofile.user.gravatar_url }}?s=21" alt="avatar" /></div><h3 id="user_name">{{ user.username }}</h3></li>
+        <li><img src="{{ STATIC_URL }}img/user/menu/icon_drop.png"/></li>
+        <li><a href="/logout"><img src="{{ STATIC_URL }}img/user/menu/icon_logout.png"/></a></li>
+    </ul>
+</nav>
+
+<nav id="game_menu">
+    <ol>
+        <li><a href="/">home</a></li>
+        <li><a href="/hangar">hangar</a></li>
+        <li><a href="/shop">shop</a></li>
+    </ol>
+</nav>
+
+
+<div id="notificationBig" class="notification">Congratulations! You’we just leveled up!</div>
+
+{% endblock %}
+{% block content %}
+        <script>
+            var max_load = {{ max_load }};
+        </script>
+<div id="body">
+
+    <div id="hangar" class="clearfix">
+
+        <div id="hangar_sidebar">
+            <div id="customize_platform">
+                <div id="hangar_platform" class="clearfix">
+                    <h2 class="online_player_name">{{ user.username }}</h2>
+                    <div class="online_player_plane"><img src="{{ STATIC_URL }}img/lobby/avioane/{{ avion }}.png" alt="mig" /></div>
+                    <div id="customize_platform_button">customize</div>
+                </div>
+            </div>
+            <div id="plane_info">
+                <ul>
+                    <li>Model: {{ avion }}</li>
+                    <li>Max Weapon Load: {{ max_load }}</li>
+                    <li>Nickaname: Hawk</li>
+                </ul>
+            </div>
+            <div id="buy_weapons" class="stats_contrast">
+                buy weapons
+            </div>
+        </div>
+
+        <div id="hangar_body">
+            <div id="hangar_body_top" class="clearfix">
+                <div id="plane_holder">
+                    <h4 id="plane_holder_header">Drag weapons to equip</h4>
+                    <img src="{{ STATIC_URL }}img/hangar/avioane/{{ avion }}.png" alt="plane"/>
+                </div>
+                <div id="weapon_info" class="clearfix">
+                    <ul id="used_weapons">
+                        {% for weapon in use_weapons %}
+                            <li data-info="{{ weapon.weapon.name }}"><img src="{{ STATIC_URL }}img/store/weapons/{{ weapon.weapon.image }}.png"  alt="{{ weapon.weapon.name }}" /><ul class="weapon_stats"><li>{{ weapon.weapon.name }}: Level 1</li><li>Scan range: 8%</li></ul><div class="weapon_change">remove</div></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div id="hangar_body_bottom">
+                <div id="weapon_holder" class="clearfix">
+                    <ul>
+                        {% for weapon in weapons %}
+
+                             <li><div class="weapon" data-image="{{ weapon.weapon.image }}" data-type="{{ weapon.weapon.name }}"><img src="{{ STATIC_URL }}img/store/weapons/{{ weapon.weapon.image }}.png" alt="radar"/></div><div class="weapon_amount">{{ weapon.qty }}</div></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+{% endblock %}
